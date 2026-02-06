@@ -11,12 +11,15 @@
 <header class="site-header">
   <div class="container">
 
+    <!-- Logo -->
     <div class="site-branding">
-      <a href="<?php echo home_url(); ?>" class="logo">
-        <?php bloginfo('name'); ?>
+      <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">
+         <span>Boskoa Travel</span>
+        <span class="subtitle">Costa Rica</span>
       </a>
     </div>
 
+    <!-- Menú principal -->
     <nav class="main-nav">
       <?php
         wp_nav_menu([
@@ -25,7 +28,14 @@
           'menu_class' => 'menu'
         ]);
       ?>
+    
     </nav>
+
+    <!-- Idioma -->
+    <div class="lang-switcher">
+      <a href="#" class="lang">EN</a>
+    </div>
 
   </div>
 </header>
+
