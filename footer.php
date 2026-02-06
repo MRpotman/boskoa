@@ -164,14 +164,7 @@
                     else :
                         // Métodos de pago por defecto si no hay ninguno creado
                         ?>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/visa.png" alt="Visa"
-                    class="payment-logo">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/mastercard.png" alt="Mastercard"
-                    class="payment-logo">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/applepay.png" alt="Apple Pay"
-                    class="payment-logo">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/sinpemovil.png" alt="SINPE Móvil"
-                    class="payment-logo">
+    
                 <?php
                     endif;
                     ?>
