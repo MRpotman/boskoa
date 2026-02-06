@@ -112,11 +112,41 @@
                     Copyright © <?php echo date('Y'); ?>, BoskoaTravel.com, All Right Reserved
                 </p>
                 <div class="payment-methods">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/visa.png" alt="Visa">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/mastercard.png" alt="Mastercard">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/applepay.png" alt="Apple Pay">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/sinpemovil.png" alt="Google Pay">
-                </div>
+                  <?php
+                  // Query para obtener los métodos de pago
+                  $payment_methods = new WP_Query([
+                      'post_type'      => 'payment_method',
+                      'posts_per_page' => -1,
+                      'post_status'    => 'publish',
+                      'orderby'        => 'meta_value_num',
+                      'meta_key'       => '_payment_order',
+                      'order'          => 'ASC',
+                  ]);
+
+                  if ($payment_methods->have_posts()) :
+                      while ($payment_methods->have_posts()) : $payment_methods->the_post();
+                          if (has_post_thumbnail()) :
+                              $logo_url = get_the_post_thumbnail_url(get_the_ID(), 'thumbnail');
+                              $payment_name = get_the_title();
+                              ?>
+                              <img src="<?php echo esc_url($logo_url); ?>" 
+                                  alt="<?php echo esc_attr($payment_name); ?>" 
+                                  title="<?php echo esc_attr($payment_name); ?>">
+                              <?php
+                          endif;
+                      endwhile;
+                      wp_reset_postdata();
+                  else :
+                      // Métodos de pago por defecto si no hay ninguno creado
+                      ?>
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/visa.png" alt="Visa">
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/mastercard.png" alt="Mastercard">
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/applepay.png" alt="Apple Pay">
+                      <img src="<?php echo get_template_directory_uri(); ?>/assets/img/sinpemovil.png" alt="SINPE Móvil">
+                      <?php
+                  endif;
+                  ?>
+              </div>
             </div>
             
         </div>

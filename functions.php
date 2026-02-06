@@ -104,3 +104,117 @@ function boskoa_handle_contact_form() {
 }
 add_action('admin_post_nopriv_boskoa_contact_form', 'boskoa_handle_contact_form');
 add_action('admin_post_boskoa_contact_form', 'boskoa_handle_contact_form');
+
+/**
+ * Registrar Custom Post Type para Métodos de Pago
+ */
+function boskoa_register_cpt_payment_method() {
+    $labels = [
+        'name'               => 'Métodos de Pago',
+        'singular_name'      => 'Método de Pago',
+        'menu_name'          => 'Métodos de Pago',
+        'name_admin_bar'     => 'Método de Pago',
+        'add_new'            => 'Añadir Nuevo',
+        'add_new_item'       => 'Añadir Nuevo Método de Pago',
+        'new_item'           => 'Nuevo Método de Pago',
+        'edit_item'          => 'Editar Método de Pago',
+        'view_item'          => 'Ver Método de Pago',
+        'all_items'          => 'Todos los Métodos',
+        'search_items'       => 'Buscar Métodos de Pago',
+        'not_found'          => 'No se encontraron métodos de pago',
+        'not_found_in_trash' => 'No hay métodos de pago en la papelera',
+    ];
+
+    $args = [
+        'labels'             => $labels,
+        'public'             => false,
+        'publicly_queryable' => false,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => false,
+        'capability_type'    => 'post',
+        'has_archive'        => false,
+        'hierarchical'       => false,
+        'menu_position'      => 25,
+        'menu_icon'          => 'dashicons-money-alt',
+        'supports'           => ['title', 'thumbnail'],
+        'show_in_rest'       => true,
+    ];
+
+    register_post_type('payment_method', $args);
+}
+add_action('init', 'boskoa_register_cpt_payment_method');
+
+/**
+ * Personalizar columnas en el listado de métodos de pago
+ */
+function boskoa_payment_methods_columns($columns) {
+    $new_columns = [
+        'cb'        => $columns['cb'],
+        'thumbnail' => 'Logo',
+        'title'     => 'Nombre',
+        'date'      => 'Fecha',
+    ];
+    return $new_columns;
+}
+add_filter('manage_payment_method_posts_columns', 'boskoa_payment_methods_columns');
+
+/**
+ * Mostrar el logo en la columna
+ */
+function boskoa_payment_methods_custom_column($column, $post_id) {
+    if ($column === 'thumbnail') {
+        $thumbnail = get_the_post_thumbnail($post_id, [40, 40]);
+        echo $thumbnail ?: '<span style="color: #999;">Sin logo</span>';
+    }
+}
+add_action('manage_payment_method_posts_custom_column', 'boskoa_payment_methods_custom_column', 10, 2);
+
+/**
+ * Añadir orden personalizado para los métodos de pago
+ */
+function boskoa_add_payment_method_order_metabox() {
+    add_meta_box(
+        'payment_method_order',
+        'Orden de visualización',
+        'boskoa_payment_method_order_callback',
+        'payment_method',
+        'side',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'boskoa_add_payment_method_order_metabox');
+
+function boskoa_payment_method_order_callback($post) {
+    wp_nonce_field('boskoa_save_payment_order', 'payment_order_nonce');
+    $order = get_post_meta($post->ID, '_payment_order', true);
+    ?>
+    <p>
+        <label for="payment_order">Orden (número):</label>
+        <input type="number" id="payment_order" name="payment_order" value="<?php echo esc_attr($order ?: 0); ?>" min="0" style="width: 100%;">
+        <small style="display: block; margin-top: 5px; color: #666;">
+            Los métodos se ordenan de menor a mayor. 0 = primero.
+        </small>
+    </p>
+    <?php
+}
+
+function boskoa_save_payment_method_order($post_id) {
+    if (!isset($_POST['payment_order_nonce']) || !wp_verify_nonce($_POST['payment_order_nonce'], 'boskoa_save_payment_order')) {
+        return;
+    }
+
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+
+    if (isset($_POST['payment_order'])) {
+        update_post_meta($post_id, '_payment_order', intval($_POST['payment_order']));
+    }
+}
+add_action('save_post_payment_method', 'boskoa_save_payment_method_order');
