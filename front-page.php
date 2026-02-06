@@ -11,7 +11,7 @@
           while ($slides->have_posts()) : $slides->the_post();
             $img = get_the_post_thumbnail_url(get_the_ID(), 'full'); ?>
             <div class="slide <?php echo $slides->current_post === 0 ? 'active' : ''; ?>" style="background-image: url('<?php echo esc_url($img); ?>')">
-              <h1><?php the_title(); ?></h1>
+              <h1 class= "hero-slide-title"><?php the_title(); ?></h1>
               <p><?php the_content(); ?></p>
             </div>
           <?php endwhile;
