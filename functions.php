@@ -55,3 +55,52 @@ function register_cpt_slide() {
     register_post_type('slide', $args);
 }
 add_action('init', 'register_cpt_slide');
+
+/**
+ * Procesar formulario de contacto del footer
+ */
+function boskoa_handle_contact_form() {
+    // Verificar nonce
+    if (!isset($_POST['contact_nonce']) || !wp_verify_nonce($_POST['contact_nonce'], 'boskoa_contact_form')) {
+        wp_die('Error de seguridad');
+    }
+
+    // Sanitizar datos
+    $name = sanitize_text_field($_POST['contact_name']);
+    $email = sanitize_email($_POST['contact_email']);
+    $matters = sanitize_text_field($_POST['contact_matters']);
+    $message = sanitize_textarea_field($_POST['contact_message']);
+
+    // Email del administrador
+    $admin_email = get_option('admin_email');
+    
+    // Asunto del email
+    $subject = 'Nuevo mensaje de contacto: ' . $matters;
+    
+    // Cuerpo del email
+    $body = "Nuevo mensaje de contacto desde el sitio web:\n\n";
+    $body .= "Nombre: " . $name . "\n";
+    $body .= "Email: " . $email . "\n";
+    $body .= "Asunto: " . $matters . "\n\n";
+    $body .= "Mensaje:\n" . $message . "\n";
+    
+    // Headers
+    $headers = array(
+        'Content-Type: text/plain; charset=UTF-8',
+        'From: ' . get_bloginfo('name') . ' <' . $admin_email . '>',
+        'Reply-To: ' . $name . ' <' . $email . '>'
+    );
+
+    // Enviar email
+    $sent = wp_mail($admin_email, $subject, $body, $headers);
+
+    // Redirigir con mensaje
+    if ($sent) {
+        wp_redirect(add_query_arg('contact', 'success', wp_get_referer()));
+    } else {
+        wp_redirect(add_query_arg('contact', 'error', wp_get_referer()));
+    }
+    exit;
+}
+add_action('admin_post_nopriv_boskoa_contact_form', 'boskoa_handle_contact_form');
+add_action('admin_post_boskoa_contact_form', 'boskoa_handle_contact_form');
