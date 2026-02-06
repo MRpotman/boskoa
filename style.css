@@ -193,6 +193,10 @@ html, body {
     font-size: 14px;
     font-weight: 500;
 }
+.form-submit{
+    display: flex;
+    justify-content: flex-end;
+}
 
 .form-group input,
 .form-group textarea {
@@ -335,24 +339,53 @@ html, body {
 
 .payment-methods {
     display: flex;
-    gap: 15px;
     align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
-.payment-methods img {
-    height: 32px;
-    width: auto;
-    background: #ffffff;
-    padding: 8px 12px;
+.payment-methods > div {
+    width: 60px;  /* Ancho fijo del contenedor */
+    height: 40px; /* Alto fijo del contenedor */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
     border-radius: 6px;
-    transition: transform 0.2s ease;
+    padding: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Sombra suave opcional */
 }
 
-.payment-methods img:hover {
+.payment-methods .payment-logo {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain; /* La imagen se ajusta sin deformarse */
+    display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .payment-methods > div {
+        width: 50px;
+        height: 35px;
+    }
+}
+
+.payment-logo-wrapper:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+    .payment-methods .payment-logo {
+        height: 30px;
+        max-width: 50px;
+    }
+}
 /* Responsive */
 @media (max-width: 1024px) {
     .footer-main {
@@ -413,3 +446,124 @@ html, body {
   max-width: 35%;
 }
 
+/* ========================================
+   NOTIFICACIONES DE CONTACTO
+   ======================================== */
+
+.contact-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    min-width: 350px;
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: slideInRight 0.4s ease;
+    transition: opacity 0.3s ease;
+}
+
+.contact-notification.success {
+    background: linear-gradient(135deg, #2D8A3E 0%, #34a853 100%);
+    color: white;
+}
+
+.contact-notification.error {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+}
+
+.notification-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    position: relative;
+}
+
+.notification-content svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    stroke: white;
+}
+
+.notification-content strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.notification-content p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.95;
+}
+
+.notification-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.notification-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+        max-width: none;
+    }
+}
+
+/* Aviso de reCAPTCHA */
+.recaptcha-notice {
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 15px;
+    line-height: 1.4;
+}
+
+.recaptcha-notice a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.recaptcha-notice a:hover {
+    color: #ffffff;
+}
+
+/* Ocultar badge de reCAPTCHA (opcional) */
+.grecaptcha-badge {
+    visibility: hidden;
+}
