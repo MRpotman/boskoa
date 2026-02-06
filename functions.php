@@ -10,6 +10,8 @@ function mi_theme_assets() {
   );
    wp_enqueue_style(
         'boskoa-hero', get_template_directory_uri() . '/assets/css/hero.css');
+    wp_enqueue_style(
+        'boskoa-footer', get_template_directory_uri() . '/assets/css/footer.css');
 }
 
 add_action('wp_enqueue_scripts', 'mi_theme_assets');
@@ -167,14 +169,15 @@ function boskoa_payment_method_order_callback($post) {
     wp_nonce_field('boskoa_save_payment_order', 'payment_order_nonce');
     $order = get_post_meta($post->ID, '_payment_order', true);
     ?>
-    <p>
-        <label for="payment_order">Orden (número):</label>
-        <input type="number" id="payment_order" name="payment_order" value="<?php echo esc_attr($order ?: 0); ?>" min="0" style="width: 100%;">
-        <small style="display: block; margin-top: 5px; color: #666;">
-            Los métodos se ordenan de menor a mayor. 0 = primero.
-        </small>
-    </p>
-    <?php
+<p>
+    <label for="payment_order">Orden (número):</label>
+    <input type="number" id="payment_order" name="payment_order" value="<?php echo esc_attr($order ?: 0); ?>" min="0"
+        style="width: 100%;">
+    <small style="display: block; margin-top: 5px; color: #666;">
+        Los métodos se ordenan de menor a mayor. 0 = primero.
+    </small>
+</p>
+<?php
 }
 
 function boskoa_save_payment_method_order($post_id) {
