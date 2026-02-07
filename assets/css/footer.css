@@ -60,7 +60,7 @@
 }
 
 .footer-logo .logo-content {
-    z-index: 1001;
+    z-index: 999;
     display: flex;
     gap: 15px;
     align-items: center;
