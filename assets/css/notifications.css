@@ -1,0 +1,97 @@
+/* ========================================
+   CONTACT NOTIFICATIONS
+   ======================================== */
+
+.contact-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    min-width: 350px;
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: slideInRight 0.4s ease;
+    transition: opacity 0.3s ease;
+}
+
+.contact-notification.success {
+    background: linear-gradient(135deg, #2D8A3E 0%, #34a853 100%);
+    color: white;
+}
+
+.contact-notification.error {
+    background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+    color: white;
+}
+
+.notification-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 20px;
+    position: relative;
+}
+
+.notification-content svg {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    stroke: white;
+}
+
+.notification-content strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.notification-content p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.95;
+}
+
+.notification-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s ease;
+}
+
+.notification-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .contact-notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        min-width: auto;
+        max-width: none;
+    }
+}

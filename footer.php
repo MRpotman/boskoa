@@ -1,18 +1,34 @@
 <footer class="site-footer" id="contact">
     <div class="footer-container">
-
         <!-- Sección principal del footer -->
         <div class="footer-main">
-
             <!-- Columna 1: Logo y descripción -->
             <!-- Columna 1: Logo -->
             <div class="footer-column footer-logo">
-                <a href="<?php echo esc_url(home_url('/')); ?>" class="logo-link">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/boskoalogo.png"
-                        alt="Boskoa Travels Costa Rica" class="footer-logo-img">
-                </a>
+                <!-- ================= LOGO ================= -->
+                <div class="site-branding">
+                    <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">
+                        <div class="logo-content">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/img/boskoa-logo.png"
+                                alt="Boskoa Travel Logo" class="logo-image">
+                            <div>
+                                <span>Boskoa Travel</span>
+                                <div class="tiquicia">
+                                    <div class="logo-divider">
+                                        <svg width="90" height="28" viewBox="-10 -10 200 80"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="spiral-path"
+                                                d="M13.109 29.63C9.07 6.576 45.923 6.913 39.498 34.027 33.215 57.413-.858 58.069-6.2 32.85-9.535 7.479 7.051-9.915 46.596-1.501 109.531 13.812 147.35 36.05 175.65 0"
+                                                fill="none" stroke="#846E59" stroke-width="4" />
+                                        </svg>
+                                    </div>
+                                    <span class="subtitle">Costa Rica</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
-
             <!-- Columna 2: Formulario de contacto -->
             <div class="footer-column footer-contact-form">
                 <h3>To learn more about our products and services,<br>write to us and we will gladly assist you.</h3>
@@ -55,13 +71,6 @@
                     <input type="hidden" name="action" value="boskoa_contact_form">
                     <?php wp_nonce_field('boskoa_contact_form', 'contact_nonce'); ?>
                 </form>
-
-                <!-- Aviso de reCAPTCHA -->
-                <p class="recaptcha-notice">
-                    This site is protected by reCAPTCHA and the Google
-                    <a href="https://policies.google.com/privacy" target="_blank">Privacy Policy</a> and
-                    <a href="https://policies.google.com/terms" target="_blank">Terms of Service</a> apply.
-                </p>
             </div>
 
             <!-- Columna 3: Información de contacto -->
@@ -164,7 +173,6 @@
                     else :
                         // Métodos de pago por defecto si no hay ninguno creado
                         ?>
-    
                 <?php
                     endif;
                     ?>
@@ -173,89 +181,13 @@
     </div>
 
     </div>
-    <!-- Script de reCAPTCHA v3 -->
+
+    <!-- reCAPTCHA v3 Script -->
     <?php if (defined('BOSKOA_RECAPTCHA_SITE_KEY') && BOSKOA_RECAPTCHA_SITE_KEY): ?>
-    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo BOSKOA_RECAPTCHA_SITE_KEY; ?>"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const btnText = submitBtn.querySelector('.btn-text');
-
-        if (!form) return;
-
-        form.addEventListener('submit', function(e) {
-            e.preventDefault(); // Evita envío normal
-
-            // Deshabilitar botón durante el proceso
-            submitBtn.disabled = true;
-            const originalText = btnText.textContent;
-            btnText.textContent = 'Verifying...';
-
-            // Ejecutar reCAPTCHA
-            grecaptcha.ready(function() {
-                grecaptcha.execute('<?php echo BOSKOA_RECAPTCHA_SITE_KEY; ?>', {
-                        action: 'contact_form'
-                    })
-                    .then(function(token) {
-                        // Añadir token al campo oculto
-                        document.getElementById('recaptchaToken').value = token;
-
-                        // Cambiar texto del botón
-                        btnText.textContent = 'Sending...';
-
-                        // Enviar el formulario
-                        form.submit();
-                    })
-                    .catch(function(error) {
-                        // Error en reCAPTCHA
-                        console.error('reCAPTCHA error:', error);
-                        alert(
-                            'Error de verificación. Por favor, recarga la página e intenta nuevamente.'
-                        );
-
-                        // Rehabilitar botón
-                        submitBtn.disabled = false;
-                        btnText.textContent = originalText;
-                    });
-            });
-        });
-    });
-    // Función para mostrar notificaciones
-    function showNotification(type, title, message) {
-        // Crear notificación
-        const notification = document.createElement('div');
-        notification.className = `contact-notification ${type}`;
-        notification.innerHTML = `
-                                <div class="notification-content">
-                                    ${type === 'success' ? `
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    ` : `
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-                                            <line x1="12" y1="8" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                            <line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                        </svg>
-                                    `}
-                                    <div>
-                                        <strong>${title}</strong>
-                                        <p>${message}</p>
-                                    </div>
-                                    <button class="notification-close" onclick="this.parentElement.parentElement.remove()">&times;</button>
-                                </div>
-                            `;
-
-        document.body.appendChild(notification);
-
-        // Auto-cerrar después de 5 segundos
-        setTimeout(() => {
-            notification.style.opacity = '0';
-            setTimeout(() => notification.remove(), 300);
-        }, 5000);
-    }
+    window.boskoaRecaptchaSiteKey = '<?php echo esc_js(BOSKOA_RECAPTCHA_SITE_KEY); ?>';
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo esc_attr(BOSKOA_RECAPTCHA_SITE_KEY); ?>">
     </script>
     <?php endif; ?>
 </footer>

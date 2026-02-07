@@ -13,6 +13,8 @@ function mi_theme_assets() {
     wp_enqueue_style(
         'boskoa-footer', get_template_directory_uri() . '/assets/css/footer.css');
     wp_enqueue_style(
+        'boskoa-notifications', get_template_directory_uri() . '/assets/css/notifications.css');
+    wp_enqueue_style(
         'boskoa-header', get_template_directory_uri() . '/assets/css/header.css');
 }
 
@@ -24,6 +26,14 @@ function boskoa_scripts() {
   wp_enqueue_script(
     'boskoa-header',
     get_template_directory_uri() . '/assets/js/header.js',
+    [],
+    null,
+    true
+  );
+
+  wp_enqueue_script(
+    'boskoa-footer',
+    get_template_directory_uri() . '/assets/js/footer.js',
     [],
     null,
     true
