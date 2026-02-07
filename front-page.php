@@ -6,9 +6,10 @@
   <!-- HERO dinámico -->
   <section class="hero hero-carousel">
     <div class="hero-slide-social-container">
-    <a href="#"><i class="fa-brands fa-facebook"></i></a>
-    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+      <a href="#" class="face"><i class="fa-brands fa-facebook"></i></a>
+      <a href="#" class="insta"><i class="fa-brands fa-instagram"></i></a>
+       <a href="#" class="x"><i class="fa-brands fa-twitter"></i></a>
+   
   </div>
     <div class="slides">
       <?php
@@ -20,12 +21,10 @@
               <div class="hero-slide-title-container">
                 <h1 class= "hero-slide-title"><?php the_title(); ?></h1>
               </div>
-              <div class="hero-slide-social-container">
-              <a href="https://www.una.ac.cr/"><i class="fa-brands fa-facebook"></i></a>
-              </div>
+
                 <div class="button-container">
-                <button class="button-hero-slider">SEE PACKS -> </button>
-              </div>
+                  <button class="button-hero-slider">SEE PACKS -> </button>
+                </div>
               <div class="hero-slide-content-container">
                 <h2 class="hero-slide-content"><?php the_content(); ?></h2>
               </div>
