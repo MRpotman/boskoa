@@ -5,11 +5,6 @@ Description: Theme para Boskoa CMS
 Version: 1.0
 */
 
-/*------Navbbar Styles------*/
-.site-header {
-  background: #111;
-  padding: 1rem 0;
-}
 
 .container {
   width: 90%;
@@ -63,22 +58,6 @@ html, body {
   padding: 0;
   font-family: 'Poppins', sans-serif;
   height: 100%;
-}
-
-.site-header {
-  position: absolute; /* para que flote sobre el contenido */
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: transparent; /* transparente */
-  z-index: 10; /* encima de todo */
-  padding: 20px 0; /* opcional, según tu diseño */
-}
-
-.site-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .hero {

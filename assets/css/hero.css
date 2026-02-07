@@ -23,6 +23,7 @@ html, body {
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
+  
   height: 100%;
   font-family: var(--font-primary);
 }
@@ -192,7 +193,7 @@ html, body {
   transform: translateX(-50%);
   display: flex;
   gap: 20px;
-  z-index: 20;
+  z-index: 1;
 }
 
 .dot {
@@ -256,21 +257,33 @@ html, body {
   position: absolute;
   display: flex;
   gap: 10px;
+  padding: 4px;
   top: 53%;
   left: 2%;
   z-index: 10;
-  background: rgba(255, 255, 255, 0.186);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(1px);
+  border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 10px;
 }
-
+.hero-slide-social-container a{
+  height: 24px;
+}
 .hero-slide-social-container a i {
   font-size: clamp(0.1rem, 4vmin, 1.5rem); /* tamaño de los iconos */
   color: white;    /* color del icono */
   transition: transform 0.3s ease;
 }
 
-.hero-slide-social-container a i:hover {
+.hero-slide-social-container .face i:hover {
   transform: scale(1.2); /* pequeño efecto al pasar el mouse */
-  color: #3b5998; /* ejemplo: azul Facebook */
+  color: #4f76ca; /* ejemplo: azul Facebook */
+}
+.hero-slide-social-container .insta i:hover {
+  transform: scale(1.2); /* pequeño efecto al pasar el mouse */
+  color: #be4481; /* ejemplo: azul Facebook */
+}
+.hero-slide-social-container .x i:hover {
+  transform: scale(1.2); /* pequeño efecto al pasar el mouse */
+  color: #9dbbfc; /* ejemplo: azul Facebook */
 }
