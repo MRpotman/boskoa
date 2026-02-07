@@ -1,0 +1,275 @@
+
+/* =========================
+   VARIABLES
+========================= */
+:root {
+  --font-primary: "Plus Jakarta Sans", sans-serif;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --overlay-dark: rgba(0, 0, 0, 0.26);
+  --overlay-light: rgba(125, 73, 73, 0.45);
+}
+
+/* =========================
+   RESET Y GLOBAL
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-primary);
+}
+
+
+
+/* =========================
+   HERO / CAROUSEL
+========================= */
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: 0;
+  transition: opacity 1s ease-in-out;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.slide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-dark);
+  z-index: 0;
+}
+
+.slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+/* =========================
+   ANIMACIÓN TEXTOS
+========================= */
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(100%); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+.hero-slide-title {
+  position: relative;
+  padding-left: 20px;
+  color: var(--color-white);
+  max-width: 80%;
+  font-size: clamp(0.1rem, 5vmin, 4rem);
+  opacity: 0;
+  left: 2%;
+}
+
+.slide.active .hero-slide-title {
+  animation: slideInRight 0.8s ease forwards;
+  opacity: 1;
+}
+
+.hero-slide-content {
+  position: relative;
+  padding-right: 20px;
+  color: var(--color-white);
+  max-width: 60%;
+  font-size: clamp(0.2rem, 2vmin, 1.5rem);
+  right: 2%;
+  text-align: right;
+}
+
+/* =========================
+   CONTENEDORES DE SLIDE
+========================= */
+.hero-slide-title-container,
+.hero-slide-content-container {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.hero-slide-title-container { justify-content: flex-start; bottom: 10%; }
+.hero-slide-content-container { justify-content: flex-end; top: 5%; }
+
+/* =========================
+   BOTÓN HERO
+========================= */
+.button-container {
+  position: absolute;
+  bottom: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-hero-slider {
+  position: relative;
+  display: inline-block;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--color-white);
+  background: transparent;
+  border: 2px solid currentColor;
+  border-radius: clamp(4px, 1vw, 6px);
+  font-size: clamp(8px, 1.5vw, 17px);
+  width: clamp(6em, 20vw, 10em);
+  height: clamp(3em, 5vw, 3em);
+  line-height: 2.5em;
+  margin: 20px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color 0.5s, border 0.5s;
+  z-index: 1;
+}
+
+.button-hero-slider::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color-white);
+  height: 150px;
+  width: 200px;
+  border-radius: 50%;
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s;
+}
+
+.button-hero-slider:hover {
+  color: var(--color-black);
+  border-color: var(--color-black);
+}
+
+.button-hero-slider:hover::before {
+  top: -30px;
+  left: -30px;
+}
+
+.button-hero-slider:active::before {
+  background: #3a0ca3;
+  transition: background 0s;
+}
+
+/* =========================
+   SLIDER DOTS
+========================= */
+.slider-dots {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 20;
+}
+
+.dot {
+  width: clamp(10px, 8vw, 80px);
+  height: clamp(1px, 8vw, 10px);
+  border-radius: 10% / 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot.active {
+  background: var(--color-white);
+  transform: scale(1.3);
+}
+
+/* =========================
+   TOURS
+========================= */
+.tours {
+  padding: 80px 20px;
+}
+
+.tours-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tour-card {
+  background: #f2f2f2;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+/* =========================
+   MEDIA QUERIES
+========================= */
+@media (max-width: 768px) {
+  .hero-carousel {
+    height: 50vh;
+  }
+
+  .hero-slide-title-container,
+  .hero-slide-content-container {
+    width: 50%;
+  }
+
+  .hero-slide-title {
+    max-width: 70%;
+    font-size: clamp(0.1rem, 4vmin, 1.5rem);
+  }
+
+  .hero-slide-content {
+    max-width: 60%;
+    font-size: clamp(0.2rem, 2vmin, 1.5rem);
+  }
+}
+
+.hero-slide-social-container {
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  top: 53%;
+  left: 2%;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.186);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+}
+
+.hero-slide-social-container a i {
+  font-size: clamp(0.1rem, 4vmin, 1.5rem); /* tamaño de los iconos */
+  color: white;    /* color del icono */
+  transition: transform 0.3s ease;
+}
+
+.hero-slide-social-container a i:hover {
+  transform: scale(1.2); /* pequeño efecto al pasar el mouse */
+  color: #3b5998; /* ejemplo: azul Facebook */
+}
