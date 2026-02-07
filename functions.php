@@ -12,6 +12,8 @@ function mi_theme_assets() {
         'boskoa-hero', get_template_directory_uri() . '/assets/css/hero.css');
     wp_enqueue_style(
         'boskoa-footer', get_template_directory_uri() . '/assets/css/footer.css');
+    wp_enqueue_style(
+        'boskoa-header', get_template_directory_uri() . '/assets/css/header.css');
 }
 
 add_action('wp_enqueue_scripts', 'mi_theme_assets');
@@ -36,6 +38,24 @@ function boskoa_scripts() {
 
 }
 add_action('wp_enqueue_scripts', 'boskoa_scripts');
+
+/*---fonts--*/
+function boskoa_fonts() {
+  wp_enqueue_style(
+    'boskoa-google-fonts',
+    'https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap',
+    false
+  );
+}
+add_action('wp_enqueue_scripts', 'boskoa_fonts');
+/******* */
+/*the funtion of navbar*/
+function tema_menus() {
+  register_nav_menus([
+    'menu-principal' => 'Menú Principal'
+  ]);
+}
+add_action('after_setup_theme', 'tema_menus');
 
 
 /*------ */

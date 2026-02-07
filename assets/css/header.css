@@ -1,0 +1,392 @@
+.site-header {
+  background: #111;
+  padding: 1rem 0;
+  position: fixed;
+   top: 0;
+    width: 100%;
+  z-index: 1000;
+  background: transparent;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+.site-header.scrolled {
+  background: rgb(255, 255, 255);
+  backdrop-filter: blur(2px);
+}
+.container {
+  width: 95%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.spiral-path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  transition: stroke-dashoffset 1.2s ease;
+}
+.spiral-path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.logo:hover .spiral-path {
+  stroke-dashoffset: 0;
+}
+
+.menu li a{
+  text-decoration: none;
+  color: white;
+}
+
+.logo-content{
+  z-index: 1001;
+  display: flex;
+}
+.tiquicia{
+  display: flex;
+}
+
+.site-header.menu-open .logo {
+  color: #111;
+}
+
+.site-header.menu-open .subtitle {
+  color: #111;
+}
+
+.site-header.menu-open .checkmark span {
+  background-color: #111;
+}
+.logo {
+   font-family:"Architects Daughter", cursive;
+   font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  text-decoration: none;
+display: flex;
+color: white;
+transition: color 0.3s ease;
+  flex-direction: column;
+  line-height: 1;
+}
+.site-header.scrolled .logo {
+  color: #111;
+}
+.logo-divider svg {
+  width: 90px;
+  height: 28px;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+  
+
+.site-header.scrolled .menu li a {
+  color: #000000;
+}
+.site-header.menu-open .menu li a{
+  color: #000000;
+}
+.site-header.menu-open .menu li a:hover {
+  color: #217E3F;
+}
+.subtitle {
+  font-size: 14px;
+  color: white; /* Blanco por defecto */
+  transition: color 0.3s ease;
+}
+.site-header.scrolled .subtitle {
+  color: #111;
+}
+
+.lang-switcher {
+  position: relative;
+}
+/* Hide the default checkbox (now has id #menu-checkbox) */
+#menu-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.menu-toggle {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+}
+
+.checkmark {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 32px;
+  width: 32px;
+}
+
+.checkmark span {
+  width: 32px;
+  height: 3px;
+  background-color: white;
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.site-header.scrolled .checkmark span {
+  background-color: #111;
+}
+.checkmark span:nth-child(1) {
+  border-radius: 20px;
+  top: 10%;
+}
+
+.checkmark span:nth-child(2) {
+  border-radius: 20px;
+  top: 50%;
+}
+
+.checkmark span:nth-child(3) {
+  border-radius: 20px;
+  top: 90%;
+}
+
+.menu-toggle {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+}
+
+/* When the checkbox (placed before the label) is checked, target the adjacent label's checkmark */
+#menu-checkbox:checked + .menu-toggle .checkmark span:nth-child(1) {
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+#menu-checkbox:checked + .menu-toggle .checkmark span:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+#menu-checkbox:checked + .menu-toggle .checkmark span:nth-child(3) {
+  transform: translateX(-50px);
+  opacity: 0;
+}
+
+.lang-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lang-toggle img {
+  width: 22px;
+  height: auto;
+  
+}
+
+.lang-text {
+  font-size: 14px;
+  font-weight: 500;
+   color: white; /* Blanco por defecto */
+  transition: color 0.3s ease;
+}
+.site-header.scrolled .lang-text {
+  color: #111;
+}
+
+/* Dropdown oculto */
+
+.lang-dropdown {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: #111;
+  border-radius: 6px;
+  padding: 0.4rem;
+  list-style: none;
+  margin: 0;
+  display: none;
+  min-width: 100px;
+  z-index: 1000;
+}
+
+.lang-dropdown.open {
+  display: block;
+}
+
+.lang-dropdown li {
+  margin: 0;
+}
+
+.lang-dropdown a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.5rem;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.lang-dropdown a:hover {
+  background: #222;
+}
+
+.lang-dropdown img {
+  width: 20px;
+  height: auto;
+}
+
+.mobile-lang {
+  display: none;
+}
+/* Mostrar al hover */
+.lang-switcher:hover .lang-dropdown {
+  display: block;
+}
+
+.lang-dropdown li a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.4rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.lang-dropdown img {
+  width: 18px;
+}
+
+.main-nav {
+  display: flex;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+
+
+@media (max-width: 992px) {
+
+  /* Mostrar hamburguesa */
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+ .main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+  }
+
+  /* Cuando está abierto */
+  #menu-checkbox:checked ~ .main-nav {
+    transform: translateY(0);
+  }
+
+  .main-nav .menu {
+    flex-direction: column;
+    padding: 2rem;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .menu li a{
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 600;
+    position: relative;
+  }
+
+  .site-header.menu-open .menu li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 80%;
+    height: 3px;
+    transition: transform 0.3s ease;
+  }
+
+  .site-header.menu-open .menu li a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  .menu li{
+    transition: all 0.3s ease;
+  }
+  .site-header.menu-open .menu li:hover {
+    scale: calc(1);
+     transform: rotate(7deg);
+  }
+  .lang-switcher {
+    display: none;
+  }
+
+  .mobile-lang {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem;
+    
+  }
+.mobile-lang img{
+  height: 12px;
+}
+
+  .site-header.scrolled .menu li a {
+  color: #000000;
+}
+
+  .mobile-lang a {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        font-size: 1rem;
+        padding: 0.4rem 1.5rem;
+        border: 2px solid rgba(0, 0, 0, 0.3);
+        border-radius: 13px;
+        transition: all 0.8s ease;
+        backdrop-filter: blur(10px);
+  }
+
+  .mobile-lang a:hover {
+    background: rgba(237, 237, 237, 0.794);
+    border-color: rgb(4, 4, 4);
+    transform: translateY(-2px);
+  }
+}
+
