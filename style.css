@@ -6,15 +6,6 @@ Version: 1.0
 */
 
 
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
 .logo {
    font-family:"Architects Daughter", cursive;
    font-weight: 400;
@@ -58,6 +49,7 @@ html, body {
   padding: 0;
   font-family: 'Poppins', sans-serif;
   height: 100%;
+  scroll-behavior: smooth;
 }
 
 .hero {
@@ -93,14 +85,4 @@ html, body {
 
 
 
-@keyframes slideInRight {
-    from {
-        transform: translateX(400px);
-        opacity: 0;
-    }
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
 

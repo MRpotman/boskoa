@@ -14,7 +14,7 @@
   }
   .container {
     width: 95%;
-    max-width: 1200px;
+    
     margin: auto;
     display: flex;
     align-items: center;
@@ -59,7 +59,7 @@
     background-color: #111;
   }
   .logo {
-    font-family:"Architects Daughter", cursive;
+    font-family:'Architects Daughter', cursive;
     font-weight: 400;
     font-style: normal;
     font-size: 1.5rem;
@@ -303,12 +303,12 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: #ffffff;
+      background: transparent;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transform: translateY(-100%);
+      transform: translateY(-1500%);
       transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 1000;
     }
@@ -316,6 +316,7 @@
     /* Cuando está abierto */
     #menu-checkbox:checked ~ .main-nav {
       transform: translateY(0);
+      background: #ffffff;
     }
 
     .main-nav .menu {
