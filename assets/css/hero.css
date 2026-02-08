@@ -300,20 +300,33 @@
   height: 24px;
 }
 .hero-slide-social-container a i {
-  font-size: clamp(0.1rem, 4vmin, 1.5rem); /* tamaño de los iconos */
-  color: white;    /* color del icono */
+  font-size: clamp(0.1rem, 4vmin, 1.5rem); 
+  color: white; 
   transition: transform 0.3s ease;
 }
+.hero-slide-social-container a.face i{
+  color: #0865fe;
+}
 
-.hero-slide-social-container .face i:hover {
-  transform: scale(1.2); /* pequeño efecto al pasar el mouse */
-  color: #4f76ca; /* ejemplo: azul Facebook */
+.hero-slide-social-container a.insta i {
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
-.hero-slide-social-container .insta i:hover {
-  transform: scale(1.2); /* pequeño efecto al pasar el mouse */
-  color: #be4481; /* ejemplo: azul Facebook */
+
+.hero-slide-social-container a.x i{
+  color: #74C0FC;
 }
-.hero-slide-social-container .x i:hover {
-  transform: scale(1.2); /* pequeño efecto al pasar el mouse */
-  color: #9dbbfc; /* ejemplo: azul Facebook */
+
+.hero-slide-social-container i:hover {
+  transform: scale(1.2); 
+  
 }
+
