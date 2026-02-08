@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <main>
-  <h1>Hola mundo desde mi theme 😎</h1>
+  <h1>esto es el index 😎</h1>
 </main>
 
 <?php get_footer(); ?>

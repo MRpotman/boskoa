@@ -73,8 +73,6 @@
 
 .footer-logo .tiquicia {
     display: flex;
-    flex-direction: column;
-    gap: 5px;
 }
 
 .footer-logo .logo-divider svg {
@@ -84,7 +82,7 @@
 
 .footer-logo .subtitle {
     font-size: 16px;
-    color: rgb(255, 0, 0);
+    color: rgb(255, 255, 255);
     transition: color 0.3s ease;
 }
 
