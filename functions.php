@@ -461,3 +461,299 @@ if (!defined('BOSKOA_RECAPTCHA_SITE_KEY')) {
 if (!defined('BOSKOA_RECAPTCHA_SECRET_KEY')) {
     define('BOSKOA_RECAPTCHA_SECRET_KEY', '6LfgF2MsAAAAAJ6r5hLBZ7cyK_ueqogL29Y8sjXr');
 }
+
+
+
+
+/**
+ * Registrar Custom Post Type para Paquetes Turísticos
+ */
+function boskoa_register_cpt_tour_package() {
+    $labels = [
+        'name'               => 'Paquetes Turísticos',
+        'singular_name'      => 'Paquete',
+        'menu_name'          => 'Tour Packages',
+        'name_admin_bar'     => 'Paquete',
+        'add_new'            => 'Añadir Nuevo',
+        'add_new_item'       => 'Añadir Nuevo Paquete',
+        'new_item'           => 'Nuevo Paquete',
+        'edit_item'          => 'Editar Paquete',
+        'view_item'          => 'Ver Paquete',
+        'all_items'          => 'Todos los Paquetes',
+        'search_items'       => 'Buscar Paquetes',
+        'not_found'          => 'No se encontraron paquetes',
+        'not_found_in_trash' => 'No hay paquetes en la papelera',
+    ];
+
+    $args = [
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => ['slug' => 'packages'],
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 20,
+        'menu_icon'          => 'dashicons-palmtree',
+        'supports'           => ['title', 'editor', 'thumbnail', 'excerpt'],
+        'show_in_rest'       => true,
+    ];
+
+    register_post_type('tour_package', $args);
+}
+add_action('init', 'boskoa_register_cpt_tour_package');
+
+/**
+ * Personalizar columnas en el listado de paquetes
+ */
+function boskoa_tour_packages_columns($columns) {
+    $new_columns = [
+        'cb'          => $columns['cb'],
+        'thumbnail'   => 'Imagen',
+        'title'       => 'Nombre del Paquete',
+        'price'       => 'Precio',
+        'locations'   => 'Ubicaciones',
+        'family'      => 'Familiar',
+        'order'       => 'Orden',
+        'date'        => 'Fecha',
+    ];
+    return $new_columns;
+}
+add_filter('manage_tour_package_posts_columns', 'boskoa_tour_packages_columns');
+
+/**
+ * Mostrar datos en las columnas personalizadas
+ */
+function boskoa_tour_packages_custom_column($column, $post_id) {
+    switch ($column) {
+        case 'thumbnail':
+            $thumbnail = get_the_post_thumbnail($post_id, [60, 60]);
+            echo $thumbnail ?: '<span style="color: #999;">Sin imagen</span>';
+            break;
+            
+        case 'price':
+            $price = get_post_meta($post_id, '_package_price', true);
+            echo $price ? '<strong>' . esc_html($price) . '</strong>' : '<span style="color: #999;">Sin precio</span>';
+            break;
+            
+        case 'locations':
+            $locations = get_post_meta($post_id, '_package_locations', true);
+            echo $locations ? esc_html($locations) : '<span style="color: #999;">0 Location</span>';
+            break;
+            
+        case 'family':
+            $is_family = get_post_meta($post_id, '_package_family_friendly', true);
+            if ($is_family === 'yes') {
+                echo '<span style="color: #2D8A3E;">✓ Sí</span>';
+            } else {
+                echo '<span style="color: #999;">No</span>';
+            }
+            break;
+            
+        case 'order':
+            $order = get_post_meta($post_id, '_package_order', true);
+            echo $order !== '' ? esc_html($order) : '0';
+            break;
+    }
+}
+add_action('manage_tour_package_posts_custom_column', 'boskoa_tour_packages_custom_column', 10, 2);
+
+/**
+ * Hacer las columnas ordenables
+ */
+function boskoa_tour_packages_sortable_columns($columns) {
+    $columns['price'] = 'price';
+    $columns['order'] = 'order';
+    return $columns;
+}
+add_filter('manage_edit-tour_package_sortable_columns', 'boskoa_tour_packages_sortable_columns');
+
+/**
+ * Añadir Meta Boxes para información del paquete
+ */
+function boskoa_add_tour_package_metaboxes() {
+    add_meta_box(
+        'package_details',
+        'Detalles del Paquete',
+        'boskoa_package_details_callback',
+        'tour_package',
+        'normal',
+        'high'
+    );
+    
+    add_meta_box(
+        'package_order',
+        'Orden de Visualización',
+        'boskoa_package_order_callback',
+        'tour_package',
+        'side',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'boskoa_add_tour_package_metaboxes');
+
+/**
+ * Callback para Meta Box de detalles
+ */
+function boskoa_package_details_callback($post) {
+    wp_nonce_field('boskoa_save_package_details', 'package_details_nonce');
+    
+    $price = get_post_meta($post->ID, '_package_price', true);
+    $locations = get_post_meta($post->ID, '_package_locations', true);
+    $family_friendly = get_post_meta($post->ID, '_package_family_friendly', true);
+    ?>
+    <table class="form-table">
+        <tr>
+            <th scope="row">
+                <label for="package_price">Precio</label>
+            </th>
+            <td>
+                <input type="text" 
+                       id="package_price" 
+                       name="package_price" 
+                       value="<?php echo esc_attr($price); ?>" 
+                       placeholder="$500"
+                       class="regular-text">
+                <p class="description">Ejemplo: $500, $1,200, etc.</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <th scope="row">
+                <label for="package_locations">Ubicaciones</label>
+            </th>
+            <td>
+                <input type="text" 
+                       id="package_locations" 
+                       name="package_locations" 
+                       value="<?php echo esc_attr($locations ?: '0 Location'); ?>" 
+                       placeholder="0 Location"
+                       class="regular-text">
+                <p class="description">Ejemplo: 3 Locations, 5 Locations, etc.</p>
+            </td>
+        </tr>
+        
+        <tr>
+            <th scope="row">
+                <label for="package_family_friendly">¿Apto para familias?</label>
+            </th>
+            <td>
+                <label>
+                    <input type="checkbox" 
+                           id="package_family_friendly" 
+                           name="package_family_friendly" 
+                           value="yes"
+                           <?php checked($family_friendly, 'yes'); ?>>
+                    Marcar si este paquete es family-friendly
+                </label>
+            </td>
+        </tr>
+    </table>
+    
+    <style>
+        .form-table th { width: 200px; }
+        .form-table input[type="text"] { width: 100%; max-width: 400px; }
+    </style>
+    <?php
+}
+
+/**
+ * Callback para Meta Box de orden
+ */
+function boskoa_package_order_callback($post) {
+    wp_nonce_field('boskoa_save_package_order', 'package_order_nonce');
+    $order = get_post_meta($post->ID, '_package_order', true);
+    ?>
+    <p>
+        <label for="package_order">Orden (número):</label>
+        <input type="number" 
+               id="package_order" 
+               name="package_order" 
+               value="<?php echo esc_attr($order !== '' ? $order : 0); ?>" 
+               min="0"
+               style="width: 100%;">
+        <small style="display: block; margin-top: 5px; color: #666;">
+            Los paquetes se ordenan de menor a mayor. 0 = primero.
+        </small>
+    </p>
+    <?php
+}
+
+/**
+ * Guardar metadata del paquete
+ */
+function boskoa_save_tour_package_meta($post_id) {
+    // Verificar nonce de detalles
+    if (isset($_POST['package_details_nonce']) && wp_verify_nonce($_POST['package_details_nonce'], 'boskoa_save_package_details')) {
+        if (isset($_POST['package_price'])) {
+            update_post_meta($post_id, '_package_price', sanitize_text_field($_POST['package_price']));
+        }
+        
+        if (isset($_POST['package_locations'])) {
+            update_post_meta($post_id, '_package_locations', sanitize_text_field($_POST['package_locations']));
+        }
+        
+        // Checkbox para family friendly
+        if (isset($_POST['package_family_friendly'])) {
+            update_post_meta($post_id, '_package_family_friendly', 'yes');
+        } else {
+            update_post_meta($post_id, '_package_family_friendly', 'no');
+        }
+    }
+    
+    // Verificar nonce de orden
+    if (isset($_POST['package_order_nonce']) && wp_verify_nonce($_POST['package_order_nonce'], 'boskoa_save_package_order')) {
+        if (isset($_POST['package_order'])) {
+            update_post_meta($post_id, '_package_order', intval($_POST['package_order']));
+        }
+    }
+}
+add_action('save_post_tour_package', 'boskoa_save_tour_package_meta');
+
+/**
+ * Mensajes personalizados para el CPT
+ */
+function boskoa_tour_package_updated_messages($messages) {
+    $post = get_post();
+    
+    $messages['tour_package'] = [
+        0  => '',
+        1  => 'Paquete actualizado.',
+        2  => 'Campo personalizado actualizado.',
+        3  => 'Campo personalizado eliminado.',
+        4  => 'Paquete actualizado.',
+        5  => isset($_GET['revision']) ? sprintf('Paquete restaurado desde la revisión del %s', wp_post_revision_title((int) $_GET['revision'], false)) : false,
+        6  => 'Paquete publicado.',
+        7  => 'Paquete guardado.',
+        8  => 'Paquete enviado.',
+        9  => sprintf('Paquete programado para: <strong>%1$s</strong>.', date_i18n('M j, Y @ G:i', strtotime($post->post_date))),
+        10 => 'Borrador de paquete actualizado.',
+    ];
+    
+    return $messages;
+}
+add_filter('post_updated_messages', 'boskoa_tour_package_updated_messages');
+
+/**
+ * Texto de ayuda en la pantalla de edición
+ */
+function boskoa_tour_package_help_text() {
+    $screen = get_current_screen();
+    
+    if ($screen->post_type === 'tour_package') {
+        echo '<div class="notice notice-info" style="margin-top: 20px;">
+            <p><strong>💡 Instrucciones:</strong></p>
+            <ul style="list-style: disc; margin-left: 20px;">
+                <li>El <strong>título</strong> es el nombre del paquete (ej: "Relax Tour", "Adventure")</li>
+                <li>La <strong>imagen destacada</strong> es la foto principal del paquete</li>
+                <li>El <strong>contenido</strong> es la descripción detallada del paquete (opcional)</li>
+                <li>Completa el <strong>precio</strong>, <strong>ubicaciones</strong> y marca si es <strong>family-friendly</strong></li>
+                <li>Usa el <strong>orden</strong> para controlar en qué posición aparece (0 = primero)</li>
+            </ul>
+        </div>';
+    }
+}
+add_action('edit_form_after_title', 'boskoa_tour_package_help_text');
