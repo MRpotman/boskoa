@@ -1,13 +1,15 @@
 <?php
-// Obtener $package desde get_query_var si no fue pasada directamente
-if (!isset($package) || !is_array($package)) {
-    $package = get_query_var('package');
-}
+$package = $args['package'] ?? null;
 
-// Si aún no existe, evitar renderizar la tarjeta para no mostrar warnings
 if (empty($package) || !is_array($package)) {
     return;
 }
+
+$show_price    = $args['show_price']    ?? true;
+$show_button   = $args['show_button']   ?? true;
+$show_location = $args['show_location'] ?? true;
+$show_family   = $args['show_family']   ?? true;
+
 ?>
 <div class="package-card" data-package-id="<?php echo esc_attr($package['id']); ?>">
     <div class="package-image">
@@ -29,32 +31,42 @@ if (empty($package) || !is_array($package)) {
 
             <div class="package-info">
                 <div class="package-meta">
-                    <span class="package-location">
+                    <?php if ($show_location): ?>
+                        <span class="package-location">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M8 0C5.243 0 3 2.243 3 5c0 4.5 5 11 5 11s5-6.5 5-11c0-2.757-2.243-5-5-5zm0 7c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z"
                                 fill="currentColor" />
                         </svg>
-                        <?php echo esc_html($package['location']); ?>
-                    </span>
+                           <?php echo esc_html($package['location']); ?>
+                        </span>
+                        <?php endif; ?>
 
-                    <?php if ($package['family']): ?>
-                    <span class="package-family">
+                    <?php if ($show_family && $package['family']): ?>
+                        <span class="package-family">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M5.5 4.5c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zm9 0c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zM6 14v-3c0-.828-.672-1.5-1.5-1.5S3 10.172 3 11v3h3zm7 0v-3c0-.828-.672-1.5-1.5-1.5S10 10.172 10 11v3h3zm-5.5-6c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM10 14v-3c0-.828-.672-1.5-1.5-1.5S7 10.172 7 11v3h3z"
                                 fill="currentColor" />
                         </svg>
-                        Family
-                    </span>
-                    <?php endif; ?>
+                            Family
+                        </span>
+                        <?php endif; ?>
                 </div>
 
                 <div class="package-actions">
-                    <span class="package-price"><?php echo esc_html($package['price']); ?></span>
+                    <?php if ($show_price): ?>
+                        <span class="package-price">
+                            <?php echo esc_html($package['price']); ?>
+                        </span>
+                    <?php endif; ?>
+
+                    <?php if ($show_button): ?>
                     <a href="<?php echo esc_url($package['link']); ?>" class="package-btn">
                         Book Now
                     </a>
+                    <?php endif; ?>
+
                 </div>
             </div>
         </div>
