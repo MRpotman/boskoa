@@ -93,7 +93,7 @@
         <div class = "general-info-second">
           <div class = "general-info-second-card">
             <h2>+2 MILLIONS</h2>
-            <p>Many people fjdisofjiso fjndsofl paradise</p>
+            <p>Many people visit this natural paradise</p>
           </div>
           <button class="button">
             <span class="button-content">Contact us >></span>
