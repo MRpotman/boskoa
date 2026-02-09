@@ -38,7 +38,16 @@ function boskoa_enqueue_assets() {
         get_template_directory_uri() . '/assets/css/front-page-general.css'
     );  
 
+    wp_enqueue_style(
+        'boskoa-home-package',
+        get_template_directory_uri() . '/assets/css/package-home.css'
+    );
 
+   wp_enqueue_style(
+        'boskoa-home-activities',
+        get_template_directory_uri() . '/assets/css/activities-home.css'
+    );
+    
     wp_enqueue_style(
         'boskoa-fontawesome',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
