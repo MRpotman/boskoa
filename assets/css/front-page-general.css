@@ -1,0 +1,138 @@
+/* ===============================
+   BASE
+================================ */
+
+.general-info {
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+}
+
+.general-info-costaRica {
+  margin-top: 3.4%;
+  padding-left: 3%;
+  width: 50%;
+  color: #19532D;
+}
+
+.general-info-costaRica h2{
+  font-size: clamp(3rem, 5vmin, 8rem);
+  margin: 0;
+}
+
+.general-info-costaRica p{
+  font-size: clamp(1rem, 2vmin, 8rem);
+  margin: 0;
+}
+
+.general-info-minicard {
+  margin-top: 5%;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  gap: 15px;
+  width: 50%;
+  height: 100%;
+  overflow: visible;
+  aspect-ratio: 16 / 10;
+}
+
+.general-info-img {
+  width: 38%;
+  height: 90%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+  border-radius: 5%;
+}
+
+.general-info-second-card {
+    background: #217E3F;
+    border-radius: 11%;
+    width: 100%;
+    height: 70%;
+}
+
+.general-info-second-card h2 {
+  font-size: 30px;
+  padding-top: 3%;
+  color: #ffffff;
+  text-align: center;
+}
+
+.general-info-second-card p {
+  color: #ffffff;
+  margin-left: auto;
+  text-align: right;
+  width: 80%;
+  padding-right: 2%;
+}
+
+/* From Uiverse.io by Madflows */ 
+.button {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 1.5rem;
+  background: #3d3a4e;
+  background-size: 400%;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover::before {
+  transform: scaleX(1);
+}
+
+.button-content {
+  position: relative;
+  z-index: 1;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(
+    82.3deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  transition: all 0.475s;
+}
+
+
+/* ===============================
+   <= 700px
+================================ */
+
+@media (max-width: 700px) {
+  .general-info {
+    flex-direction: column;
+  }
+
+  .general-info-costaRica,
+  .general-info-minicard,
+  .general-info-second-card {
+    width: 100%;
+  }
+}
+
+/* ===============================
+   <= 343px
+================================ */
+
+@media (max-width: 343px) {
+  .general-info-minicard {
+    flex-direction: column;
+    aspect-ratio: 4 / 5;
+  }
+}
