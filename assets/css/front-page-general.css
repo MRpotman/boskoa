@@ -28,7 +28,7 @@
 
 .general-info-minicard {
   height: clamp(180px, 25vh, 600px);
-    margin-top: 5%;
+    margin-top: 4%;
     position: relative;
     display: flex;
     justify-content: flex-start;
@@ -41,7 +41,7 @@
 
 .general-info-img {
       min-width: 240px;
-    width: 20%;
+    width: 23%;
     background-size: cover;
     background-position: center;
     transition: transform 0.5s ease;
@@ -52,21 +52,23 @@
 .general-info-second{
   display: flex;
   flex-direction: column;
-  max-width: 70%;
+  max-width: 50%;
   justify-content: space-between;
+  max-width: 321px;
 }
 
 .general-info-second-card {
     background: #217E3F;
     border-radius: 23px;
-    width: 90%;
+    width: 100%;
     padding: 20px;
     max-height: 70%;
+    height: 70%;
 }
 
 .general-info-second-card h2 {
     font-weight: 800;
-    font-size: clamp(9px, 2.7vw, 51px);
+    font-size: 36px;
     margin: 0;
     color: #ffffff;
     text-align: left;
@@ -128,11 +130,12 @@
    <= 700px
 ================================ */
 
-@media (max-width: 1107px) {
+@media (max-width: 1203px) {
 
 
   .general-info {
     flex-direction: column;
+    
   }
 
   .general-info-costaRica,
@@ -141,8 +144,10 @@
   }
 
   .general-info-minicard {
-   height: clamp(180px, 31vh, 600px);
+    height: clamp(180px, 31vh, 600px);
     width: 100%;
+    display: flex;
+    justify-content: space-evenly;
   }
 
   .general-info-second{
@@ -150,25 +155,24 @@
     flex-direction: column;
     max-width: 70%;
     justify-content: space-between;
+    height: 70%;
   }
 
   .general-info-img {
-  width: 50%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.5s ease;
-  border-radius: 23px;
-
-  
-}
+    width: 30%;
+    height: 74%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+    border-radius: 23px;
+  }
 }
 
 /* ===============================
    <= 343px
 ================================ */
 
-@media (max-width: 480px) {
+@media (max-width: 571px) {
   .general-info-minicard {
     flex-direction: column;
     aspect-ratio: 4 / 5;
