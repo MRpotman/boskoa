@@ -9,7 +9,7 @@ get_header();
 ?>
 
 <section class="tours-pack" id="packages">
-    <div class="container">
+    <div class="container-packages">
         <div class="tours-header">
             <h2 class="tours-subtitle">Tours Pack</h2>
             <h1 class="tours-title">We offer the best packages so you can focus solely on enjoying yourself.</h1>

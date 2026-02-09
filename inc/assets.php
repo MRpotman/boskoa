@@ -24,6 +24,11 @@ function boskoa_enqueue_assets() {
     );
 
     wp_enqueue_style(
+        'boskoa-packages',
+        get_template_directory_uri() . '/assets/css/packages.css'
+    );
+
+    wp_enqueue_style(
         'boskoa-fontawesome',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
         [],
