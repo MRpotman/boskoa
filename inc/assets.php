@@ -29,9 +29,15 @@ function boskoa_enqueue_assets() {
     );
 
     wp_enqueue_style(
+        'boskoa-packages',
+        get_template_directory_uri() . '/assets/css/packages.css'
+    );
+
+    wp_enqueue_style(
         'boskoa-front-page-general',
         get_template_directory_uri() . '/assets/css/front-page-general.css'
     );  
+
 
     wp_enqueue_style(
         'boskoa-fontawesome',

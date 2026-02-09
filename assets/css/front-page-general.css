@@ -5,12 +5,13 @@
 .general-info {
   display: flex;
   justify-content: space-between;
-  gap: 5%;
+  padding: 0 25px;
+      height: fit-content;
 }
 
 .general-info-costaRica {
+      height: fit-content;
   margin-top: 3.4%;
-  padding-left: 3%;
   width: 50%;
   color: #19532D;
 }
@@ -26,50 +27,63 @@
 }
 
 .general-info-minicard {
-  margin-top: 5%;
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  gap: 15px;
-  width: 50%;
-  height: 100%;
-  overflow: visible;
-  aspect-ratio: 16 / 10;
+  height: clamp(180px, 25vh, 600px);
+    margin-top: 5%;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    width: 45%;
+    
+    overflow: visible;
+    aspect-ratio: 16 / 10;
 }
 
 .general-info-img {
-  width: 38%;
-  height: 90%;
-  background-size: cover;
-  background-position: center;
-  transition: transform 0.5s ease;
-  border-radius: 5%;
+      min-width: 240px;
+    width: 20%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
+    border-radius: 23px;
+    min-height: 40px;
+}
+
+.general-info-second{
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+  justify-content: space-between;
 }
 
 .general-info-second-card {
     background: #217E3F;
-    border-radius: 11%;
-    width: 100%;
-    height: 70%;
+    border-radius: 23px;
+    width: 90%;
+    padding: 20px;
+    max-height: 70%;
 }
 
 .general-info-second-card h2 {
-  font-size: 30px;
-  padding-top: 3%;
-  color: #ffffff;
-  text-align: center;
+    font-weight: 800;
+    font-size: clamp(9px, 2.7vw, 51px);
+    margin: 0;
+    color: #ffffff;
+    text-align: left;
+   
 }
 
 .general-info-second-card p {
-  color: #ffffff;
-  margin-left: auto;
-  text-align: right;
-  width: 80%;
-  padding-right: 2%;
+     color: #ffffff;
+    text-align: right;
+    width: 100%;
+    padding-right: 2%;
+    font-size: 20px;
 }
 
 /* From Uiverse.io by Madflows */ 
 .button {
+  margin-top: 5%;
   position: relative;
   overflow: hidden;
   height: 3rem;
@@ -114,25 +128,60 @@
    <= 700px
 ================================ */
 
-@media (max-width: 700px) {
+@media (max-width: 1107px) {
+
+
   .general-info {
     flex-direction: column;
   }
 
   .general-info-costaRica,
-  .general-info-minicard,
   .general-info-second-card {
     width: 100%;
   }
+
+  .general-info-minicard {
+   height: clamp(180px, 31vh, 600px);
+    width: 100%;
+  }
+
+  .general-info-second{
+    display: flex;
+    flex-direction: column;
+    max-width: 70%;
+    justify-content: space-between;
+  }
+
+  .general-info-img {
+  width: 50%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.5s ease;
+  border-radius: 23px;
+
+  
+}
 }
 
 /* ===============================
    <= 343px
 ================================ */
 
-@media (max-width: 343px) {
+@media (max-width: 480px) {
   .general-info-minicard {
     flex-direction: column;
     aspect-ratio: 4 / 5;
+    height: auto;
+    align-items: center;
+  }
+
+  .general-info-img {
+    width: 60%;
+    max-width: 180px;   
+    aspect-ratio: 4 / 5;
+    height: auto;
+    margin: 0 auto;    
   }
 }
+
