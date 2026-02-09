@@ -110,7 +110,7 @@
   </section>
     
   
-    <?php get_template_part('carrusel-tour'); ?>
+  <?php get_template_part('section-carousel'); ?>
   <?php get_template_part('section-comments'); ?>
 </main>
 <?php get_footer(); ?>
