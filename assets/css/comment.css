@@ -1,0 +1,135 @@
+/*.comment{
+    margin-top: 20px;
+    padding: 40px 40px;
+    background: #F0F0F0;
+}
+.start{
+    display: flex;
+    margin: 10px 0;
+}
+
+.card{
+    background: white;
+    padding: 18px;
+    width: fit-content;
+    max-width: 284px;
+    border-radius: 15px;
+    box-shadow: 15px 15px 30px rgb(25 25 25 / 27%);
+}
+
+.card h3,   p{
+    margin: 0;
+}*/
+
+
+.comment-section {
+  position: relative;
+  background-color: #F0F0F0;
+  padding-top: 40px;
+  margin-top: 30px;
+}
+
+.comment-title {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+}
+
+.comment-title h3 {
+  background: #fff;
+  padding: 12px 30px;
+  border-radius: 30px;
+  color: black;
+  font-weight: bold;
+  margin: 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.comment-carousel {
+  overflow: hidden;
+  position: relative;
+  background-color: #F0F0F0;
+}
+
+.comment-slides {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.comment-slide {
+  box-sizing: border-box;
+  padding: 1rem 1rem 2rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+.card {
+  background: #ffffff;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 280px;
+}
+.card h3, p{
+ margin: 0;
+ font-size: 14px;
+}
+.stars {
+  color: gold;
+  margin-bottom: 12px;
+  font-size: 12px;
+}
+
+.comment-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.comment-arrow.prev { left: 10px; }
+.comment-arrow.next { right: 10px; }
+
+@media (min-width: 1024px) {
+  .comment-slide {
+    min-width: calc(100% / 3);
+  }
+
+    .comment-section {
+    padding-top: 50px;
+  }
+
+  .comment-title h3 {
+    font-size: 18px;
+    padding: 10px 24px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .comment-slide {
+    min-width: calc(100% / 2);
+  }
+    .comment-section {
+    padding-top: 60px;
+  }
+    .comment-title h3 {
+    font-size: 16px;
+  }
+
+}
+
+/* Mobile */
+@media (max-width: 639px) {
+  .comment-slide {
+    min-width: 100%;
+  }
+      .comment-title h3 {
+    font-size: 16px;
+  }
+  
+}

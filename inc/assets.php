@@ -8,6 +8,11 @@ function boskoa_enqueue_assets() {
         get_template_directory_uri() . '/assets/css/hero.css'
     );
 
+     wp_enqueue_style(
+        'boskoa-comment',
+        get_template_directory_uri() . '/assets/css/comment.css'
+    );
+    
     wp_enqueue_style(
         'boskoa-footer',
         get_template_directory_uri() . '/assets/css/footer.css'
@@ -49,6 +54,14 @@ function boskoa_enqueue_assets() {
     wp_enqueue_script(
         'hero-carousel',
         get_template_directory_uri() . '/assets/js/hero-carousel.js',
+        [],
+        null,
+        true
+    );
+
+        wp_enqueue_script(
+        'boskoa-comments',
+        get_template_directory_uri() . '/assets/js/comments.js',
         [],
         null,
         true

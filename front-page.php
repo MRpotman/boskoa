@@ -67,14 +67,11 @@
 
   <section  class="general-info">
     <div class="general-info-container">
-      
-
     </div>
-
-  
   </section>
-
+    
+  
+    <?php get_template_part('carrusel-tour'); ?>
+  <?php get_template_part('section-comments'); ?>
 </main>
-
-
 <?php get_footer(); ?>
