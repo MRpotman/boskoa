@@ -59,7 +59,14 @@ get_header();
                     // Incluir template de tarjeta
                     // Pasar la variable $package al template para evitar warnings
                     set_query_var('package', $package);
-                    get_template_part('parts/package-card');
+                    get_template_part(
+                        'parts/package-card',
+                        null,
+                        [
+                            'package' => $package
+                        ]
+                    );
+
                     
                 endwhile;
                 wp_reset_postdata();
