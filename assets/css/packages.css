@@ -48,6 +48,7 @@
 
 /* Grid */
 .tours-grid {
+    margin-top: 10vh;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
     gap: 2%;

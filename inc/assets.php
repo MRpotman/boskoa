@@ -34,6 +34,16 @@ function boskoa_enqueue_assets() {
     );
 
     wp_enqueue_style(
+        'boskoa-pagination',
+        get_template_directory_uri() . '/assets/css/pagination.css'
+    );
+
+    wp_enqueue_style(
+        'boskoa-hero-packages',
+        get_template_directory_uri() . '/assets/css/hero-package.css'
+    );
+
+    wp_enqueue_style(
         'boskoa-front-page-general',
         get_template_directory_uri() . '/assets/css/front-page-general.css'
     );  
@@ -84,9 +94,17 @@ function boskoa_enqueue_assets() {
         true
     );
 
-        wp_enqueue_script(
+    wp_enqueue_script(
         'boskoa-comments',
         get_template_directory_uri() . '/assets/js/comments.js',
+        [],
+        null,
+        true
+    );
+
+    wp_enqueue_script(
+        'boskoa-pagination',
+        get_template_directory_uri() . '/assets/js/pagination.js',
         [],
         null,
         true

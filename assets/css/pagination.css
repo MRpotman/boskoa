@@ -1,0 +1,299 @@
+/* ============================================
+   PAGINATION ANIMATED STYLES
+   ============================================ */
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 3rem;
+  padding: 1rem 0;
+}
+
+.pagination-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+/* ============================================
+   PAGINATION CORE
+   ============================================ */
+
+.pagination-indexes {
+  position: relative;
+}
+
+.pagination {
+  --size: 44px;
+  --gap: 12px;
+  --index: 0; /* Se establece dinámicamente desde PHP */
+  --accent: #2FB468;
+  
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  gap: var(--gap);
+  padding: 4px;
+}
+
+/* ============================================
+   PAGINATION BUTTONS
+   ============================================ */
+
+.pagination-button {
+  width: var(--size);
+  height: var(--size);
+  display: inline-grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: transform 80ms ease;
+}
+
+.pagination-button:hover {
+  transform: scale(1.05);
+}
+
+.pagination-button:active {
+  transform: scale(0.95);
+}
+
+/* Dot indicator for inactive pages */
+.pagination-button::before {
+  content: '';
+  width: calc(var(--size) * 0.32);
+  height: calc(var(--size) * 0.32);
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  opacity: 0.575;
+  transition: transform 120ms cubic-bezier(0.25, 0.1, 0.25, 1), 
+              opacity 40ms cubic-bezier(0.25, 0.5, 0, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  transform: scale(1);
+}
+
+.pagination-button:hover::before {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.pagination-button.active::before {
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 150ms cubic-bezier(0, 0, 0.25, 1);
+}
+
+.pagination-button:active ~ .pagination-current::before {
+  transform: scale(1.5, 0.8);
+  transition: transform 100ms cubic-bezier(0, 0, 0.5, 1);
+}
+
+/* ============================================
+   CURRENT PAGE INDICATOR (animated circle)
+   ============================================ */
+
+.pagination-current {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(calc(var(--index) * (var(--size) + var(--gap))), -50%);
+  width: var(--size);
+  height: var(--size);
+  pointer-events: none;
+  z-index: 1;
+  transition: all 250ms cubic-bezier(0, 0, 0.5, 1);
+}
+
+.pagination-current::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: calc(var(--size) * 0.41);
+  height: calc(var(--size) * 0.41);
+  margin: auto;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--accent);
+  transform: scale(1);
+  transition: transform 225ms 120ms cubic-bezier(0, 1.95, 0.75, 1);
+}
+
+/* Efecto de "squish" al hacer click */
+.pagination.clicking .pagination-current::before {
+  transform: scale(1.4, 0.85);
+  transition: transform 100ms cubic-bezier(0, 0, 0.5, 1);
+}
+
+/* ============================================
+   PREV / NEXT NAVIGATION BUTTONS (ARROWS)
+   ============================================ */
+
+.pagination-nav {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-nav-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--size) * 0.75);
+  height: calc(var(--size) * 0.75);
+  border-radius: 6px;
+  color: var(--accent);
+  border: 2px solid rgba(47, 180, 104, 0.16);
+  background: transparent;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  font-size: 18px;
+}
+
+/* Font Awesome icons */
+.pagination-nav-button i {
+  transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+
+/* Hover effects */
+.pagination-nav-button:hover:not(.disabled) {
+  background: rgba(47, 180, 104, 0.08);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: scale(1.15);
+  box-shadow: 0 2px 8px rgba(47, 180, 104, 0.15);
+}
+
+.pagination-nav-button:hover:not(.disabled) i {
+  transform: translateX(2px);
+}
+
+.pagination-prev:hover:not(.disabled) i {
+  transform: translateX(-2px);
+}
+
+/* Active (click) effect */
+.pagination-nav-button:active:not(.disabled) {
+  transform: scale(0.95);
+}
+
+/* Disabled state */
+.pagination-nav-button.disabled {
+  opacity: 0.2;
+  pointer-events: none;
+  cursor: not-allowed;
+  border-color: rgba(47, 180, 104, 0.1);
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.visually-hidden {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  width: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+}
+
+/* Focus styles for accessibility */
+.pagination-button:focus-visible,
+.pagination-nav-button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.pagination-nav-button:focus-visible {
+  border-radius: 8px;
+}
+
+/* ============================================
+   LOADING STATE
+   ============================================ */
+
+.pagination-wrapper.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.pagination-wrapper.loading .pagination-current::before {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  .pagination {
+    --size: 38px;
+    --gap: 10px;
+  }
+  
+  .pagination-wrapper {
+    gap: 1rem;
+  }
+  
+  .pagination-container {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination {
+    --size: 34px;
+    --gap: 8px;
+  }
+  
+  .pagination-wrapper {
+    gap: 0.75rem;
+  }
+}
+
+/* ============================================
+   DARK MODE SUPPORT (opcional)
+   ============================================ */
+
+@media (prefers-color-scheme: dark) {
+  .pagination-current::before {
+    box-shadow: 0 2px 12px rgba(47, 180, 104, 0.4);
+  }
+  
+  .pagination-nav-button {
+    background: rgba(47, 180, 104, 0.08);
+    border-color: rgba(47, 180, 104, 0.2);
+  }
+  
+  .pagination-nav-button:hover:not(.disabled) {
+    background: rgba(47, 180, 104, 0.16);
+    border-color: rgba(47, 180, 104, 0.45);
+  }
+}
