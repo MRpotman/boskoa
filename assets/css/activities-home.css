@@ -1,6 +1,7 @@
 /* ===============================
    INFO ACTIVITIES
 ================================ */
+
 .info-activities-home {
   display: flex;
   flex-direction: row;
@@ -20,18 +21,17 @@
   width: 213px;
   height: 47px;
   border-radius: 47px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   text-align: center;
 }
 
 /* ===============================
-   CAROUSEL (REUTILIZA)
+   CAROUSEL (SOLO CONTENEDOR)
 ================================ */
-.ourActivities .carousel {
+
+.ourActivities .carousel-activities {
   display: flex;
   gap: 24px;
   overflow-x: auto;
@@ -41,33 +41,14 @@
   max-height: 417px;
 }
 
-.ourActivities .carousel::-webkit-scrollbar {
+.ourActivities .carousel-activities::-webkit-scrollbar {
   display: none;
-}
-
-/* ===============================
-   PACKAGE CARD (ACTIVITIES)
-================================ */
-.ourActivities .package-card {
-  flex: 0 0 auto;
-  min-width: 280px;
-  max-width: 280px;
-  scroll-snap-align: start;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(0,0,0,.12);
-  transition: transform .3s ease, box-shadow .3s ease;
-}
-
-.ourActivities .package-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,.18);
 }
 
 /* ===============================
    BUTTON
 ================================ */
+
 .info-activities-home-button {
   height: 47px;
   width: 180px;
@@ -79,66 +60,8 @@
 }
 
 /* ===============================
-   IMAGE (CUADRADA SIEMPRE)
-================================ */
-.ourActivities .package-image {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  position: relative;
-  overflow: hidden;
-  background: #eaeaea;
-}
-
-.ourActivities .package-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-}
-
-/* ===============================
-   OVERLAY
-================================ */
-.ourActivities .package-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,.75),
-    rgba(0,0,0,.15),
-    transparent
-  );
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 16px;
-}
-
-.ourActivities .package-title {
-  color: #fff;
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0 0 6px;
-}
-
-.ourActivities .package-location {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: .9rem;
-  color: #fff;
-}
-
-/* ===============================
    RESPONSIVE
 ================================ */
-@media (max-width: 1024px) {
-  .ourActivities .package-card {
-    min-width: 240px;
-    max-width: 240px;
-  }
-}
 
 @media (max-width: 768px) {
   .info-activities-home {
@@ -146,24 +69,8 @@
     gap: 16px;
   }
 
-  .ourActivities .carousel {
+  .ourActivities .carousel-activities {
     padding: 16px;
     gap: 16px;
-  }
-
-  .ourActivities .package-card {
-    min-width: 80%;
-    max-width: 80%;
-  }
-}
-
-@media (max-width: 480px) {
-  .ourActivities .package-card {
-    min-width: 90%;
-    max-width: 90%;
-  }
-
-  .ourActivities .package-title {
-    font-size: 1rem;
   }
 }

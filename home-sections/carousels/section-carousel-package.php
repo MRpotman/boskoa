@@ -20,7 +20,7 @@
               endif;
             ?>
 
-      <div class="carousel">
+      <div class="carousel-paquetes">
         <?php
           $info = new WP_Query([
             'post_type'      => 'tour_package',
