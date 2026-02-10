@@ -7,7 +7,7 @@ function boskoa_register_cpt_textos() {
         ],
         'public' => true,
         'menu_icon' => 'dashicons-editor-textcolor',
-        'supports' => ['title', 'editor'],
+        'supports' => ['title'],
         'show_in_rest' => true
     ]);
 }
