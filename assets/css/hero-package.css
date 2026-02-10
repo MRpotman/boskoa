@@ -1,0 +1,128 @@
+/* Hero Packages Section */
+
+.hero-packages {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 0;
+  margin-top: 80px;
+}
+
+.hero-packages-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 30, 60, 0.6) 0%, rgba(0, 60, 100, 0.5) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hero-packages-content {
+  text-align: center;
+  color: white;
+  z-index: 2;
+  animation: fadeInUp 800ms ease-out 200ms both;
+  max-width: 600px;
+  padding: 0 2rem;
+}
+
+.hero-packages-titulo {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.hero-packages-subtitulo {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  font-weight: 300;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+  opacity: 0.95;
+  font-style: italic;
+}
+
+/* Wave SVG */
+.hero-packages-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  z-index: 3;
+  animation: wave 10s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% {
+    d: path("M0,50 Q360,0 720,50 T1440,50 L1440,100 L0,100 Z");
+  }
+  50% {
+    d: path("M0,60 Q360,20 720,50 T1440,40 L1440,100 L0,100 Z");
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-packages {
+    height: 300px;
+    background-attachment: scroll;
+  }
+
+  .hero-packages-titulo {
+    font-size: 1.8rem;
+  }
+
+  .hero-packages-subtitulo {
+    font-size: 0.95rem;
+  }
+
+  .hero-packages-wave {
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-packages {
+    height: 250px;
+  }
+
+  .hero-packages-content {
+    padding: 0 1rem;
+  }
+
+  .hero-packages-titulo {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-packages-subtitulo {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-packages-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+}

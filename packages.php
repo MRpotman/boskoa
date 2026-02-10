@@ -7,6 +7,11 @@
 
 get_header(); 
 
+// Va aqui el hero banner de paquetes
+
+get_template_part('parts/hero-package');
+
+
 // Configurar paginación
 $items_per_page = 16;
 

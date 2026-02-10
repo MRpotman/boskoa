@@ -39,6 +39,11 @@ function boskoa_enqueue_assets() {
     );
 
     wp_enqueue_style(
+        'boskoa-hero-packages',
+        get_template_directory_uri() . '/assets/css/hero-package.css'
+    );
+
+    wp_enqueue_style(
         'boskoa-front-page-general',
         get_template_directory_uri() . '/assets/css/front-page-general.css'
     );  
