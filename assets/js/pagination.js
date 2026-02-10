@@ -75,10 +75,11 @@
     }
 
     attachNavButtonListeners() {
-      if (this.prevBtn && !this.prevBtn.classList.contains('disabled')) {
+      if (this.prevBtn) {
         this.prevBtn.addEventListener('click', (e) => {
           e.preventDefault();
           if (this.isLoading) return;
+          if (e.currentTarget.classList.contains('disabled')) return;
           const targetIndex = Math.max(0, this.currentIndex - 1);
           if (targetIndex !== this.currentIndex) {
             this.goToPage(targetIndex, this.buttons[targetIndex]);
@@ -86,10 +87,11 @@
         });
       }
 
-      if (this.nextBtn && !this.nextBtn.classList.contains('disabled')) {
+      if (this.nextBtn) {
         this.nextBtn.addEventListener('click', (e) => {
           e.preventDefault();
           if (this.isLoading) return;
+          if (e.currentTarget.classList.contains('disabled')) return;
           const targetIndex = Math.min(this.buttons.length - 1, this.currentIndex + 1);
           if (targetIndex !== this.currentIndex) {
             this.goToPage(targetIndex, this.buttons[targetIndex]);
