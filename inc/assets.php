@@ -49,6 +49,11 @@ function boskoa_enqueue_assets() {
     );  
 
     wp_enqueue_style(
+        'boskoa-carousel-card',
+        get_template_directory_uri() . '/assets/css/carousel-card.css'
+    );
+
+    wp_enqueue_style(
         'boskoa-home-package',
         get_template_directory_uri() . '/assets/css/package-home.css'
     );
