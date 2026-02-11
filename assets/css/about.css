@@ -272,6 +272,321 @@
   }
 }
 
+/* ========================================
+   ABOUT US - TEAM SECTION
+   ======================================== */
+
+.about-team-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.about-team-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 60px;
+    color: #1a1a1a;
+}
+
+.about-team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    justify-items: center;
+}
+
+.about-team-member {
+    text-align: center;
+    max-width: 350px;
+    width: 100%;
+}
+
+.about-team-member-image {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.about-team-member-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.about-team-member-info {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.about-team-member-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #1a1a1a;
+}
+
+.about-team-member-position {
+    font-size: 1rem;
+    color: #666;
+    margin: 0 0 12px 0;
+}
+
+.about-team-member-bio {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+    margin-top: 12px;
+}
+
+.about-team-member-bio p {
+    margin: 0 0 10px 0;
+}
+
+.about-team-member-bio p:last-child {
+    margin-bottom: 0;
+}
+
+/* ========================================
+   RESERVATION PROCESS SECTION
+   ======================================== */
+
+.reservation-process-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.container-reservation {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.reservation-process-header {
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reservation-process-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+
+.reservation-process-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+.reservation-process-description p {
+    margin: 0;
+}
+
+/* Steps Container */
+.reservation-steps-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    position: relative;
+}
+
+/* Individual Step */
+.reservation-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Step Icon/Image */
+.reservation-step-icon {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reservation-step-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Placeholder cuando no hay imagen */
+.reservation-step-placeholder {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Step Title */
+.reservation-step-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+/* Arrow Connector */
+.reservation-step-arrow {
+    position: absolute;
+    right: -40px;
+    top: 60px;
+    z-index: 1;
+}
+
+.reservation-step-arrow svg {
+    display: block;
+}
+
+/* Último paso no tiene flecha */
+.reservation-step:last-child .reservation-step-arrow {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .reservation-steps-wrapper {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+    
+    .reservation-step {
+        flex: 0 0 45%;
+        max-width: 300px;
+    }
+    
+    .reservation-step-arrow {
+        display: none; /* Ocultar flechas en vista tablet/móvil */
+    }
+}
+
+@media (max-width: 768px) {
+    .reservation-process-section {
+        padding: 60px 0;
+    }
+    
+    .reservation-process-title {
+        font-size: 2rem;
+    }
+    
+    .reservation-process-description {
+        font-size: 1rem;
+    }
+    
+    .reservation-process-header {
+        margin-bottom: 40px;
+    }
+    
+    .reservation-steps-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .reservation-step {
+        flex: 1;
+        max-width: 100%;
+    }
+    
+    .reservation-step-icon {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .reservation-process-section {
+        padding: 40px 0;
+    }
+    
+    .reservation-process-title {
+        font-size: 1.75rem;
+        margin-bottom: 15px;
+    }
+    
+    .reservation-process-description {
+        font-size: 0.95rem;
+    }
+    
+    .reservation-step-icon {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+    }
+    
+    .reservation-step-title {
+        font-size: 1.1rem;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-team-section {
+        padding: 60px 0;
+    }
+    
+    .about-team-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    
+    .about-team-grid {
+        gap: 30px;
+    }
+    
+    .about-team-member-image {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .about-team-member-name {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-team-section {
+        padding: 40px 0;
+    }
+    
+    .about-team-title {
+        font-size: 1.75rem;
+        margin-bottom: 30px;
+    }
+    
+    .about-team-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
+
 @media (max-width: 480px) {
   .hero-about {
     height: 250px;

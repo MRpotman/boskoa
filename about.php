@@ -10,8 +10,14 @@ get_header();
 // Hero de About Us
 get_template_part('about-sections/hero-about');
 
-// Secciones ACF
+// Secciones de About Us
 get_template_part('about-sections/about-sections');
+
+// Sección de Equipo
+get_template_part('about-sections/about-team');
+
+// Sección de Reservas
+get_template_part('about-sections/about-reservation');
 
 get_footer();
 ?>
