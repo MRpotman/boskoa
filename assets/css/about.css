@@ -50,6 +50,27 @@
   font-style: italic;
 }
 
+.map-section-about-us {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+}
+
+.map-about-us {
+  display: flex;
+  padding: 3% 3%;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center;
+}
+
+.map-about-us iframe {
+  max-width: 100%;
+  height: 500px;
+  border-radius: 12px;
+}
+
+
 /* Wave SVG */
 .hero-about-wave {
   position: absolute;
