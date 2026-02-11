@@ -24,7 +24,8 @@ $includes = [
     'inc/messages.php',
     'inc/help-text.php',
     'inc/tour-package-columns.php',
-    'inc/tour-package-custom-column.php'
+    'inc/tour-package-custom-column.php',
+    'inc/acf-about-fields.php'
 ];
 
 foreach ($includes as $file) {
