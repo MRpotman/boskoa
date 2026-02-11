@@ -1,30 +1,39 @@
 /* ===============================
    INFO ACTIVITIES
 ================================ */
-
+.ourActivities{
+    width: 80%;
+    margin-top: 40px;
+}
 .info-activities-home {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 40px;
-  padding: 0 4%;
+display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 1px;
+    align-items: center;
 }
 
 .info-activities-home-text {
   color: #19532D;
+    FONT-SIZE: 25px;
+    max-width: 400px;
+    font-weight: 400;
 }
 
 .divisor-activities {
   color: #ffffff;
   background: #217E3F;
-  width: 213px;
-  height: 47px;
-  border-radius: 47px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+    width: fit-content;
+    padding: 15px;
+    height: 47px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 /* ===============================
@@ -32,13 +41,13 @@
 ================================ */
 
 .ourActivities .carousel-activities {
-  display: flex;
-  gap: 24px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding: 20px 40px;
-  -webkit-overflow-scrolling: touch;
-  max-height: 417px;
+    display: flex;
+    gap: 38px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 20px 0;
+    -webkit-overflow-scrolling: touch;
+    max-height: 323px;
 }
 
 .ourActivities .carousel-activities::-webkit-scrollbar {
@@ -50,27 +59,52 @@
 ================================ */
 
 .info-activities-home-button {
-  height: 47px;
-  width: 180px;
+
   background: #82BBCE;
-  color: #ffffff;
-  border-radius: 47px;
-  border: none;
-  cursor: pointer;
+  height: fit-content;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: none;
+    color: #ffffff;
+    border-radius: 47px;
+    box-shadow: 3px 3px 8px 1px #00000059;
+    transition: all 0.5s;
 }
 
 /* ===============================
    RESPONSIVE
 ================================ */
 
-@media (max-width: 768px) {
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 1120px) {
+  .ourActivities{
+    width: 95%;
+  }
   .info-activities-home {
-    flex-direction: column;
-    gap: 16px;
+    width: 100%;
+  }
+}
+@media (max-width: 768px) {
+.info-activities-home-text{
+  font-size: 18px; 
+  }
+  .info-activities-home-button{
+    width: 150px;
   }
 
-  .ourActivities .carousel-activities {
+  .carousel {
     padding: 16px;
     gap: 16px;
   }
+}
+@media (max-width: 640px) {
+  .info-activities-home-text{
+  font-size: 17px; 
+  }
+    .info-activities-home-button{
+      width: 220px;
+      font-size: 14px;
+    }
 }

@@ -6,9 +6,16 @@
 <main class="home">
 
   <?php get_template_part('home-sections/hero'); ?>
-  <?php get_template_part('home-sections/general-info'); ?>
-  <?php get_template_part('home-sections/carousels/section-carousel-package'); ?>
-  <?php get_template_part('home-sections/carousels/section-carousel-activities'); ?>
+  <div class="centrado">
+      <?php get_template_part('home-sections/general-info'); ?>
+  </div>
+  <div class="centrado">
+      <?php get_template_part('home-sections/carousels/section-carousel-package'); ?>
+  </div>
+<div class="centrado">
+      <?php get_template_part('home-sections/carousels/section-carousel-activities'); ?>
+</div>
+
   <?php get_template_part('home-sections/section-comments'); ?>
 
 </main>
