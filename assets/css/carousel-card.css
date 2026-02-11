@@ -3,15 +3,17 @@
 ================================ */
 
 .package-card-carousel {
-  flex: 0 0 auto;
-  min-width: 280px;
-  max-width: 280px;
-  scroll-snap-align: start;
-  border-radius: 16px;
-  overflow: hidden;
-  background: #fff;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
-  transition: transform .3s ease, box-shadow .3s ease;
+flex: 0 0 auto;
+    width: 228px;
+    /* height: 265px; */
+    /* min-width: 280px; */
+    /* max-width: 280px; */
+    scroll-snap-align: start;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+    transition: transform .3sease, box-shadow .3sease;
 }
 
 .package-card-carousel:hover {
@@ -25,11 +27,12 @@
 ================================ */
 
 .package-image-carousel {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  position: relative;
-  overflow: hidden;
-  background: #eaeaea;
+height: 100%;
+    /* width: 100%; */
+    /* aspect-ratio: 1 / 1; */
+    position: relative;
+    /* overflow: hidden; */
+    background: #eaeaea;
 }
 
 .package-image-carousel img {
@@ -37,7 +40,6 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  display: block;
 }
 
 /* ===============================
@@ -45,25 +47,20 @@
 ================================ */
 
 .package-overlay-carousel {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, .75),
-    rgba(0, 0, 0, .15),
-    transparent
-  );
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 16px;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, .75), rgba(0, 0, 0, .15), transparent);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
 }
 
 .package-title-carousel {
   color: #fff;
+  margin: 7px 0 6px 0;
   font-size: 1.1rem;
   font-weight: 600;
-  margin: 0 0 6px;
 }
 
 .package-location-carousel {
@@ -75,24 +72,15 @@
 }
 
 @media (max-width: 1024px) {
-  .package-card-carousel {
-    min-width: 240px;
-    max-width: 240px;
-  }
+
 }
 
 @media (max-width: 768px) {
-  .package-card-carousel { 
-    min-width: 80%;
-    max-width: 80%;
-  }
+
 }
 
 @media (max-width: 480px) {
-  .package-card-carousel {
-    min-width: 90%;
-    max-width: 90%;
-  }
+
 
   .package-title-carousel {
     font-size: 1rem;
