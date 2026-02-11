@@ -3,7 +3,7 @@
 ================================ */
 
 .ourPackets{
-      padding: 0 25px;
+    width: 80%;
     margin-top: 40px;
 }
 .info-paquetes-home {
@@ -12,7 +12,6 @@
     justify-content: space-between;
     gap: 24px;
     margin-bottom: 1px;
-    padding: 0 0 0 4%;
     align-items: center;
 }
 
@@ -54,7 +53,7 @@ color: #ffffff;
     /* width: 300px; */
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    padding: 20px 40px;
+    padding: 20px 0;
     -webkit-overflow-scrolling: touch;
     max-height: 323px;
 }
@@ -91,7 +90,14 @@ color: #ffffff;
 /* ===============================
    RESPONSIVE
 ================================ */
-
+@media (max-width: 1120px) {
+    .ourPackets{
+    width: 95%;
+  }
+  .info-paquetes-home {
+    width: 100%;
+  }
+}
 @media (max-width: 768px) {
 .info-paquetes-home-text{
   font-size: 18px; 
@@ -106,6 +112,9 @@ color: #ffffff;
   }
 }
 @media (max-width: 640px) {
+  .info-paquetes-home-text{
+     font-size: 17px;
+  }
     .info-paquetes-home-button{
       width: 220px;
       font-size: 14px;

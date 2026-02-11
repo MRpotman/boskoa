@@ -23,6 +23,8 @@
 
 
 .comment-section {
+  display: flex;
+  justify-content: center;
   position: relative;
   background-color: #F0F0F0;
   padding-top: 40px;
@@ -47,6 +49,7 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .comment-carousel {
+  width: 80%;
   overflow: hidden;
   position: relative;
   background-color: #F0F0F0;
@@ -93,6 +96,13 @@
 
 .comment-arrow.prev { left: 10px; }
 .comment-arrow.next { right: 10px; }
+
+@media (max-width: 1120px) {
+  .comment-carousel {
+    width: 95%;
+  }
+  
+}
 
 @media (min-width: 1024px) {
   .comment-slide {
