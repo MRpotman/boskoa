@@ -44,6 +44,11 @@ function boskoa_enqueue_assets() {
     );
 
     wp_enqueue_style(
+        'boskoa-about',
+        get_template_directory_uri() . '/assets/css/about.css'
+    );
+
+    wp_enqueue_style(
         'boskoa-front-page-general',
         get_template_directory_uri() . '/assets/css/front-page-general.css'
     );  
