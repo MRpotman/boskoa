@@ -1,63 +1,48 @@
 <?php
 /**
  * Reservation Process Section
- * Muestra el título/descripción de la sección y 4 pasos del proceso de reservación
  */
 
-// 1. Obtener título y contenido principal de la sección
-$main_query = new WP_Query([
-    'post_type' => 'texto',
-    'name' => 'reservation-process', // Post principal con título y descripción
-    'posts_per_page' => 1,
-]);
+// -----------------------------
+// 1️⃣ Obtener sección principal
+// -----------------------------
 
 $section_title = 'Make an easy reservation';
 $section_description = '';
 
-if ($main_query->have_posts()) {
-    while ($main_query->have_posts()) {
-        $main_query->the_post();
-        $section_title = get_field('titulo') ?: get_field('Titulo') ?: get_the_title();
-        $section_description = get_field('contenido') ?: get_field('Contenido') ?: '';
-    }
-    wp_reset_postdata();
+$main_post = get_page_by_path('reservation-process', OBJECT, 'texto');
+
+if ($main_post) {
+    $section_title = get_field('titulo', $main_post->ID) ?: get_the_title($main_post->ID);
+    $section_description = get_field('contenido', $main_post->ID) ?: '';
 }
 
-// 2. Obtener los 4 pasos del proceso
-$steps = array();
+$steps = [];
 
-// Buscar posts con slug pattern "reservation-step-1", "reservation-step-2", etc.
 for ($i = 1; $i <= 4; $i++) {
-    $step_query = new WP_Query([
-        'post_type' => 'texto',
-        'name' => 'reservation-step-' . $i,
-        'posts_per_page' => 1,
-    ]);
-    
-    if ($step_query->have_posts()) {
-        while ($step_query->have_posts()) {
-            $step_query->the_post();
-            
-            $step_title = get_field('titulo') ?: get_field('Titulo') ?: get_the_title();
-            $step_image = get_field('imagen') ?: get_field('Imagen') ?: '';
-            
-            // Procesar imagen
-            $image_url = '';
-            if (!empty($step_image)) {
-                $image_url = is_array($step_image) ? $step_image['url'] : $step_image;
-            }
-            
-            $steps[] = array(
-                'title' => $step_title,
-                'image' => $image_url,
-                'number' => $i,
-            );
+
+    $step_post = get_page_by_path('reservation-step-' . $i, OBJECT, 'texto');
+
+    if ($step_post) {
+
+        $step_title = get_field('titulo', $step_post->ID) ?: get_the_title($step_post->ID);
+        $step_image = get_field('imagen', $step_post->ID);
+
+        
+        $image_url = '';
+        if (!empty($step_image)) {
+            $image_url = is_array($step_image) ? $step_image['url'] : $step_image;
         }
-        wp_reset_postdata();
+
+        $steps[] = [
+            'title'  => $step_title,
+            'image'  => $image_url,
+            'number' => $i,
+        ];
     }
 }
 
-// Si no hay pasos, no mostrar la sección
+
 if (empty($steps)) {
     return;
 }
@@ -65,23 +50,26 @@ if (empty($steps)) {
 
 <section class="reservation-process-section">
     <div class="container-reservation">
+
         
-        <!-- Título y descripción principal -->
         <div class="reservation-process-header">
-            <h2 class="reservation-process-title"><?php echo esc_html($section_title); ?></h2>
+            <h2 class="reservation-process-title">
+                <?php echo esc_html($section_title); ?>
+            </h2>
+
             <?php if (!empty($section_description)) : ?>
                 <div class="reservation-process-description">
                     <?php echo wp_kses_post($section_description); ?>
                 </div>
             <?php endif; ?>
         </div>
-        
-        <!-- Pasos del proceso -->
+
+       
         <div class="reservation-steps-wrapper">
             <?php foreach ($steps as $index => $step) : ?>
                 <div class="reservation-step">
-                    
-                    <!-- Icono/Imagen -->
+
+                   
                     <div class="reservation-step-icon">
                         <?php if (!empty($step['image'])) : ?>
                             <img 
@@ -90,17 +78,18 @@ if (empty($steps)) {
                                 loading="lazy"
                             />
                         <?php else : ?>
-                            <!-- Placeholder si no hay imagen -->
                             <div class="reservation-step-placeholder">
-                                <span><?php echo $step['number']; ?></span>
+                                <span><?php echo esc_html($step['number']); ?></span>
                             </div>
                         <?php endif; ?>
                     </div>
-                    
-                    <!-- Título del paso -->
-                    <h3 class="reservation-step-title"><?php echo esc_html($step['title']); ?></h3>
-                    
-                    <!-- Flecha conectora (no se muestra en el último paso) -->
+
+                   
+                    <h3 class="reservation-step-title">
+                        <?php echo esc_html($step['title']); ?>
+                    </h3>
+
+                   
                     <?php if ($index < count($steps) - 1) : ?>
                         <div class="reservation-step-arrow">
                             <svg width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -109,10 +98,10 @@ if (empty($steps)) {
                             </svg>
                         </div>
                     <?php endif; ?>
-                    
+
                 </div>
             <?php endforeach; ?>
         </div>
-        
+
     </div>
 </section>
