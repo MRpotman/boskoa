@@ -5,13 +5,13 @@
  * Página para mostrar la información sobre nosotros (Quiénes Somos)
  */
 
-get_header(); 
+get_header();
 
 // Hero de About Us
-get_template_part('parts/hero-about');
+get_template_part('about-sections/hero-about');
 
 // Secciones ACF
-get_template_part('home-sections/about-sections');
+get_template_part('about-sections/about-sections');
 
-get_footer(); 
+get_footer();
 ?>
