@@ -1,12 +1,6 @@
 <!-- HERO dinámico -->
   <section class="hero hero-carousel">
       <div class="hero-bottom-fade"></div>
-    <div class="hero-slide-social-container">
-      <a href="#" class="face"><i class="fa-brands fa-facebook"></i></a>
-      <a href="#" class="insta"><i class="fa-brands fa-instagram"></i></a>
-      <a href="#" class="x"><i class="fa-brands fa-twitter"></i></a>
-  </div>
-  
     <div class="slides">
       <?php
         $slides = new WP_Query([
@@ -27,6 +21,11 @@
                 <h1 class="hero-slide-title">
                   <?php echo esc_html($titulo); ?>
                 </h1>
+                <div class="hero-slide-social-container">
+                  <a href="#" class="face"><i class="fa-brands fa-facebook"></i></a>
+                  <a href="#" class="insta"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="#" class="x"><i class="fa-brands fa-twitter"></i></a>
+              </div>
               </div>
 
               <!-- BOTÓN IGUAL QUE ANTES -->
