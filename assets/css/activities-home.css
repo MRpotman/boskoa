@@ -70,6 +70,12 @@ display: flex;
     box-shadow: 3px 3px 8px 1px #00000059;
     transition: all 0.5s;
 }
+.info-activities-home-button:hover {
+  background: #aceaff;
+  font-size: 17px;
+   padding: 12px 16px ;
+   box-shadow: none;
+}
 
 /* ===============================
    RESPONSIVE

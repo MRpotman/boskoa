@@ -34,11 +34,6 @@
     stroke-dashoffset: 0;
   }
 
-  .menu li a{
-    text-decoration: none;
-    color: white;
-  }
-
   .logo-content{
     z-index: 1001;
     display: flex;
@@ -79,18 +74,71 @@
   }
 
   .menu {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  font: bold 16px sans-serif;
+  text-transform: uppercase;
   }
 
-    
+  .menu li {
+  position: relative;
+  overflow: hidden;
+}
+.menu li a {
+  text-decoration: none;
+  color: rgb(239, 239, 239);
+  display: block;
+  padding: 0.5em 0;
+  transition: .3s;
+}
+.menu li a:hover {
+  color: #fff;
+  text-shadow: 0px 0px 2px white
+}
+.menu li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 100%;
+  background: #00b339;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease;
+}
 
-  .site-header.scrolled .menu li a {
+.menu li:hover::before {
+  transform: scaleX(1);
+}
+
+  .site-header.scrolled .menu{
+      list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  font: bold 16px sans-serif;
+  text-transform: uppercase;
+  }
+  .site-header.scrolled .menu li {
+     position: relative;
+  overflow: hidden;
+  }
+.site-header.scrolled .menu li a  {
+  text-decoration: none;
+  color: rgb(76, 76, 76);
+  display: block;
+  padding: 0.5em 0;
+  transition: .3s;
+}
+.site-header.scrolled .menu li a:hover  {
     color: #000000;
-  }
+ 
+}
   .site-header.menu-open .menu li a{
     color: #000000;
   }
@@ -206,7 +254,7 @@
   .lang-text {
     font-size: 14px;
     font-weight: 500;
-    color: white; /* Blanco por defecto */
+    color: white;
     transition: color 0.3s ease;
   }
   .site-header.scrolled .lang-text {

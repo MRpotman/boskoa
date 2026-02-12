@@ -10,7 +10,6 @@
 
   <header class="site-header">
     <div class="container">
-
       <!-- ================= LOGO ================= -->
       <div class="site-branding">
         <a href="<?php echo esc_url(home_url('/')); ?>" class="logo">
