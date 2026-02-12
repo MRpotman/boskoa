@@ -1,0 +1,190 @@
+/* ========================================
+   RESERVATION PROCESS SECTION
+   ======================================== */
+
+.reservation-process-section {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.container-reservation {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.reservation-process-header {
+    text-align: center;
+    margin-bottom: 60px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.reservation-process-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+}
+
+.reservation-process-description {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #555;
+}
+
+.reservation-process-description p {
+    margin: 0;
+}
+
+/* Steps Container */
+.reservation-steps-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    position: relative;
+}
+
+/* Individual Step */
+.reservation-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Step Icon/Image */
+.reservation-step-icon {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reservation-step-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Placeholder cuando no hay imagen */
+.reservation-step-placeholder {
+    width: 120px;
+    height: 120px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Step Title */
+.reservation-step-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+/* Arrow Connector */
+.reservation-step-arrow {
+    position: absolute;
+    right: -40px;
+    top: 60px;
+    z-index: 1;
+}
+
+.reservation-step-arrow svg {
+    display: block;
+}
+
+/* Último paso no tiene flecha */
+.reservation-step:last-child .reservation-step-arrow {
+    display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .reservation-steps-wrapper {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    .reservation-step {
+        flex: 0 0 45%;
+        max-width: 300px;
+    }
+
+    .reservation-step-arrow {
+        display: none; /* Ocultar flechas en vista tablet/móvil */
+    }
+}
+
+@media (max-width: 768px) {
+    .reservation-process-section {
+        padding: 60px 0;
+    }
+
+    .reservation-process-title {
+        font-size: 2rem;
+    }
+
+    .reservation-process-description {
+        font-size: 1rem;
+    }
+
+    .reservation-process-header {
+        margin-bottom: 40px;
+    }
+
+    .reservation-steps-wrapper {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .reservation-step {
+        flex: 1;
+        max-width: 100%;
+    }
+
+    .reservation-step-icon {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .reservation-process-section {
+        padding: 40px 0;
+    }
+
+    .reservation-process-title {
+        font-size: 1.75rem;
+        margin-bottom: 15px;
+    }
+
+    .reservation-process-description {
+        font-size: 0.95rem;
+    }
+
+    .reservation-step-icon {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 15px;
+    }
+
+    .reservation-step-title {
+        font-size: 1.1rem;
+    }
+}
