@@ -2,13 +2,12 @@
 /**
  * Reservation Process Section
  * Muestra el título/descripción de la sección y 4 pasos del proceso de reservación
- * Con flechas curvas verdes alternadas (abajo-arriba-abajo)
  */
 
 // 1. Obtener título y contenido principal de la sección
 $main_query = new WP_Query([
     'post_type' => 'texto',
-    'name' => 'reservation-process',
+    'name' => 'reservation-process', // Post principal con título y descripción
     'posts_per_page' => 1,
 ]);
 
@@ -27,6 +26,7 @@ if ($main_query->have_posts()) {
 // 2. Obtener los 4 pasos del proceso
 $steps = array();
 
+// Buscar posts con slug pattern "reservation-step-1", "reservation-step-2", etc.
 for ($i = 1; $i <= 4; $i++) {
     $step_query = new WP_Query([
         'post_type' => 'texto',
@@ -41,6 +41,7 @@ for ($i = 1; $i <= 4; $i++) {
             $step_title = get_field('titulo') ?: get_field('Titulo') ?: get_the_title();
             $step_image = get_field('imagen') ?: get_field('Imagen') ?: '';
             
+            // Procesar imagen
             $image_url = '';
             if (!empty($step_image)) {
                 $image_url = is_array($step_image) ? $step_image['url'] : $step_image;
@@ -56,6 +57,7 @@ for ($i = 1; $i <= 4; $i++) {
     }
 }
 
+// Si no hay pasos, no mostrar la sección
 if (empty($steps)) {
     return;
 }
@@ -88,6 +90,7 @@ if (empty($steps)) {
                                 loading="lazy"
                             />
                         <?php else : ?>
+                            <!-- Placeholder si no hay imagen -->
                             <div class="reservation-step-placeholder">
                                 <span><?php echo $step['number']; ?></span>
                             </div>
@@ -97,41 +100,13 @@ if (empty($steps)) {
                     <!-- Título del paso -->
                     <h3 class="reservation-step-title"><?php echo esc_html($step['title']); ?></h3>
                     
-                    <!-- Flecha conectora con patrón alternado -->
+                    <!-- Flecha conectora (no se muestra en el último paso) -->
                     <?php if ($index < count($steps) - 1) : ?>
-                        <?php 
-                        // Determinar tipo de flecha: 0=abajo, 1=arriba, 2=abajo
-                        $arrow_type = $index % 2 === 0 ? 'down' : 'up';
-                        ?>
-                        
-                        <div class="reservation-step-arrow arrow-<?php echo $arrow_type; ?>">
-                            <?php if ($arrow_type === 'down') : ?>
-                                <!-- Flecha curva hacia ABAJO -->
-                                <svg width="140" height="100" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10 30 Q70 80, 130 50" 
-                                          stroke="#7dd3c0" 
-                                          stroke-width="4" 
-                                          stroke-linecap="round" 
-                                          fill="none"
-                                          opacity="0.85"/>
-                                    <path d="M123 45 L133 50 L123 55 Z" 
-                                          fill="#7dd3c0" 
-                                          opacity="0.85"/>
-                                </svg>
-                            <?php else : ?>
-                                <!-- Flecha curva hacia ARRIBA -->
-                                <svg width="140" height="100" viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10 70 Q70 20, 130 50" 
-                                          stroke="#7dd3c0" 
-                                          stroke-width="4" 
-                                          stroke-linecap="round" 
-                                          fill="none"
-                                          opacity="0.85"/>
-                                    <path d="M123 45 L133 50 L123 55 Z" 
-                                          fill="#7dd3c0" 
-                                          opacity="0.85"/>
-                                </svg>
-                            <?php endif; ?>
+                        <div class="reservation-step-arrow">
+                            <svg width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 20C5 20 20 5 30 20C40 35 55 20 55 20" stroke="#7dd3c0" stroke-width="3" stroke-linecap="round"/>
+                                <path d="M50 15L55 20L50 25" stroke="#7dd3c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </div>
                     <?php endif; ?>
                     
