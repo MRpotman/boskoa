@@ -322,6 +322,17 @@
 
 
 /* Responsive */
+@media (max-width: 1200px) {
+    .footer-container {
+        padding: 0 30px;
+    }
+    .footer-main {
+        flex-direction: column;
+        gap: 30px;
+    }
+}
+
+
 @media (max-width: 1024px) {
     .footer-main {
         flex-direction: column;

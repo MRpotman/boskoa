@@ -63,7 +63,7 @@
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     position: absolute;
-    bottom: 20px;
+    bottom: -30px;
     left: 50%;
     transform: translateX(-50%);
     width: calc(100% - 40px);
@@ -73,8 +73,8 @@
 }
 
 .about-team-member:hover .about-team-member-info {
-    bottom: 25px;
-    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+    bottom: 5px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .about-team-member-name {
