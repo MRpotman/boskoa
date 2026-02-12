@@ -5,7 +5,7 @@
 .package-card-carousel {
 flex: 0 0 auto;
     width: 228px;
-    /* height: 265px; */
+     height: 265px;
     /* min-width: 280px; */
     /* max-width: 280px; */
     scroll-snap-align: start;
