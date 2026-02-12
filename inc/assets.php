@@ -44,8 +44,23 @@ function boskoa_enqueue_assets() {
     );
 
     wp_enqueue_style(
-        'boskoa-about',
-        get_template_directory_uri() . '/assets/css/about.css'
+        'boskoa-hero-about',
+        get_template_directory_uri() . '/assets/css/hero-about.css'
+    );
+
+    wp_enqueue_style(
+        'boskoa-about-sections',
+        get_template_directory_uri() . '/assets/css/about-sections.css'
+    );
+
+    wp_enqueue_style(
+        'boskoa-about-team',
+        get_template_directory_uri() . '/assets/css/about-team.css'
+    );
+
+    wp_enqueue_style(
+        'boskoa-about-reservation',
+        get_template_directory_uri() . '/assets/css/about-reservation.css'
     );
 
     wp_enqueue_style(

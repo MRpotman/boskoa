@@ -49,17 +49,26 @@ $packages_query = new WP_Query([
     'order'          => 'ASC',
 ]);
 
-?>
+$post = get_page_by_path('packages-title', OBJECT, 'texto');
 
+if ($post) {
+    $package_title = get_field('titulo', $post->ID);
+}
+
+$post = get_page_by_path('package-main-text', OBJECT, 'texto');
+
+if ($post) {
+    $package_title2 = get_field('titulo', $post->ID);
+    $package_description = get_field('contenido', $post->ID);
+}
+
+?>
 <section class="tours-pack" id="packages">
     <div class="container-packages">
         <div class="tours-header">
-            <h2 class="tours-subtitle">Tours Pack</h2>
-            <h1 class="tours-title">We offer the best packages so you can focus solely on enjoying yourself.</h1>
-            <p class="tours-description">
-                In this section we offer packages that consist of several activities, with a set price; this helps you
-                easily decide where you want to take your adventures.
-            </p>
+            <h2 class="tours-subtitle"><?php echo esc_html($package_title); ?></h2>
+            <h1 class="tours-title"><?php echo esc_html($package_title2); ?></h1>
+            <p class="tours-description"><?php echo esc_html($package_description); ?></p>
         </div>
 
         <div class="tours-grid">

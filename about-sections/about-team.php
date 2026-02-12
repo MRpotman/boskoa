@@ -4,22 +4,6 @@
  * Versión simplificada: busca posts de tipo "texto" con slug pattern "team-member-*"
  */
 
-// Buscar el título de la sección
-$team_section_query = new WP_Query([
-    'post_type' => 'texto',
-    'name' => 'team-section',
-    'posts_per_page' => 1,
-]);
-
-$team_section_title = 'The Team';
-
-if ($team_section_query->have_posts()) {
-    while ($team_section_query->have_posts()) {
-        $team_section_query->the_post();
-        $team_section_title = get_field('titulo') ?: get_field('Titulo') ?: get_the_title();
-    }
-    wp_reset_postdata();
-}
 
 // Buscar todos los miembros del equipo
 // Opción 1: Por slug pattern "team-member-*"
@@ -28,7 +12,7 @@ $team_query = new WP_Query([
     'posts_per_page' => -1,
     'orderby' => 'menu_order title',
     'order' => 'ASC',
-    'post_name__in' => [], // Se llenará dinámicamente
+    'post_name__in' => [],
 ]);
 
 // Mejor opción: Buscar todos los posts que empiecen con "team-member-"
@@ -41,12 +25,12 @@ $team_query = new WP_Query([
     'meta_query' => array(
         'relation' => 'OR',
         array(
-            'key' => 'es_miembro_equipo', // Campo que marcaremos en ACF
+            'key' => 'es_miembro_equipo', 
             'value' => '1',
             'compare' => '='
         ),
         array(
-            'key' => 'tipo_seccion', // O este campo alternativo
+            'key' => 'tipo_seccion',
             'value' => 'team-member',
             'compare' => '='
         )
@@ -85,7 +69,7 @@ if (!$team_query->have_posts()) {
 
 <section class="about-team-section">
     <div class="container-about">
-        <h2 class="about-team-title"><?php echo esc_html($team_section_title); ?></h2>
+        <h2 class="about-team-title">The Team</h2>
         
         <div class="about-team-grid">
             <?php
