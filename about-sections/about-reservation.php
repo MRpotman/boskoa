@@ -103,9 +103,10 @@ if (empty($steps)) {
                     <!-- Flecha conectora (no se muestra en el último paso) -->
                     <?php if ($index < count($steps) - 1) : ?>
                         <div class="reservation-step-arrow">
-                            <svg width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg width="60" height="40" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: scale(1.5);
+">
                                 <path d="M5 20C5 20 20 5 30 20C40 35 55 20 55 20" stroke="#7dd3c0" stroke-width="3" stroke-linecap="round"/>
-                                <path d="M50 15L55 20L50 25" stroke="#7dd3c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M 50 17 L 56.337 18.898 L 56 26" stroke="#7dd3c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
                     <?php endif; ?>
