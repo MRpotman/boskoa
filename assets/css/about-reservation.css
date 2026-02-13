@@ -149,7 +149,6 @@
     }
 
     .reservation-steps-wrapper {
-        flex-direction: column;
         gap: 30px;
     }
 
