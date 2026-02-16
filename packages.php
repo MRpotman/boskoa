@@ -71,67 +71,107 @@ if ($post) {
             <p class="tours-description"><?php echo esc_html($package_description); ?></p>
         </div>
 
-        <div class="tours-grid">
-            <?php
-            if ($packages_query->have_posts()) :
-                while ($packages_query->have_posts()) : $packages_query->the_post();
-                    
-                    // Preparar datos del paquete
-                    $package = [
-                        'id'       => get_the_ID(),
-                        'title'    => get_the_title(),
-                        'image'    => get_the_post_thumbnail_url(get_the_ID(), 'large'),
-                        'price'    => get_post_meta(get_the_ID(), '_package_price', true),
-                        'location' => get_post_meta(get_the_ID(), '_package_locations', true),
-                        'family'   => get_post_meta(get_the_ID(), '_package_family_friendly', true) === 'yes',
-                        'link'     => get_permalink(),
-                        'excerpt'  => get_the_excerpt(),
-                    ];
-                    
-                    // Valores por defecto si están vacíos
-                    if (empty($package['price'])) {
-                        $package['price'] = '$500';
-                    }
-                    if (empty($package['location'])) {
-                        $package['location'] = '0 Location';
-                    }
-                    if (empty($package['image'])) {
-                        $package['image'] = get_template_directory_uri() . '/assets/img/placeholder-package.jpg';
-                    }
-                    
-                    // Incluir template de tarjeta
-                    set_query_var('package', $package);
-                    get_template_part(
-                        'parts/package-card',
-                        null,
-                        [
-                            'package' => $package
-                        ]
-                    );
-
-                endwhile;
-                wp_reset_postdata();
-            else :
-                ?>
-            <div class="no-packages">
-                <div class="no-packages-content">
-                    <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="1.5">
-                        <path
-                            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        <!-- Loading Spinner SOBRE LAS CARDS -->
+        <div class="tours-grid-container">
+            <div class="tours-loading-overlay" aria-hidden="true">
+                <div class="tours-loading-spinner">
+                    <!-- NUEVO: Spinner de puntos animados en verde -->
+                    <svg fill="#2FB468" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+                        <circle cx="4" cy="12" r="0">
+                            <animate begin="0;spinner_z0Or.end" attributeName="r" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="0;3" fill="freeze"/>
+                            <animate begin="spinner_OLMs.end" attributeName="cx" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="4;12" fill="freeze"/>
+                            <animate begin="spinner_UHR2.end" attributeName="cx" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="12;20" fill="freeze"/>
+                            <animate id="spinner_lo66" begin="spinner_Aguh.end" attributeName="r" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="3;0" fill="freeze"/>
+                            <animate id="spinner_z0Or" begin="spinner_lo66.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
+                        </circle>
+                        <circle cx="4" cy="12" r="3">
+                            <animate begin="0;spinner_z0Or.end" attributeName="cx" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="4;12" fill="freeze"/>
+                            <animate begin="spinner_OLMs.end" attributeName="cx" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="12;20" fill="freeze"/>
+                            <animate id="spinner_JsnR" begin="spinner_UHR2.end" attributeName="r" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="3;0" fill="freeze"/>
+                            <animate id="spinner_Aguh" begin="spinner_JsnR.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
+                            <animate begin="spinner_Aguh.end" attributeName="r" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="0;3" fill="freeze"/>
+                        </circle>
+                        <circle cx="12" cy="12" r="3">
+                            <animate begin="0;spinner_z0Or.end" attributeName="cx" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="12;20" fill="freeze"/>
+                            <animate id="spinner_hSjk" begin="spinner_OLMs.end" attributeName="r" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="3;0" fill="freeze"/>
+                            <animate id="spinner_UHR2" begin="spinner_hSjk.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
+                            <animate begin="spinner_UHR2.end" attributeName="r" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="0;3" fill="freeze"/>
+                            <animate begin="spinner_Aguh.end" attributeName="cx" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="4;12" fill="freeze"/>
+                        </circle>
+                        <circle cx="20" cy="12" r="3">
+                            <animate id="spinner_4v5M" begin="0;spinner_z0Or.end" attributeName="r" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="3;0" fill="freeze"/>
+                            <animate id="spinner_OLMs" begin="spinner_4v5M.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
+                            <animate begin="spinner_OLMs.end" attributeName="r" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="0;3" fill="freeze"/>
+                            <animate begin="spinner_UHR2.end" attributeName="cx" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="4;12" fill="freeze"/>
+                            <animate begin="spinner_Aguh.end" attributeName="cx" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="12;20" fill="freeze"/>
+                        </circle>
                     </svg>
-                    <h3>No hay paquetes disponibles</h3>
-                    <p>Estamos trabajando en nuevos paquetes turísticos. Por favor, vuelve pronto.</p>
-                    <?php if (current_user_can('edit_posts')) : ?>
-                    <a href="<?php echo admin_url('post-new.php?post_type=tour_package'); ?>" class="btn-add-package">
-                        Añadir Primer Paquete
-                    </a>
-                    <?php endif; ?>
+                    <p class="tours-loading-text">Cargando paquetes...</p>
                 </div>
             </div>
-            <?php
-            endif;
-            ?>
+
+            <div class="tours-grid">
+                <?php
+                if ($packages_query->have_posts()) :
+                    while ($packages_query->have_posts()) : $packages_query->the_post();
+                        
+                        // Preparar datos del paquete
+                        $package = [
+                            'id'       => get_the_ID(),
+                            'title'    => get_the_title(),
+                            'image'    => get_the_post_thumbnail_url(get_the_ID(), 'large'),
+                            'price'    => get_post_meta(get_the_ID(), '_package_price', true),
+                            'location' => get_post_meta(get_the_ID(), '_package_locations', true),
+                            'family'   => get_post_meta(get_the_ID(), '_package_family_friendly', true) === 'yes',
+                            'link'     => get_permalink(),
+                            'excerpt'  => get_the_excerpt(),
+                        ];
+                        
+                        // Valores por defecto si están vacíos
+                        if (empty($package['price'])) {
+                            $package['price'] = '$500';
+                        }
+                        if (empty($package['location'])) {
+                            $package['location'] = '0 Location';
+                        }
+                        if (empty($package['image'])) {
+                            $package['image'] = get_template_directory_uri() . '/assets/img/placeholder-package.jpg';
+                        }
+                        
+                        // Incluir template de tarjeta
+                        set_query_var('package', $package);
+                        get_template_part(
+                            'parts/package-card',
+                            null,
+                            [
+                                'package' => $package
+                            ]
+                        );
+
+                    endwhile;
+                    wp_reset_postdata();
+                else :
+                    ?>
+                <div class="no-packages">
+                    <div class="no-packages-content">
+                        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5">
+                            <path
+                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                        <h3>No hay paquetes disponibles</h3>
+                        <p>Estamos trabajando en nuevos paquetes turísticos. Por favor, vuelve pronto.</p>
+                        <?php if (current_user_can('edit_posts')) : ?>
+                        <a href="<?php echo admin_url('post-new.php?post_type=tour_package'); ?>" class="btn-add-package">
+                            Añadir Primer Paquete
+                        </a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <?php
+                endif;
+                ?>
+            </div>
         </div>
 
         <!-- Animated Pagination Section -->
@@ -195,5 +235,7 @@ if ($post) {
 
     </div>
 </section>
+
+<?php get_template_part('home-sections/section-comments'); ?>
 
 <?php get_footer(); ?>
