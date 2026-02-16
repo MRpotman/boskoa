@@ -10,7 +10,7 @@
   }
   .site-header.scrolled {
     background: rgb(255, 255, 255);
-    backdrop-filter: blur(2px);
+    box-shadow: -2px -7px 20px #000000a3;
   }
   .container {
     width: 95%;
@@ -123,6 +123,11 @@
   gap: 1rem;
   font: bold 16px sans-serif;
   text-transform: uppercase;
+  }
+    .site-header.scrolled .menu-open .menu{
+
+  gap: 2.5rem;
+
   }
   .site-header.scrolled .menu li {
      position: relative;
@@ -364,13 +369,15 @@
     /* Cuando está abierto */
     #menu-checkbox:checked ~ .main-nav {
       transform: translateY(0);
-      background: #ffffff;
+             background: rgb(255 255 255 / 35%);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
     }
 
     .main-nav .menu {
       flex-direction: column;
-      padding: 2rem;
-      gap: 2.5rem;
+      padding: 2rem !important;
+      gap: 2.5rem !important;
       text-align: center;
     }
 

@@ -55,12 +55,11 @@ function boskoa_handle_contact_form() {
     }
 
     // Email del administrador
-    $admin_email = get_option('admin_email');
+    $admin_email = 'uriu1206@gmail.com';
     
-    // Asunto del email
+
     $subject = 'Nuevo mensaje de contacto: ' . $matters;
-    
-    // Cuerpo del email (HTML)
+
     $body = '
     <html>
     <head>
@@ -113,8 +112,7 @@ function boskoa_handle_contact_form() {
     </body>
     </html>
     ';
-    
-    // Headers para email HTML
+
     $headers = [
         'Content-Type: text/html; charset=UTF-8',
         'From: ' . get_bloginfo('name') . ' <' . $admin_email . '>',

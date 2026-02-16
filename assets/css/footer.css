@@ -132,6 +132,7 @@
     color: #2D8A3E;       /* ← TEXTO VERDE OSCURO */
     font-family: inherit;
     font-size: 14px;
+    transition: all 0.3s ease;
 }
 
 .form-group input::placeholder,

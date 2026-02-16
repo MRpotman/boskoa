@@ -1,6 +1,6 @@
 <?php
-define('BOSKOA_RECAPTCHA_SITE_KEY', 'TU_SITE_KEY');
-define('BOSKOA_RECAPTCHA_SECRET_KEY', 'TU_SECRET_KEY');
+define('BOSKOA_RECAPTCHA_SITE_KEY', '6LfgF2MsAAAAAI9p2MMRZB6attYxL4Mmbim1cl_5');
+define('BOSKOA_RECAPTCHA_SECRET_KEY', '6LfgF2MsAAAAAJ6r5hLBZ7cyK_ueqogL29Y8sjXr');
 
 function boskoa_verify_recaptcha($token) {
 

@@ -63,7 +63,6 @@
                         </button>
                     </div>
 
-                    <!-- Campos ocultos -->
                     <input type="hidden" name="recaptcha_token" id="recaptchaToken">
                     <input type="hidden" name="action" value="boskoa_contact_form">
                     <?php wp_nonce_field('boskoa_contact_form', 'contact_nonce'); ?>
@@ -92,16 +91,16 @@
                 <!-- Redes sociales -->
                 <div class="social-links">
                     <a href="https://instagram.com" target="_blank" aria-label="Instagram">
-                        <i class="fab fa-instagram" style="font-size: 32px;"></i>
+                        <i class="fab fa-instagram" style="font-size: 26px;"></i>
                     </a>
                     <a href="https://facebook.com" target="_blank" aria-label="Facebook">
-                        <i class="fab fa-facebook-f" style="font-size: 32px;"></i>
+                        <i class="fab fa-facebook-f" style="font-size: 26px;"></i>
                     </a>
                     <a href="https://wa.me/50688888888" target="_blank" aria-label="WhatsApp">
-                        <i class="fab fa-whatsapp" style="font-size: 32px;"></i>
+                        <i class="fab fa-whatsapp" style="font-size: 26px;"></i>
                     </a>
                     <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in" style="font-size: 32px;"></i>
+                        <i class="fab fa-linkedin-in" style="font-size: 26px;"></i>
                     </a>
                 </div>
             </div>

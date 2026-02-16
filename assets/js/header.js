@@ -21,6 +21,13 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = "auto";
     }
   });
+  window.addEventListener('resize', () => {
+  if (window.innerWidth > 992) { // tu breakpoint
+    document.body.style.overflow = "auto";
+    menuCheckbox.checked = false;
+    header.classList.remove('menu-open');
+  }
+});
 
 });
 
