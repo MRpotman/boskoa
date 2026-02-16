@@ -41,9 +41,11 @@
 }
 
 .product-view-book-now{
-    background: #ffffff;
-    color: black;
-    border-radius: 5px;
+       color: rgb(255, 255, 255);
+    background: #19532d;
+    border: none;
+    padding: 8px 13px;
+    border-radius: 17px;
     font-size: 16px;
     height: fit-content;
 }
@@ -119,5 +121,24 @@
     font-weight: bold;
     font-size: 18px;
 }
+.product-view-buttons{
+        display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+.product-view-first-text{
+        margin-bottom: 0px;
+    font-weight: 400;
+    color: #19532d;
+}
+.product-view-product-name{
+        color: #19532d;
+    font-size: 40px;
+    margin-top: 4px;
+}
+.product-view-price{
+        font-size: 20px;
+    font-family: 'Poppins';
+    margin-bottom: 15px;
 
-
+}
