@@ -1,6 +1,7 @@
 /**
  * Animated Pagination with AJAX
  * Carga rápida de contenido sin recargar toda la página
+ * Con loading overlay sobre las cards - VERSIÓN CORREGIDA
  */
 
 (function() {
@@ -14,6 +15,8 @@
       paginationCurrent: '.pagination-current',
       paginationWrapper: '.pagination-wrapper',
       toursGrid: '.tours-grid',
+      toursGridContainer: '.tours-grid-container',
+      toursLoadingOverlay: '.tours-loading-overlay',
       prevButton: '.pagination-prev',
       nextButton: '.pagination-next'
     },
@@ -30,6 +33,8 @@
       this.buttons = Array.from(this.nav.querySelectorAll(CONFIG.selectors.paginationButton));
       this.wrapper = document.querySelector(CONFIG.selectors.paginationWrapper);
       this.toursGrid = document.querySelector(CONFIG.selectors.toursGrid);
+      this.toursGridContainer = document.querySelector(CONFIG.selectors.toursGridContainer);
+      this.loadingOverlay = document.querySelector(CONFIG.selectors.toursLoadingOverlay);
       this.prevBtn = document.querySelector(CONFIG.selectors.prevButton);
       this.nextBtn = document.querySelector(CONFIG.selectors.nextButton);
       
@@ -190,9 +195,31 @@
       }, CONFIG.clickEffectDuration);
     }
 
+    showLoadingOverlay() {
+      if (this.loadingOverlay) {
+        this.loadingOverlay.classList.add('visible');
+        this.loadingOverlay.removeAttribute('aria-hidden');
+      }
+      if (this.toursGridContainer) {
+        this.toursGridContainer.classList.add('loading');
+      }
+    }
+
+    hideLoadingOverlay() {
+      if (this.loadingOverlay) {
+        this.loadingOverlay.classList.remove('visible');
+        this.loadingOverlay.setAttribute('aria-hidden', 'true');
+      }
+      if (this.toursGridContainer) {
+        this.toursGridContainer.classList.remove('loading');
+      }
+    }
+
     async loadPageContent(url, targetIndex) {
       this.isLoading = true;
-      this.wrapper?.classList.add('loading');
+      
+      // Mostrar overlay INMEDIATAMENTE
+      this.showLoadingOverlay();
 
       try {
         // Fetch the page content
@@ -212,22 +239,28 @@
         const newContent = doc.querySelector(CONFIG.selectors.toursGrid);
 
         if (newContent && this.toursGrid) {
-          // Wait for animation to complete
-          await this.delay(CONFIG.animationDuration);
+          // IMPORTANTE: Esperar a que el contenido esté listo ANTES de hacer fade out
+          // Solo hacer un pequeño delay para que el usuario vea el loading
+          await this.delay(400);
 
-          // Fade out current content
+          // Fade out suave del contenido actual
           this.toursGrid.style.opacity = '0';
-          this.toursGrid.style.transform = 'translateY(20px)';
           
+          // Esperar que termine el fade out
           await this.delay(200);
 
-          // Update content
+          // Actualizar el contenido mientras está invisible
           this.toursGrid.innerHTML = newContent.innerHTML;
           
-          // Fade in new content
+          // Resetear el transform antes de hacer fade in
+          this.toursGrid.style.transform = 'translateY(0)';
+          
+          // Pequeño delay para asegurar que el DOM se actualizó
+          await this.delay(50);
+          
+          // Fade in del nuevo contenido
           requestAnimationFrame(() => {
             this.toursGrid.style.opacity = '1';
-            this.toursGrid.style.transform = 'translateY(0)';
           });
 
           // Smooth scroll to top of content
@@ -254,7 +287,10 @@
         return;
       } finally {
         this.isLoading = false;
-        this.wrapper?.classList.remove('loading');
+        
+        // Esperar un poco más antes de ocultar el overlay
+        await this.delay(300);
+        this.hideLoadingOverlay();
       }
     }
 
@@ -295,7 +331,7 @@
   const style = document.createElement('style');
   style.textContent = `
     .tours-grid {
-      transition: opacity 200ms ease, transform 200ms ease;
+      transition: opacity 300ms ease;
     }
   `;
   document.head.appendChild(style);

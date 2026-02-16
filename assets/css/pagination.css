@@ -248,6 +248,157 @@
   50% { opacity: 0.7; transform: scale(1.1); }
 }
 
+/**
+ * Loading Spinner Styles for Pagination
+ * Animación suave para el estado de carga
+ */
+
+/* ============================================
+   LOADING OVERLAY - CSS FINAL
+   Las cards se ocultan completamente durante la carga
+   ============================================ */
+
+/* Contenedor del grid con overlay */
+.tours-grid-container {
+  position: relative;
+  min-height: 500px;
+}
+
+/* Overlay de carga (background) - MÁS SÓLIDO */
+.tours-loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.98); /* Más opaco */
+  backdrop-filter: blur(8px); /* Más blur */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+}
+
+/* Estado visible */
+.tours-loading-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+
+/* Spinner centrado */
+.tours-loading-spinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  animation: fadeInScale 0.4s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* SVG Spinner - puntos animados */
+.tours-loading-spinner svg {
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(47, 180, 104, 0.4));
+}
+
+/* Texto de carga */
+.tours-loading-text {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #2FB468;
+  letter-spacing: 0.5px;
+  animation: pulse-text 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* ============================================
+   OCULTAR CARDS COMPLETAMENTE DURANTE LA CARGA
+   ============================================ */
+
+.tours-grid-container.loading .tours-grid {
+  display: none !important; /* Ocultar completamente */
+}
+
+/* Transición suave del grid cuando aparece */
+.tours-grid {
+  transition: opacity 300ms ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tours-loading-spinner svg {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .tours-loading-text {
+    font-size: 1rem;
+  }
+  
+  .tours-loading-overlay {
+    backdrop-filter: blur(6px);
+  }
+}
+
+@media (max-width: 480px) {
+  .tours-loading-spinner svg {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .tours-loading-text {
+    font-size: 0.95rem;
+  }
+  
+  .tours-loading-spinner {
+    gap: 1rem;
+  }
+}
+
+/* Reducir movimiento para usuarios que lo prefieren */
+@media (prefers-reduced-motion: reduce) {
+  .tours-loading-overlay {
+    transition: opacity 0.2s ease;
+  }
+  
+  .tours-loading-spinner {
+    animation: none;
+  }
+  
+  .tours-loading-text {
+    animation: none;
+    opacity: 1;
+  }
+  
+  .tours-grid {
+    transition: opacity 0.1s ease;
+  }
+}
+
 /* ============================================
    RESPONSIVE DESIGN
    ============================================ */
