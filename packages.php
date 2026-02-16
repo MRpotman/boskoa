@@ -196,4 +196,6 @@ if ($post) {
     </div>
 </section>
 
+<?php get_template_part('home-sections/section-comments'); ?>
+
 <?php get_footer(); ?>

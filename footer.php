@@ -31,7 +31,7 @@
             </div>
             <!-- Columna 2: Formulario de contacto -->
             <div class="footer-column footer-contact-form">
-                <h3>To learn more about our products and services,<br>write to us and we will gladly assist you.</h3>
+                <h3>Para conocer más sobre nuestros productos y servicios,<br>escríbenos y con gusto te atenderemos.</h3>
 
                 <form class="contact-form" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
                     id="contactForm">
@@ -72,7 +72,7 @@
 
             <!-- Columna 3: Información de contacto -->
             <div class="footer-column footer-contact-info">
-                <h3>Contact Us</h3>
+                <h3>Contactanos</h3>
 
                 <div class="contact-item">
                     <i class="fas fa-phone icon"></i>

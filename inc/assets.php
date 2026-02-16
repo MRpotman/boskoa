@@ -82,6 +82,16 @@ function boskoa_enqueue_assets() {
         'boskoa-home-activities',
         get_template_directory_uri() . '/assets/css/activities-home.css'
     );
+
+    wp_enqueue_style(
+        'boskoa-product-view',
+        get_template_directory_uri() . '/assets/css/product-view.css'
+    );
+
+    wp_enqueue_style(
+        'boskoa-activities-tour',
+        get_template_directory_uri() . '/assets/css/activities-tour.css'
+    );
     
     wp_enqueue_style(
         'boskoa-fontawesome',
