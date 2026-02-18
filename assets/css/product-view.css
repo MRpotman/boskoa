@@ -1,42 +1,33 @@
+.product-view-main-div {
+    display: flex;
+    align-items: stretch;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 15px;
+}
+
+.product-view-left-column {
+    flex: 1;
+}
+
+.product-view-rigth-img img {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
+}
+
 .product-view-main-section{
     padding: 60px 0;
-}
-
-.product-view-main-div{
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.product-view-upper-site{
-    display: flex;
-    align-items: center;      
-    justify-content: space-between; 
-    gap: 40px; /
-}
-
-.product-view-left-text{
-    flex: 1; 
-}
-
-.product-view-rigth-img{
-    flex: 1;
-    display: flex;
-    justify-content: flex-end; 
-}
-
-.product-view-rigth-img img{
-    max-height: 300px;
-    max-width: 300px;
-    width: 255px;
-    height: 255px;
-    border-radius: 10px;
+        margin: 0 20px;
 }
 
 .product-view-divisor{
     background: #2A4633;
     margin-top: 25px;
-    height: 10px;
+    height: 8px;
+    border-radius: 10px;
     width: 100%;
 }
 
@@ -65,7 +56,6 @@
     font-size: 16px;
     line-height: 1.6;
 }
-
 .product-view-itinerary li::before {
     content: counter(step);
 
@@ -141,4 +131,188 @@
     font-family: 'Poppins';
     margin-bottom: 15px;
 
+}
+/* SECTION */
+.itinerary-section {
+    padding: 0 20px;
+}
+
+.itinerary-title {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 60px;
+}
+
+/* CONTENEDOR */
+.timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: auto;
+}
+
+/* Línea central */
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, #19532d, transparent);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.product-view-down-side p{
+    font-size: 16px !important;
+}
+/* ITEM GENERAL */
+.timeline-item {
+    padding: 20px 40px;
+    position: relative;
+    width: 50%;
+}
+
+/* IZQUIERDA */
+.timeline-item.left {
+    left: 0;
+    text-align: right;
+}
+
+/* DERECHA */
+.timeline-item.right {
+    left: 50%;
+    text-align: left;
+}
+
+/* CONTENIDO */
+.timeline-content {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+    position: relative;
+    transition: color 0.4s ease;
+}
+.timeline-content::before {
+    content: "";
+    position: absolute;
+    
+    inset: 0;
+    background: #2bb673;
+    z-index: 0;
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+.timeline-item.left .timeline-content::before {
+    border-radius: 12px;
+    transform-origin: left;
+}
+.timeline-item.right .timeline-content::before {
+    border-radius: 12px;
+    transform-origin: right;
+}
+.timeline-content:hover::before {
+    transform: scaleX(1);
+}
+.timeline-content > * {
+    position: relative;
+    z-index: 1;
+}
+.timeline-content:hover {
+    color: #ffffff;
+        box-shadow: 0 10px 30px rgba(43,182,115,0.25);
+}
+/* Número circular */
+.timeline-number {
+    position: absolute;
+    top: -15px;
+    background: #82BBCE; /* Cambia color si quieres */
+    color: #ffffff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Posición del número */
+.timeline-item.left .timeline-number {
+    right: -17px;
+}
+
+.timeline-item.right .timeline-number {
+    left: -17px;
+}
+
+.product-view-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
+}
+
+/* TARJETAS */
+.info-card {
+        background-image: radial-gradient(circle at top left, rgb(56 179 193 / 18%), transparent 70%);
+    background-repeat: no-repeat;
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+/* Idiomas como badges */
+.language-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.language-badge {
+    background: #82BBCE;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 16px;
+}
+.product-view-info-grid h2{
+    margin: 2px 0;
+}
+.product-view-info-grid p{
+    font-size: 16px;
+    margin: 5px 0;
+}
+/* RESPONSIVE */
+@media screen and (max-width: 900px) {
+        .product-view-main-div {
+        flex-direction: column;
+    }
+
+    .product-view-rigth-img img {
+        height: 400px; /* altura fija en móvil */
+    }
+    .timeline::after {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 20px;
+        margin-bottom: 40px;
+    }
+
+    .timeline-item.left,
+    .timeline-item.right {
+        left: 0;
+        text-align: left;
+    }
+
+    .timeline-number {
+        left: -40px !important;
+        right: auto !important;
+    }
 }
