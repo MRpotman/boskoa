@@ -2,7 +2,7 @@
 <section class="comment-section">
 
 <div class="comment-title">
-    <h3>What our customer say!!</h3>
+    <h3><?php echo esc_html(pll__('What our customer say!!')); ?></h3>
     </div>
 
 <section class="comment-carousel">

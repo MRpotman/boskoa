@@ -1,6 +1,6 @@
 <section class="ourPackets">
 
-    <h2 class="divisor-paquetes">Our packets</h2>
+    <h2 class="divisor-paquetes"><?php echo esc_html(pll__('Our packets')); ?></h2>
 
     <div class="info-paquetes-home">
         <?php
@@ -14,7 +14,7 @@
             </h2>
 
             <button class="info-paquetes-home-button">
-                See all tours
+                <?php echo esc_html(pll__('See all tours')); ?>
             </button>
         <?php endif; ?>
     </div>

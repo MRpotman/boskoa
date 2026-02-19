@@ -106,7 +106,7 @@ if ($post) {
                             <animate begin="spinner_Aguh.end" attributeName="cx" calcMode="spline" dur="0.5s" keySplines=".36,.6,.31,1" values="12;20" fill="freeze"/>
                         </circle>
                     </svg>
-                    <p class="tours-loading-text">Cargando paquetes...</p>
+                    <p class="tours-loading-text"><?php echo esc_html(pll__('Cargando paquetes...')); ?></p>
                 </div>
             </div>
 
@@ -159,11 +159,11 @@ if ($post) {
                             <path
                                 d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        <h3>No hay paquetes disponibles</h3>
-                        <p>Estamos trabajando en nuevos paquetes turísticos. Por favor, vuelve pronto.</p>
+                        <h3><?php echo esc_html(pll__('No hay paquetes disponibles')); ?></h3>
+                        <p><?php echo esc_html(pll__('Estamos trabajando en nuevos paquetes turísticos. Por favor, vuelve pronto.')); ?></p>
                         <?php if (current_user_can('edit_posts')) : ?>
                         <a href="<?php echo admin_url('post-new.php?post_type=tour_package'); ?>" class="btn-add-package">
-                            Añadir Primer Paquete
+                            <?php echo esc_html(pll__('Añadir Primer Paquete')); ?>
                         </a>
                         <?php endif; ?>
                     </div>
@@ -185,7 +185,7 @@ if ($post) {
                     <a href="<?php echo esc_url(get_pagenum_link($current_page - 1)); ?>"
                         class="pagination-nav-button pagination-prev" aria-label="Página anterior">
                         <i class="fa-solid fa-chevron-left" aria-hidden="true"></i>
-                        <span class="visually-hidden">Página anterior</span>
+                        <span class="visually-hidden"><?php echo esc_html(pll__('Página anterior')); ?></span>
                     </a>
                     <?php else: ?>
                     <span class="pagination-nav-button pagination-prev disabled" aria-hidden="true"
@@ -204,7 +204,7 @@ if ($post) {
                             class="pagination-button<?php echo $page === $current_page ? ' active' : ''; ?>"
                             aria-label="Ir a la página <?php echo $page; ?>"
                             <?php echo $page === $current_page ? 'aria-current="page"' : ''; ?>>
-                            <span class="visually-hidden">Ir a la página <?php echo $page; ?></span>
+                            <span class="visually-hidden"><?php echo esc_html(pll__('Ir a la página')); ?> <?php echo $page; ?></span>
                         </a>
                         <?php endfor; ?>
 
@@ -219,7 +219,7 @@ if ($post) {
                     <a href="<?php echo esc_url(get_pagenum_link($current_page + 1)); ?>"
                         class="pagination-nav-button pagination-next" aria-label="Próxima página">
                         <i class="fa-solid fa-chevron-right" aria-hidden="true"></i>
-                        <span class="visually-hidden">Próxima página</span>
+                        <span class="visually-hidden"><?php echo esc_html(pll__('Próxima página')); ?></span>
                     </a>
                     <?php else: ?>
                     <span class="pagination-nav-button pagination-next disabled" aria-hidden="true"

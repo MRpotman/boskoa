@@ -22,7 +22,7 @@
                                                 fill="none" stroke="#846E59" stroke-width="4" />
                                         </svg>
                                     </div>
-                                    <span class="subtitle">Costa Rica</span>
+                                    <span class="subtitle"><?php echo esc_html(pll__('Costa Rica')); ?></span>
                                 </div>
                             </div>
                         </div>
@@ -31,34 +31,38 @@
             </div>
             <!-- Columna 2: Formulario de contacto -->
             <div class="footer-column footer-contact-form">
-                <h3>Para conocer más sobre nuestros productos y servicios,<br>escríbenos y con gusto te atenderemos.</h3>
+                <h3>
+                    <?php echo esc_html(pll__(
+                        'To learn more about our products and services, write to us and we will gladly assist you.'
+                    )); ?>
+                </h3>
 
                 <form class="contact-form" method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>"
                     id="contactForm">
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="contact-name">Name</label>
+                            <label for="contact-name"><?php echo esc_html(pll__('Name')); ?></label>
                             <input type="text" id="contact-name" name="contact_name" required>
                         </div>
                         <div class="form-group">
-                            <label for="contact-email">Email</label>
+                            <label for="contact-email"><?php echo esc_html(pll__('Email')); ?></label>
                             <input type="email" id="contact-email" name="contact_email" required>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="contact-matters">Matters</label>
+                        <label for="contact-matters"><?php echo esc_html(pll__('Matters')); ?></label>
                         <input type="text" id="contact-matters" name="contact_matters" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="contact-message">Message</label>
+                        <label for="contact-message"><?php echo esc_html(pll__('Message')); ?></label>
                         <textarea id="contact-message" name="contact_message" rows="5" required></textarea>
                     </div>
 
                     <div class="form-submit">
                         <button type="submit" class="btn-send" id="submitBtn">
-                            <span class="btn-text">Send now</span>
+                            <span class="btn-text"><?php echo esc_html(pll__('Send now')); ?></span>
                             <i class="fas fa-arrow-right btn-icon"></i>
                         </button>
                     </div>
@@ -113,7 +117,7 @@
         <!-- Footer bottom -->
         <div class="footer-bottom">
             <p class="copyright">
-                Copyright © <?php echo date('Y'); ?>, BoskoaTravel.com, All Right Reserved
+                Copyright © <?php echo date('Y'); ?>, BoskoaTravel.com,  <?php echo esc_html(pll__('All Rights Reserved')); ?>
             </p>
             <div class="payment-methods">
                 <?php

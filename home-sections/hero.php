@@ -30,7 +30,12 @@
 
               <!-- BOTÓN IGUAL QUE ANTES -->
               <div class="button-container">
-                <button class="button-hero-slider">SEE PACKS →</button>
+                <div class="button-container">
+                  <button class="button-hero-slider">
+                    <?php pll_e('SEE PACKS →'); ?>
+                  </button>
+                </div>
+
               </div>
 
               <div class="hero-slide-content-container">

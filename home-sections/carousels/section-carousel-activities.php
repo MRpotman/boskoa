@@ -1,6 +1,6 @@
 <section class="ourActivities">
 
-    <h2 class="divisor-activities">Our Activities</h2>
+    <h2 class="divisor-activities"><?php echo esc_html(pll__('Our Activities')); ?></h2>
 
     <div class="info-activities-home">
         <?php
@@ -14,7 +14,7 @@
             </h2>
 
             <button class="info-activities-home-button">
-                See all activities
+                <?php echo esc_html(pll__('See all activities')); ?>
             </button>
         <?php endif; ?>
     </div>

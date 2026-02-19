@@ -11,8 +11,13 @@ if ($post) :
 ?>
 
     <div class="general-info-costaRica">
+
+        <!-- TEXTO DINÁMICO (NO CAMBIAR) -->
         <h2><?php echo esc_html($titulo); ?></h2>
+
+        <!-- TEXTO DINÁMICO (NO CAMBIAR) -->
         <p><?php echo esc_html($contenido); ?></p>
+
     </div>
 
     <div class="general-info-minicard">
@@ -22,14 +27,28 @@ if ($post) :
         </div>
 
         <div class="general-info-second">
+
             <div class="general-info-second-card">
-                <h2>+2 MILLIONS</h2>
-                <p>Many people visit this natural paradise</p>
+
+                <!-- TEXTO QUEMADO -->
+                <h2><?php echo esc_html(pll__('+2 MILLIONS')); ?></h2>
+
+                <!-- TEXTO QUEMADO -->
+                <p>
+                    <?php echo esc_html(pll__('Many people visit this natural paradise')); ?>
+                </p>
+
             </div>
 
+            <!-- BOTÓN TEXTO QUEMADO -->
             <button class="button">
-                <span class="button-content">Contact us >></span>
+
+                <span class="button-content">
+                    <?php echo esc_html(pll__('Contact us >>')); ?>
+                </span>
+
             </button>
+
         </div>
 
     </div>
