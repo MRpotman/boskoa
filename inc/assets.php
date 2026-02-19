@@ -139,5 +139,14 @@ function boskoa_enqueue_assets() {
         null,
         true
     );
+
+        // Booking Modal JS
+        wp_enqueue_script(
+            'boskoa-booking-modal',
+            get_template_directory_uri() . '/assets/js/booking-modal.js',
+            [],
+            null,
+            true
+        );
 }
 add_action('wp_enqueue_scripts', 'boskoa_enqueue_assets');
