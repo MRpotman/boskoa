@@ -53,8 +53,8 @@ if (empty($image)) {
                 </h1>
 
                 <div class="product-view-buttons">
-                    <button class="product-view-book-now">
-                        Book Now
+                    <button class="product-view-book-now" id="open-booking-modal">
+                        <?php echo esc_html(pll__('Book Now')); ?>
                     </button>
 
                     <a href="<?php echo esc_url(site_url('/activities-tour')); ?>">
