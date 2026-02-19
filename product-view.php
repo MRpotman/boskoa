@@ -45,7 +45,7 @@ if (empty($image)) {
             <div class="product-view-upper-site">
 
                 <h2 class="product-view-first-text">
-                    Disfruta de tus vacaciones con nuestro tour:
+                    <?php echo esc_html(pll__('Disfruta de tus vacaciones con nuestro tour:')); ?>
                 </h2>
 
                 <h1 class="product-view-product-name">
@@ -54,11 +54,11 @@ if (empty($image)) {
 
                 <div class="product-view-buttons">
                     <button class="product-view-book-now">
-                        Book Now
+                        <?php echo esc_html(pll__('Book Now')); ?>
                     </button>
 
                     <a href="<?php echo esc_url(site_url('/activities-tour')); ?>">
-                        View other packages
+                        <?php echo esc_html(pll__('View other packages')); ?>
                     </a>
                 </div>
 
@@ -67,7 +67,7 @@ if (empty($image)) {
             <div class="product-view-divisor"></div>
 
             <div class="product-view-down-side">
-                <h2>DESCRIPCIÓN</h2>
+                <h2><?php echo esc_html(pll__('DESCRIPCIÓN')); ?></h2>
                 <p >
                     <?php echo esc_html($description); ?>
                 </p>
@@ -114,7 +114,7 @@ if (empty($image)) {
         <!-- INFORMACIÓN ADICIONAL -->
         <?php if ($aditional_info): ?>
             <div class="info-card">
-                <h2>INFORMACIÓN ADICIONAL</h2>
+                <h2><?php echo esc_html(pll__('INFORMACIÓN ADICIONAL')); ?></h2>
                 <ul class="product-view-included-list">
                     <?php
                     $lines = explode("\n", $aditional_info);
@@ -134,7 +134,7 @@ if (empty($image)) {
         <!-- IDIOMAS -->
         <?php if ($hosts): ?>
             <div class="info-card">
-                <h2>Idiomas del anfitrión</h2>
+                <h2><?php echo esc_html(pll__('Idiomas del anfitrión')); ?></h2>
                 <div class="language-badges">
                     <?php
                     foreach ($hosts as $language):
@@ -150,7 +150,7 @@ if (empty($image)) {
         <!-- PUNTO DE ENCUENTRO -->
         <?php if ($meeting_point || $meeting_link): ?>
             <div class="info-card">
-                <h2>PUNTO DE ENCUENTRO</h2>
+                <h2><?php echo esc_html(pll__('PUNTO DE ENCUENTRO')); ?></h2>
 
                 <?php if ($meeting_point): ?>
                     <p><?php echo esc_html($meeting_point); ?></p>
@@ -161,7 +161,7 @@ if (empty($image)) {
                        target="_blank"
                        rel="noopener noreferrer"
                        class="product-view-map-link">
-                        Abrir en Google Maps
+                        <?php echo esc_html(pll__('Abrir en Google Maps')); ?>
                     </a>
                 <?php endif; ?>
             </div>
@@ -173,7 +173,7 @@ if (empty($image)) {
 
 
     <section class="itinerary-section">
-        <h2 class="itinerary-title">ITINERARIO</h2>
+        <h2 class="itinerary-title"><?php echo esc_html(pll__('ITINERARIO')); ?></h2>
 
         <?php
         $itinerary = get_field('itinerario', $activity_id);

@@ -69,7 +69,7 @@ if (!$team_query->have_posts()) {
 
 <section class="about-team-section">
     <div class="container-about">
-        <h2 class="about-team-title">The Team</h2>
+        <h2 class="about-team-title"><?php echo esc_html(pll__('The Team')); ?></h2>
         
         <div class="about-team-grid">
             <?php

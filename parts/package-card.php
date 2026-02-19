@@ -63,7 +63,7 @@ $show_family   = $args['show_family']   ?? true;
 
                     <?php if ($show_button): ?>
                     <a href="<?php echo esc_url($package['link']); ?>" class="package-btn">
-                        Book Now
+                        <?php echo esc_html(pll__('Book Now')); ?>
                     </a>
                     <?php endif; ?>
 

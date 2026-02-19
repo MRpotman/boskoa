@@ -7,8 +7,8 @@
                     <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 <div>
-                    <strong>¡Mensaje enviado!</strong>
-                    <p>Gracias por contactarnos. Te responderemos pronto.</p>
+                    <strong><?php echo esc_html(pll__('¡Mensaje enviado!')); ?></strong>
+                    <p><?php echo esc_html(pll__('Gracias por contactarnos. Te responderemos pronto.')); ?></p>
                 </div>
             <?php else: ?>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -17,8 +17,8 @@
                     <line x1="12" y1="16" x2="12.01" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
                 <div>
-                    <strong>Error al enviar</strong>
-                    <p>Por favor, verifica los datos e intenta nuevamente.</p>
+                    <strong><?php echo esc_html(pll__('Error al enviar')); ?></strong>
+                    <p><?php echo esc_html(pll__('Por favor, verifica los datos e intenta nuevamente.')); ?></p>
                 </div>
             <?php endif; ?>
             <button class="notification-close" onclick="closeNotification()">&times;</button>

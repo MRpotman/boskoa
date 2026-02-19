@@ -28,7 +28,22 @@ function boskoa_register_strings() {
         'Página anterior',
         'Ir a la página',
         'Próxima página',
-        
+        'Disfruta de tus vacaciones con nuestro tour:',
+        'Book Now',
+        'View other packages',
+        'DESCRIPCIÓN',
+        'INFORMACIÓN ADICIONAL',
+        'Idiomas del anfitrión',
+        'PUNTO DE ENCUENTRO',
+        'Abrir en Google Maps',
+        'ITINERARIO',
+        'The Team',
+        '¡Mensaje enviado!',
+        'Gracias por contactarnos. Te responderemos pronto.',
+        'Error al enviar',
+        'Por favor, verifica los datos e intenta nuevamente.',
+        'Book Know',
+        'Contactanos'
 
     ];
 

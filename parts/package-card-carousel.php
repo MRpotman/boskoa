@@ -12,7 +12,7 @@ $package = $args['package'];
 
         <div class="package-overlay-carousel">
             <div style="height: 35%;">
-            <span class="book-know">Book Know</span>
+            <span class="book-know"><?php echo esc_html(pll__('Book Know')); ?></span>
             <h3 class="package-title-carousel">
                 <?php echo esc_html($package['title']); ?>
             </h3>
