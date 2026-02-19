@@ -54,7 +54,7 @@ if (empty($image)) {
 
                 <div class="product-view-buttons">
                     <button class="product-view-book-now">
-                        <?php echo esc_html(pll__('Book Now')); ?>
+                        Book Now
                     </button>
 
                     <a href="<?php echo esc_url(site_url('/activities-tour')); ?>">
@@ -208,10 +208,46 @@ if (empty($image)) {
         }
         ?>
     </section>
-
-
-
-
 </section>
+
+<!-- Booking Modal -->
+<div id="booking-modal" class="booking-modal">
+    <div class="booking-modal-content">
+        <span class="booking-modal-close">&times;</span>
+        <h2 class="booking-modal-title">Book Your Tour</h2>
+        <p class="booking-modal-subtitle"><?php echo esc_html($title); ?> - $<?php echo esc_html($price); ?></p>
+        
+        <form id="booking-form" method="POST" action="<?php echo admin_url('admin-post.php'); ?>">
+            <input type="hidden" name="action" value="boskoa_contact_form">
+            <input type="hidden" name="contact_nonce" value="<?php echo wp_create_nonce('boskoa_contact_form'); ?>">
+            <input type="hidden" name="activity_id" value="<?php echo esc_attr($activity_id); ?>">
+            <input type="hidden" name="contact_matters" value="Booking: <?php echo esc_attr($title); ?> - $<?php echo esc_attr($price); ?>">
+            
+            <div class="booking-form-group">
+                <label for="contact_name">Name *</label>
+                <input type="text" id="contact_name" name="contact_name" required placeholder="Your full name">
+            </div>
+            
+            <div class="booking-form-group">
+                <label for="contact_email">Email *</label>
+                <input type="email" id="contact_email" name="contact_email" required placeholder="your@email.com">
+            </div>
+            
+            <div class="booking-form-group">
+                <label for="contact_phone">Phone (optional)</label>
+                <input type="tel" id="contact_phone" name="contact_phone" placeholder="Your phone number">
+            </div>
+            
+            <div class="booking-form-group">
+                <label for="contact_message">Message *</label>
+                <textarea id="contact_message" name="contact_message" rows="4" required placeholder="I would like to book this tour...">I would like to book the tour "<?php echo esc_attr($title); ?>" for $<?php echo esc_attr($price); ?>. Please contact me with more information.</textarea>
+            </div>
+            
+            <button type="submit" class="booking-submit-btn">Send Booking Request</button>
+        </form>
+    </div>
+</div>
+
+
 
 <?php get_footer(); ?>
