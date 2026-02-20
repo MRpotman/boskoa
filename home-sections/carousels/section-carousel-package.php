@@ -25,7 +25,7 @@
         $packages = new WP_Query([
             'post_type'      => 'tour_package',
             'posts_per_page' => 8,
-            'post_status'    => 'publish'
+            'post_status'    => 'publish',
         ]);
 
         if ($packages->have_posts()) :
@@ -36,6 +36,7 @@
                     'image'    => get_the_post_thumbnail_url(get_the_ID(), 'large'),
                     'title'    => get_the_title(),
                     'location' => get_post_meta(get_the_ID(), '_package_locations', true),
+                    'link'     => site_url('/product-view/?package_id=' . get_the_ID()),
                 ];
 
                 if (empty($package['location'])) {

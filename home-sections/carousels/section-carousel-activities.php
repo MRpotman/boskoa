@@ -36,7 +36,7 @@
                     'image'    => get_field('imagen'),
                     'title'    => get_field('titulo') ?: get_the_title(),
                     'location' => get_field('ubicacion'),
-                    
+                    'link' => site_url('/product-view/?activity_id=' . get_the_ID()),
                 ];
 
                 if (empty($package['image'])) {
