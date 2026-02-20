@@ -71,10 +71,6 @@
         <span></span>
       </div>
     </label>
-
-
-    <!-- ================= NAVIGATION ================= -->
-
     <nav class="main-nav">
 
       <?php
@@ -84,10 +80,6 @@
         'menu_class' => 'menu'
       ]);
       ?>
-
-
-      <!-- ================= LANGUAGE SWITCHER MOBILE ================= -->
-
       <div class="mobile-lang">
 
         <?php
@@ -108,7 +100,6 @@
 
               <img src="<?php echo get_template_directory_uri(); ?>/assets/img/<?php echo $flag; ?>"
                    alt="<?php echo esc_attr($lang['name']); ?>">
-
             </a>
 
             <?php
@@ -119,10 +110,6 @@
       </div>
 
     </nav>
-
-
-    <!-- ================= LANGUAGE SWITCHER DESKTOP ================= -->
-
     <?php
     $current_lang = function_exists('pll_current_language') ? pll_current_language() : 'en';
 
@@ -130,12 +117,8 @@
       ? 'es-cr.png'
       : 'en-usa.png';
     ?>
-
-
     <div class="lang-switcher">
-
       <button class="lang-toggle" aria-label="<?php pll_e('Change language'); ?>">
-
         <span class="lang-text">
           <?php echo strtoupper($current_lang); ?>
         </span>
@@ -162,14 +145,11 @@
               ? 'es-cr.png'
               : 'en-usa.png';
             ?>
-
             <li>
-
               <a href="<?php echo esc_url($lang['url']); ?>">
 
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/<?php echo $flag; ?>"
                      alt="<?php echo esc_attr($lang['name']); ?>">
-
                 <span>
                   <?php echo strtoupper($lang['slug']); ?>
                 </span>
@@ -180,13 +160,8 @@
 
             <?php
           }
-        }
-        ?>
-
+        }?>
       </ul>
-
     </div>
-
-
   </div>
 </header>

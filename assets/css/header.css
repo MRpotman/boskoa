@@ -377,17 +377,20 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transform: translateY(-1500%);
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 1000;
     }
 
-    /* Cuando está abierto */
     #menu-checkbox:checked ~ .main-nav {
       transform: translateY(0);
-             background: rgb(255 255 255 / 35%);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
+      opacity: 1;
+      visibility: visible;
+      background: rgb(255 255 255 / 35%);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
     }
 
     .main-nav .menu {

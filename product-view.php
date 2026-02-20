@@ -33,7 +33,7 @@ if (empty($image)) {
 }
 ?>
 
-<section class="product-view-main-section">
+<section class="product-view-main-section light-section">
 
     <div class="product-view-main-div">
 
@@ -157,12 +157,15 @@ if (empty($image)) {
                 <?php endif; ?>
 
                 <?php if ($meeting_link): ?>
+                <span>
                     <a href="<?php echo esc_url($meeting_link); ?>"
                        target="_blank"
                        rel="noopener noreferrer"
                        class="product-view-map-link">
                         <?php echo esc_html(pll__('Abrir en Google Maps')); ?>
                     </a>
+                </span>
+
                 <?php endif; ?>
             </div>
         <?php endif; ?>

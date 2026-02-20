@@ -61,56 +61,165 @@ function boskoa_handle_contact_form() {
     $subject = 'Nuevo mensaje de contacto: ' . $matters;
 
     $body = '
-    <html>
-    <head>
-        <style>
-            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
-            .container { max-width: 600px; margin: 0 auto; padding: 20px; background: #f4f4f4; }
-            .content { background: #ffffff; padding: 30px; border-radius: 8px; }
-            .header { background: #2D8A3E; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0; }
-            .field { margin: 15px 0; padding: 10px; background: #f9f9f9; border-left: 4px solid #2D8A3E; }
-            .field strong { color: #2D8A3E; }
-            .footer { text-align: center; margin-top: 20px; color: #666; font-size: 12px; }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="header">
-                <h2>Nuevo Mensaje de Contacto</h2>
-                <p>Boskoa Travels - Costa Rica</p>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        .content {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .header {
+            background: #2D8A3E;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .field {
+            padding: 10px;
+            background: #f9f9f9;
+            border-left: 4px solid #2D8A3E;
+        }
+
+        .field strong {
+            color: #2D8A3E;
+        }
+
+        .email {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .email-logo .logo {
+            font-weight: 400;
+            font-style: normal;
+            font-size: 2.2rem;
+            text-decoration: none;
+            display: flex;
+            color: white;
+            transition: color 0.3s ease;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .email-logo .logo-content {
+            z-index: 999;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .email-logo .logo-image {
+            height: 56px;
+            width: auto;
+        }
+
+        .email-logo .tiquicia {
+            display: flex;
+        }
+
+        .email-logo .logo-divider svg {
+            width: 110px;
+            height: 32px;
+        }
+
+        .email-logo .subtitle {
+            font-size: 16px;
+            color: rgb(255, 255, 255);
+            transition: color 0.3s ease;
+        }
+
+        .email-logo {
+            display: flex;
+            align-items: flex-start;
+                gap: 50px;
+        }
+
+        .email-logo .logo-link {
+            display: block;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .email-logo .logo-link:hover {
+            transform: scale(1.05);
+        }
+
+        .email-logo-img {
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="header">
+            <div class="email-column email-logo">
+                <div class="site-branding">
+                        <div class="logo-content">
+                            <img src="assets/img/boskoa-logo.png"
+                                alt="Boskoa Travel Logo" class="logo-image">
+                        </div>
+                </div>
+            
+            <h2>Nuevo Mensaje de Contacto</h2></div>
+            <p>Boskoa Travels - Costa Rica</p>
+        </div>
+        <div class="content">
+            <p>Has recibido un nuevo mensaje desde el formulario de contacto de tu sitio web:</p>
+
+            <div class="field">
+                <strong>Nombre:</strong><br>
+                ' . esc_html($name) . '
             </div>
-            <div class="content">
-                <p>Has recibido un nuevo mensaje desde el formulario de contacto de tu sitio web:</p>
-                
-                <div class="field">
-                    <strong>Nombre:</strong><br>
-                    ' . esc_html($name) . '
-                </div>
-                
-                <div class="field">
-                    <strong>Email:</strong><br>
-                    <a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a>
-                </div>
-                
-                <div class="field">
-                    <strong>Asunto:</strong><br>
-                    ' . esc_html($matters) . '
-                </div>
-                
-                <div class="field">
-                    <strong>Mensaje:</strong><br>
-                    ' . nl2br(esc_html($message)) . '
-                </div>
-                
-                <div class="footer">
-                    <p>Este mensaje fue enviado desde: <a href="' . home_url() . '">' . get_bloginfo('name') . '</a></p>
-                    <p>Fecha: ' . date_i18n(get_option('date_format') . ' ' . get_option('time_format')) . '</p>
-                    <p style="color: #2D8A3E;"><strong>✓ Verificado por reCAPTCHA</strong></p>
-                </div>
+
+            <div class="field">
+                <strong>Email:</strong><br>
+                <a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a>
+            </div>
+
+            <div class="field">
+                <strong>Asunto:</strong><br>
+                ' . esc_html($matters) . '
+            </div>
+
+            <div class="field">
+                <strong>Mensaje:</strong><br>
+                ' . nl2br(esc_html($message)) . '
+            </div>
+
+            <div class="email">
+                <p>Este mensaje fue enviado desde: <a href="' . home_url() . '">' . get_bloginfo('name') . '</a></p>
+                <p>Fecha: ' . date_i18n(get_option('date_format') . ' ' . get_option('time_format')) . '</p>
             </div>
         </div>
-    </body>
-    </html>
+    </div>
+</body>
+
+</html>
     ';
 
     $headers = [

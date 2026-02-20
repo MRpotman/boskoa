@@ -29,5 +29,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+
+  function checkBackground() {
+    const headerHeight = header.offsetHeight;
+    const elementBelow = document.elementFromPoint(
+      window.innerWidth / 2,
+      headerHeight + 5
+    );
+
+    if (!elementBelow) return;
+
+    const lightSection = elementBelow.closest(".light-section");
+
+    if (lightSection) {
+      header.classList.add("light-bg");
+    } else {
+      header.classList.remove("light-bg");
+    }
+  }
+
+  checkBackground();
+  window.addEventListener("scroll", checkBackground);
 });
 

@@ -9,7 +9,10 @@
 .product-view-left-column {
     flex: 1;
 }
-
+.product-view-rigth-img{
+        max-width: 400px;
+    max-height: 450px;
+}
 .product-view-rigth-img img {
     width: 100%;
     height: 100%;
@@ -208,7 +211,7 @@
     position: absolute;
     
     inset: 0;
-    background: #2bb673;
+    background: #217E3F;
     z-index: 0;
     transform: scaleX(0);
     transition: transform 0.4s ease;
@@ -437,6 +440,18 @@
     box-shadow: none;
 }
 
+.site-header.light-bg .logo,
+.site-header.light-bg .subtitle,
+.site-header.light-bg .menu li a,
+.site-header.light-bg .lang-text,
+.site-header.light-bg .checkmark span {
+  color: #111;
+}
+
+.site-header.light-bg .checkmark span {
+  background-color: #111;
+}
+
 /* Responsive modal */
 @media screen and (max-width: 600px) {
     .booking-modal-content {
@@ -470,9 +485,9 @@
 
     .timeline-item {
         width: 100%;
-        padding-left: 60px;
+        padding-left: 42px;
         padding-right: 20px;
-        margin-bottom: 40px;
+
     }
 
     .timeline-item.left,
