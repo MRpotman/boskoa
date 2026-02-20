@@ -92,6 +92,11 @@ function boskoa_enqueue_assets() {
         'boskoa-activities-tour',
         get_template_directory_uri() . '/assets/css/activities-tour.css'
     );
+
+    wp_enqueue_style(
+        'boskoa-404-page',
+        get_template_directory_uri() . '/assets/css/404.css'
+    );
     
     wp_enqueue_style(
         'boskoa-fontawesome',
@@ -144,6 +149,14 @@ function boskoa_enqueue_assets() {
         wp_enqueue_script(
             'boskoa-booking-modal',
             get_template_directory_uri() . '/assets/js/booking-modal.js',
+            [],
+            null,
+            true
+        );
+    
+    wp_enqueue_script(
+            'boskoa-404',
+            get_template_directory_uri() . '/assets/js/404.js',
             [],
             null,
             true
