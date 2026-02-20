@@ -128,6 +128,29 @@
     gap: 10px;
     align-items: flex-end;
 }
+
+.product-view-aditional-list {
+    list-style: none;
+    padding: 0;
+}
+
+.product-view-aditional-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 12px;
+}
+
+.product-view-aditional-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: #2bb673;
+    border-radius: 50%;
+}
+
 .product-view-first-text{
         margin-bottom: 0px;
     font-weight: 400;

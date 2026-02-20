@@ -23,7 +23,7 @@
     <div class="carousel-activities">
         <?php
         $info = new WP_Query([
-            'post_type'      => 'tour_package',
+            'post_type'      => 'activity',
             'posts_per_page' => 8,
             'post_status'    => 'publish'
         ]);
@@ -33,17 +33,18 @@
 
                 $package = [
                     'id'       => get_the_ID(),
-                    'image'    => get_the_post_thumbnail_url(get_the_ID(), 'large'),
-                    'title'    => get_the_title(),
-                    'location' => get_post_meta(get_the_ID(), '_package_locations', true),
+                    'image'    => get_field('imagen'),
+                    'title'    => get_field('titulo') ?: get_the_title(),
+                    'location' => get_field('ubicacion'),
+                    
                 ];
-
-                if (empty($package['location'])) {
-                    $package['location'] = '0 Location';
-                }
 
                 if (empty($package['image'])) {
                     $package['image'] = get_template_directory_uri() . '/assets/img/placeholder-package.jpg';
+                }
+
+                if (empty($package['location'])) {
+                    $package['location'] = '0 Location';
                 }
 
                 get_template_part(

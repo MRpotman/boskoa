@@ -49,7 +49,7 @@ if (empty($image)) {
                 </h2>
 
                 <h1 class="product-view-product-name">
-                    <?php echo esc_html($title); ?>  $<?php echo esc_html($price); ?>
+                    <?php echo esc_html($title); ?> - $<?php echo esc_html($price); ?>
                 </h1>
 
                 <div class="product-view-buttons">
@@ -115,7 +115,7 @@ if (empty($image)) {
         <?php if ($aditional_info): ?>
             <div class="info-card">
                 <h2><?php echo esc_html(pll__('INFORMACIÓN ADICIONAL')); ?></h2>
-                <ul class="product-view-included-list">
+                <ul class="product-view-aditional-list">
                     <?php
                     $lines = explode("\n", $aditional_info);
                     foreach ($lines as $line):

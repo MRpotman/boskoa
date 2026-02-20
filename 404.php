@@ -1,4 +1,12 @@
-<?php get_header(); ?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+  <meta charset="<?php bloginfo('charset'); ?>">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <?php wp_head(); ?>
+</head>
+
+
 
 <div class="error404-container">
 
@@ -19,4 +27,6 @@
 
 </div>
 
-<?php get_footer(); ?>
+
+
+</html>
