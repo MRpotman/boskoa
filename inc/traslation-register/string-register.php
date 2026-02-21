@@ -30,7 +30,7 @@ function boskoa_register_strings() {
         'Próxima página',
         'Disfruta de tus vacaciones con nuestro tour:',
         'Book Now',
-        'View other packages',
+        'View other activities',
         'DESCRIPCIÓN',
         'INFORMACIÓN ADICIONAL',
         'Idiomas del anfitrión',
@@ -43,7 +43,8 @@ function boskoa_register_strings() {
         'Error al enviar',
         'Por favor, verifica los datos e intenta nuevamente.',
         'Book Know',
-        'Contactanos'
+        'Contactanos',
+        'Cargando actividades...'
 
     ];
 

@@ -41,13 +41,11 @@ if ($post) :
             </div>
 
             <!-- BOTÓN TEXTO QUEMADO -->
-            <button class="button">
-
+            <a href="#contact" class="button">
                 <span class="button-content">
                     <?php echo esc_html(pll__('Contact us >>')); ?>
                 </span>
-
-            </button>
+            </a>
 
         </div>
 

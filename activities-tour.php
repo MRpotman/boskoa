@@ -47,7 +47,7 @@ $total_pages = ceil($total_packages / $items_per_page);
 
 
 // ===============================
-// QUERY PRINCIPAL (ACF)
+// QUERY PRINCIPAL
 // ===============================
 
 $packages_query = new WP_Query([
@@ -82,6 +82,7 @@ if ($post) {
 
 <div class="container-packages">
 
+
     <div class="tours-header">
 
         <h2 class="tours-subtitle">
@@ -100,124 +101,147 @@ if ($post) {
 
 
 
-    <div class="tours-grid">
+    <!-- ===============================
+         LOADING OVERLAY + GRID CONTAINER
+    =============================== -->
 
-    <?php
-    if ($packages_query->have_posts()) :
-
-        while ($packages_query->have_posts()) :
-
-            $packages_query->the_post();
+    <div class="tours-grid-container">
 
 
-            // ===============================
-            // OBTENER DATOS DESDE ACF
-            // ===============================
+        <!-- LOADING SPINNER -->
+        <div class="tours-loading-overlay" aria-hidden="true">
 
-            $image = get_field('imagen');
+            <div class="tours-loading-spinner">
 
-            // Compatibilidad con distintos formatos de imagen ACF
-            if (is_array($image)) {
+                <svg fill="#2FB468" viewBox="0 0 24 24" width="60" height="60">
 
-                $image = $image['url'];
+                    <circle cx="4" cy="12" r="0">
+                        <animate begin="0;spinner_z0Or.end" attributeName="r" dur="0.5s" values="0;3" fill="freeze"/>
+                        <animate begin="spinner_OLMs.end" attributeName="cx" dur="0.5s" values="4;12" fill="freeze"/>
+                        <animate begin="spinner_UHR2.end" attributeName="cx" dur="0.5s" values="12;20" fill="freeze"/>
+                        <animate id="spinner_lo66" begin="spinner_Aguh.end" attributeName="r" dur="0.5s" values="3;0" fill="freeze"/>
+                        <animate id="spinner_z0Or" begin="spinner_lo66.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
+                    </circle>
 
-            } elseif (is_numeric($image)) {
+                    <circle cx="4" cy="12" r="3">
+                        <animate begin="0;spinner_z0Or.end" attributeName="cx" dur="0.5s" values="4;12" fill="freeze"/>
+                        <animate begin="spinner_OLMs.end" attributeName="cx" dur="0.5s" values="12;20" fill="freeze"/>
+                        <animate id="spinner_JsnR" begin="spinner_UHR2.end" attributeName="r" dur="0.5s" values="3;0" fill="freeze"/>
+                        <animate id="spinner_Aguh" begin="spinner_JsnR.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
+                        <animate begin="spinner_Aguh.end" attributeName="r" dur="0.5s" values="0;3" fill="freeze"/>
+                    </circle>
 
-                $image = wp_get_attachment_image_url($image, 'large');
+                    <circle cx="12" cy="12" r="3">
+                        <animate begin="0;spinner_z0Or.end" attributeName="cx" dur="0.5s" values="12;20" fill="freeze"/>
+                        <animate id="spinner_hSjk" begin="spinner_OLMs.end" attributeName="r" dur="0.5s" values="3;0" fill="freeze"/>
+                        <animate id="spinner_UHR2" begin="spinner_hSjk.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
+                        <animate begin="spinner_UHR2.end" attributeName="r" dur="0.5s" values="0;3" fill="freeze"/>
+                        <animate begin="spinner_Aguh.end" attributeName="cx" dur="0.5s" values="4;12" fill="freeze"/>
+                    </circle>
 
-            }
+                    <circle cx="20" cy="12" r="3">
+                        <animate id="spinner_4v5M" begin="0;spinner_z0Or.end" attributeName="r" dur="0.5s" values="3;0" fill="freeze"/>
+                        <animate id="spinner_OLMs" begin="spinner_4v5M.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
+                        <animate begin="spinner_OLMs.end" attributeName="r" dur="0.5s" values="0;3" fill="freeze"/>
+                        <animate begin="spinner_UHR2.end" attributeName="cx" dur="0.5s" values="4;12" fill="freeze"/>
+                        <animate begin="spinner_Aguh.end" attributeName="cx" dur="0.5s" values="12;20" fill="freeze"/>
+                    </circle>
 
-
-            $package = [
-
-                'id' => get_the_ID(),
-
-                'title' => get_field('titulo') ?: get_the_title(),
-
-                'description' => get_field('descripcion'),
-
-                'price' => get_field('precio'),
-
-                'image' => $image,
-
-                'location' => get_field('ubicacion'),
-
-                'host' => get_field('anfitrion'),
-
-                'itinerary' => get_field('itinerario'),
-
-                'included' => get_field('articulos_incluidos'),
-
-                'family' => get_field('familiar'),
-
-                'link' => site_url('/product-view/?activity_id=' . get_the_ID()),
-
-            ];
-
-
-            // ===============================
-            // VALORES POR DEFECTO
-            // ===============================
-
-            if (empty($package['price'])) {
-
-                $package['price'] = '$500';
-
-            }
-
-            if (empty($package['location'])) {
-
-                $package['location'] = '#';
-
-            }
-
-            if (empty($package['image'])) {
-
-                $package['image'] = get_template_directory_uri() . '/assets/img/placeholder-package.jpg';
-
-            }
-
-
-
-            // ===============================
-            // ENVIAR A TEMPLATE CARD
-            // ===============================
-
-            get_template_part(
-                'parts/activities-card',
-                null,
-                [
-                    'package' => $package
-                ]
-            );
-
-
-        endwhile;
-
-        wp_reset_postdata();
-
-    else :
-    ?>
-
-        <div class="no-packages">
-
-            <div class="no-packages-content">
-
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
 
-                <h3><?php echo esc_html(pll__('No hay actividades disponibles')); ?></h3>
-
-                <p><?php echo esc_html(pll__('Estamos trabajando en nuevas actividades. Por favor vuelve pronto.')); ?></p>
+                <p class="tours-loading-text">
+                    <?php echo esc_html(pll__('Cargando actividades...')); ?>
+                </p>
 
             </div>
 
         </div>
 
-    <?php endif; ?>
 
-    </div>
+
+        <!-- GRID -->
+        <div class="tours-grid">
+
+
+        <?php
+        if ($packages_query->have_posts()) :
+
+            while ($packages_query->have_posts()) :
+
+                $packages_query->the_post();
+
+
+                $image = get_field('imagen');
+
+                if (is_array($image)) {
+                    $image = $image['url'];
+                } elseif (is_numeric($image)) {
+                    $image = wp_get_attachment_image_url($image, 'large');
+                }
+
+
+                $package = [
+
+                    'id' => get_the_ID(),
+                    'title' => get_field('titulo') ?: get_the_title(),
+                    'description' => get_field('descripcion'),
+                    'price' => get_field('precio'),
+                    'image' => $image,
+                    'location' => get_field('ubicacion'),
+                    'host' => get_field('anfitrion'),
+                    'itinerary' => get_field('itinerario'),
+                    'included' => get_field('articulos_incluidos'),
+                    'family' => get_field('familiar'),
+                    'link' => site_url('/product-view/?activity_id=' . get_the_ID()),
+
+                ];
+
+
+                if (empty($package['price'])) {
+                    $package['price'] = '$500';
+                }
+
+                if (empty($package['location'])) {
+                    $package['location'] = '#';
+                }
+
+                if (empty($package['image'])) {
+                    $package['image'] = get_template_directory_uri() . '/assets/img/placeholder-package.jpg';
+                }
+
+
+                get_template_part(
+                    'parts/activities-card',
+                    null,
+                    [
+                        'package' => $package
+                    ]
+                );
+
+            endwhile;
+
+            wp_reset_postdata();
+
+        else :
+        ?>
+
+            <div class="no-packages">
+
+                <div class="no-packages-content">
+
+                    <h3><?php echo esc_html(pll__('No hay actividades disponibles')); ?></h3>
+
+                    <p><?php echo esc_html(pll__('Estamos trabajando en nuevas actividades. Por favor vuelve pronto.')); ?></p>
+
+                </div>
+
+            </div>
+
+        <?php endif; ?>
+
+        </div> <!-- END GRID -->
+
+    </div> <!-- END GRID CONTAINER -->
 
 
 
@@ -231,8 +255,6 @@ if ($post) {
 
         <div class="pagination-wrapper">
 
-
-            <!-- Previous -->
 
             <div class="pagination-nav">
 
@@ -258,9 +280,6 @@ if ($post) {
             </div>
 
 
-
-            <!-- Numbers -->
-
             <div class="pagination-indexes">
 
                 <nav class="pagination" style="--index: <?php echo max(0, $current_page - 1); ?>;">
@@ -279,9 +298,6 @@ if ($post) {
 
             </div>
 
-
-
-            <!-- Next -->
 
             <div class="pagination-nav">
 

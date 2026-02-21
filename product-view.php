@@ -57,8 +57,8 @@ if (empty($image)) {
                         <?php echo esc_html(pll__('Book Now')); ?>
                     </button>
 
-                    <a href="<?php echo esc_url(site_url('/activities-tour')); ?>">
-                        <?php echo esc_html(pll__('View other packages')); ?>
+                    <a href="<?php echo esc_url(site_url('/activities')); ?>">
+                        <?php echo esc_html(pll__('View other activities')); ?>
                     </a>
                 </div>
 
@@ -175,44 +175,50 @@ if (empty($image)) {
 
 
 
-    <section class="itinerary-section">
-        <h2 class="itinerary-title"><?php echo esc_html(pll__('ITINERARIO')); ?></h2>
+<section class="itinerary-section">
 
-        <?php
-        $itinerary = get_field('itinerario', $activity_id);
+    <?php
+    $itinerary = get_field('itinerario', $activity_id);
 
-        if ($itinerary) {
+    if (!empty($itinerary)) {
 
-            $lines = explode("\n", $itinerary);
-            echo "<div class='timeline'>";
-            $count = 1;
+        $lines = array_filter(array_map('trim', explode("\n", $itinerary)));
 
-            foreach ($lines as $line) {
-                $line = trim($line);
+        if (!empty($lines)) {
+    ?>
 
-                if (!empty($line)) {
+            <h2 class="itinerary-title">
+                <?php echo esc_html(pll__('ITINERARIO')); ?>
+            </h2>
+
+            <div class="timeline">
+                <?php
+                $count = 1;
+
+                foreach ($lines as $line) {
 
                     $side = ($count % 2 == 0) ? 'right' : 'left';
-
-                    echo "
-                        <div class='timeline-item {$side}'>
-                            <div class='timeline-content'>
-                                <span class='timeline-number'>{$count}</span>
-                                <p>" . esc_html($line) . "</p>
-                            </div>
+                ?>
+                    <div class="timeline-item <?php echo esc_attr($side); ?>">
+                        <div class="timeline-content">
+                            <span class="timeline-number">
+                                <?php echo esc_html($count); ?>
+                            </span>
+                            <p><?php echo esc_html($line); ?></p>
                         </div>
-                    ";
-
+                    </div>
+                <?php
                     $count++;
                 }
-            }
+                ?>
+            </div>
 
-            echo "</div>";
+    <?php
         }
-        ?>
-    </section>
+    }
+    ?>
 </section>
-
+</section>
 <!-- Booking Modal -->
 <div id="booking-modal" class="booking-modal">
     <div class="booking-modal-content">

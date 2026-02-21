@@ -22,18 +22,18 @@
                   <?php echo esc_html($titulo); ?>
                 </h1>
                 <div class="hero-slide-social-container">
-                  <a href="#" class="face"><i class="fa-brands fa-facebook"></i></a>
-                  <a href="#" class="insta"><i class="fa-brands fa-instagram"></i></a>
-                  <a href="#" class="x"><i class="fa-brands fa-twitter"></i></a>
+                  <a href="https://www.facebook.com/share/189PciRXZS/" class="face"><i class="fa-brands fa-facebook"></i></a>
+                  <a href="https://www.instagram.com/boskoa_travels?igsh=MWkzcDFhbmZwNDU4Mw==" class="insta"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="https://wa.me/message/ZGT5HWHZ3JY2D1" class="wasa"><i class="fa-brands fa-whatsapp"></i></a>
               </div>
               </div>
 
               <!-- BOTÓN IGUAL QUE ANTES -->
               <div class="button-container">
                 <div class="button-container">
-                  <button class="button-hero-slider">
+                  <a href="<?php echo esc_url(home_url('/package')); ?>" class="button-hero-slider">
                     <?php pll_e('SEE PACKS →'); ?>
-                  </button>
+                  </a>
                 </div>
 
               </div>
