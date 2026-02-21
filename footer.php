@@ -79,7 +79,7 @@
 
                 <div class="contact-item">
                     <i class="fas fa-phone icon"></i>
-                    <a href="tel:+50688888888">(+506) 8888-8888</a>
+                    <a href="tel:+50688770010">(+506) 8877 0010</a>
                 </div>
 
                 <div class="contact-item">
@@ -89,23 +89,21 @@
 
                 <div class="contact-item">
                     <i class="fab fa-whatsapp icon"></i>
-                    <a href="https://wa.me/50688888888" target="_blank">(+506) 8888-8888</a>
+                    <a href="https://wa.me/message/ZGT5HWHZ3JY2D1" target="_blank">(+506) 8877 0010</a>
                 </div>
 
                 <!-- Redes sociales -->
                 <div class="social-links">
-                    <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <a href="https://www.instagram.com/boskoa_travels?igsh=MWkzcDFhbmZwNDU4Mw==" target="_blank" aria-label="Instagram">
                         <i class="fab fa-instagram" style="font-size: 26px;"></i>
                     </a>
-                    <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <a href="https://www.facebook.com/share/189PciRXZS/" target="_blank" aria-label="Facebook">
                         <i class="fab fa-facebook-f" style="font-size: 26px;"></i>
                     </a>
-                    <a href="https://wa.me/50688888888" target="_blank" aria-label="WhatsApp">
+                    <a href="https://wa.me/message/ZGT5HWHZ3JY2D1" target="_blank" aria-label="WhatsApp">
                         <i class="fab fa-whatsapp" style="font-size: 26px;"></i>
                     </a>
-                    <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in" style="font-size: 26px;"></i>
-                    </a>
+                    
                 </div>
             </div>
 
@@ -118,6 +116,11 @@
         <div class="footer-bottom">
             <p class="copyright">
                 Copyright © <?php echo date('Y'); ?>, BoskoaTravel.com,  <?php echo esc_html(pll__('All Rights Reserved')); ?>
+            </p>
+            <p class="developedBy">
+                Developed by 
+                KnotFix |
+                <a href="mailto:knotfixservice@knotfix.com">knotfixservice@knotfix.com</a>
             </p>
             <div class="payment-methods">
                 <?php
