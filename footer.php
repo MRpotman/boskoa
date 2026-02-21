@@ -84,7 +84,7 @@
 
                 <div class="contact-item">
                     <i class="fas fa-envelope icon"></i>
-                    <a href="mailto:ejemplocorreo@gmail.com">ejemplocorreo@gmail.com</a>
+                    <a href="mailto:info@boskoatravels.com">info@boskoatravels.com</a>
                 </div>
 
                 <div class="contact-item">
