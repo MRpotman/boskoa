@@ -70,7 +70,7 @@ color: #ffffff;
 .info-paquetes-home-button {
     height: fit-content;
     font-size: 16px;
-    /* width: 256px; */
+    text-decoration: none;
     padding: 10px 15px;
     background: #217E3F;
     border: none;
@@ -103,7 +103,7 @@ color: #ffffff;
   font-size: 18px; 
   }
   .info-paquetes-home-button{
-    width: 150px;
+    width: 170px;
   }
 
   .carousel {

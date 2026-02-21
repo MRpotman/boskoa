@@ -166,22 +166,29 @@
 
 .button-hero-slider {
     position: relative;
-    display: inline-block;
+    display: flex;                
+    justify-content: center;     
+    align-items: center;        
+    
     font-family: inherit;
     font-weight: 500;
     color: var(--color-white);
     background: transparent;
     border: 2px solid currentColor;
     border-radius: clamp(4px, 1vw, 6px);
+    
     font-size: clamp(12px, 1.5vw, 17px);
     width: clamp(10em, 20vw, 10em);
     height: clamp(3em, 5vw, 3em);
-    line-height: 2.5em;
+
     margin: 20px;
     cursor: pointer;
     overflow: hidden;
     transition: color 0.5s, border 0.5s;
     z-index: 1;
+
+    text-decoration: none;
+    text-align: center; 
 }
 
 .button-hero-slider::before {

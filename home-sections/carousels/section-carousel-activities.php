@@ -13,9 +13,9 @@
                 <?php echo esc_html($descripcion); ?>
             </h2>
 
-            <button class="info-activities-home-button">
+            <a href="<?php echo esc_url(home_url('/activities')); ?>" class="info-activities-home-button">
                 <?php echo esc_html(pll__('See all activities')); ?>
-            </button>
+            </a>
         <?php endif; ?>
     </div>
 

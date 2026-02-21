@@ -57,8 +57,8 @@ if (empty($image)) {
                         <?php echo esc_html(pll__('Book Now')); ?>
                     </button>
 
-                    <a href="<?php echo esc_url(site_url('/activities-tour')); ?>">
-                        <?php echo esc_html(pll__('View other packages')); ?>
+                    <a href="<?php echo esc_url(site_url('/activities')); ?>">
+                        <?php echo esc_html(pll__('View other activities')); ?>
                     </a>
                 </div>
 

@@ -13,9 +13,9 @@
                 <?php echo esc_html($descripcion); ?>
             </h2>
 
-            <button class="info-paquetes-home-button">
+            <a href="<?php echo esc_url(get_permalink(get_page_by_path('package'))); ?>" class="info-paquetes-home-button">
                 <?php echo esc_html(pll__('See all tours')); ?>
-            </button>
+            </a>
         <?php endif; ?>
     </div>
 

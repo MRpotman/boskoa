@@ -62,13 +62,19 @@ display: flex;
 
   background: #82BBCE;
   height: fit-content;
-    font-size: 16px;
-    padding: 10px 15px;
-    border: none;
-    color: #ffffff;
-    border-radius: 47px;
-    box-shadow: 3px 3px 8px 1px #00000059;
-    transition: all 0.5s;
+  font-size: 16px;
+  padding: 10px 15px;
+  border: none;
+  color: #ffffff;
+  border-radius: 47px;
+  box-shadow: 3px 3px 8px 1px #00000059;
+  transition: all 0.5s;
+
+  text-decoration: none;     
+  display: inline-flex;      
+  align-items: center;       
+  justify-content: center;
+  cursor: pointer;
 }
 .info-activities-home-button:hover {
   background: #aceaff;
@@ -97,7 +103,7 @@ display: flex;
   font-size: 18px; 
   }
   .info-activities-home-button{
-    width: 150px;
+    width: 170px;
   }
 
   .carousel {

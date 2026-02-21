@@ -31,9 +31,9 @@
               <!-- BOTÓN IGUAL QUE ANTES -->
               <div class="button-container">
                 <div class="button-container">
-                  <button class="button-hero-slider">
+                  <a href="<?php echo esc_url(home_url('/package')); ?>" class="button-hero-slider">
                     <?php pll_e('SEE PACKS →'); ?>
-                  </button>
+                  </a>
                 </div>
 
               </div>

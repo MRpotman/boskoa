@@ -30,7 +30,7 @@ function boskoa_register_strings() {
         'Próxima página',
         'Disfruta de tus vacaciones con nuestro tour:',
         'Book Now',
-        'View other packages',
+        'View other activities',
         'DESCRIPCIÓN',
         'INFORMACIÓN ADICIONAL',
         'Idiomas del anfitrión',
