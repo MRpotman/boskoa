@@ -77,7 +77,6 @@
 
 /* Columna derecha: info + sumatoria + botones */
 .pv-hero-right {
-    width: 380px;
     flex-shrink: 0;
 }
 
@@ -160,6 +159,7 @@
     font-weight: 600;
     color: #19532d;
     white-space: nowrap;
+    min-width: 30%;
 }
 
 .pv-savings {
@@ -203,6 +203,7 @@
     font-size: 28px;
     font-weight: 800;
     color: #19532d;
+    padding-left: 20px;
 }
 
 /* Botones */
@@ -367,7 +368,7 @@
     padding: 18px 24px;
     flex-shrink: 0;
     border-left: 1px solid #f0f0f0;
-    min-width: 90px;
+    min-width: 13%;
 }
 
 .pv-act-price {
