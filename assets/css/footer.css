@@ -272,6 +272,19 @@
     font-size: 14px;
 }
 
+.developedBy a {
+    color: rgb(255, 255, 255);
+    text-decoration: none; 
+}
+
+.developedBy a:visited {
+    color: white;
+}
+
+.developedBy a:hover {
+    color: #cccccc; 
+}
+
 .payment-methods {
     display: flex;
     align-items: center;

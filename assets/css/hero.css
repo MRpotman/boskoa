@@ -348,6 +348,10 @@
   color: #0865fe;
 }
 
+.hero-slide-social-container a.wasa:hover i{
+  color: #25d366;
+}
+
 .hero-slide-social-container a.insta:hover i {
   background: linear-gradient(
     90deg,
