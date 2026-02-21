@@ -77,7 +77,6 @@
 
 /* Columna derecha: info + sumatoria + botones */
 .pv-hero-right {
-    width: 380px;
     flex-shrink: 0;
 }
 
@@ -204,6 +203,7 @@
     font-size: 28px;
     font-weight: 800;
     color: #19532d;
+    padding-left: 20px;
 }
 
 /* Botones */
