@@ -99,7 +99,9 @@ $savings = $activities_total > 0 ? ($activities_total - $package_price_num) : 0;
                 <?php if ($family_friendly): ?>
                 <div class="pv-family-badge">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M5.5 4.5c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zm9 0c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zM6 14v-3c0-.828-.672-1.5-1.5-1.5S3 10.172 3 11v3h3zm7 0v-3c0-.828-.672-1.5-1.5-1.5S10 10.172 10 11v3h3zm-5.5-6c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM10 14v-3c0-.828-.672-1.5-1.5-1.5S7 10.172 7 11v3h3z" fill="currentColor"/>
+                        <path
+                            d="M5.5 4.5c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zm9 0c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zM6 14v-3c0-.828-.672-1.5-1.5-1.5S3 10.172 3 11v3h3zm7 0v-3c0-.828-.672-1.5-1.5-1.5S10 10.172 10 11v3h3zm-5.5-6c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM10 14v-3c0-.828-.672-1.5-1.5-1.5S7 10.172 7 11v3h3z"
+                            fill="currentColor" />
                     </svg>
                     <?php echo esc_html(pll__('Family Friendly')); ?>
                 </div>
@@ -125,7 +127,9 @@ $savings = $activities_total > 0 ? ($activities_total - $package_price_num) : 0;
                 <?php if ($locations): ?>
                 <p class="pv-location">
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                        <path d="M8 0C5.243 0 3 2.243 3 5c0 4.5 5 11 5 11s5-6.5 5-11c0-2.757-2.243-5-5-5zm0 7c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z" fill="currentColor"/>
+                        <path
+                            d="M8 0C5.243 0 3 2.243 3 5c0 4.5 5 11 5 11s5-6.5 5-11c0-2.757-2.243-5-5-5zm0 7c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z"
+                            fill="currentColor" />
                     </svg>
                     <?php echo esc_html($locations); ?>
                 </p>
@@ -146,14 +150,26 @@ $savings = $activities_total > 0 ? ($activities_total - $package_price_num) : 0;
                         <?php endforeach; ?>
                     </ul>
 
-                    <?php if ($savings > 0): ?>
+                    <?php
+        // Calcular descuento en porcentaje
+        $discount_percentage = 0;
+        if ($activities_total > 0 && $package_price_num < $activities_total) {
+            $savings = $activities_total - $package_price_num;
+            $discount_percentage = round(($savings / $activities_total) * 100, 1);
+        }
+        ?>
+
+                    <?php if ($discount_percentage > 0): ?>
                     <div class="pv-savings">
                         <span><?php echo esc_html(pll__('Individual total')); ?></span>
                         <span class="pv-savings-original">$<?php echo number_format($activities_total, 0); ?></span>
                     </div>
                     <div class="pv-savings pv-savings-highlight">
                         <span><?php echo esc_html(pll__('You save')); ?></span>
-                        <span class="pv-savings-amount">-$<?php echo number_format($savings, 0); ?></span>
+                        <span class="pv-savings-amount">
+                            -$<?php echo number_format($savings, 0); ?>
+                            <span class="pv-savings-percent">(<?php echo $discount_percentage; ?>% off)</span>
+                        </span>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -195,11 +211,13 @@ $savings = $activities_total > 0 ? ($activities_total - $package_price_num) : 0;
         <div class="pv-activities-list">
             <?php foreach ($activities_data as $act): ?>
             <div class="pv-act-card">
-                <a href="<?php echo esc_url(site_url('/product-view/?activity_id=' . $act['id'])); ?>" class="pv-act-link">
+                <a href="<?php echo esc_url(site_url('/product-view/?activity_id=' . $act['id'])); ?>"
+                    class="pv-act-link">
 
                     <!-- Imagen -->
                     <div class="pv-act-image">
-                        <img src="<?php echo esc_url($act['image']); ?>" alt="<?php echo esc_attr($act['title']); ?>" loading="lazy">
+                        <img src="<?php echo esc_url($act['image']); ?>" alt="<?php echo esc_attr($act['title']); ?>"
+                            loading="lazy">
                     </div>
 
                     <!-- Info -->
@@ -213,7 +231,9 @@ $savings = $activities_total > 0 ? ($activities_total - $package_price_num) : 0;
                         <?php if ($act['location']): ?>
                         <span class="pv-act-location">
                             <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                                <path d="M8 0C5.243 0 3 2.243 3 5c0 4.5 5 11 5 11s5-6.5 5-11c0-2.757-2.243-5-5-5zm0 7c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z" fill="currentColor"/>
+                                <path
+                                    d="M8 0C5.243 0 3 2.243 3 5c0 4.5 5 11 5 11s5-6.5 5-11c0-2.757-2.243-5-5-5zm0 7c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z"
+                                    fill="currentColor" />
                             </svg>
                             <?php echo esc_html($act['location']); ?>
                         </span>
@@ -249,9 +269,9 @@ $aditional_info = get_field('informacion_adicional', $package_id);
             <h2><?php echo esc_html(pll__('INCLUDED')); ?></h2>
             <ul class="pv-info-list">
                 <?php foreach (explode("\n", $included) as $line): ?>
-                    <?php $line = trim($line); if (!empty($line)): ?>
-                    <li><?php echo esc_html($line); ?></li>
-                    <?php endif; ?>
+                <?php $line = trim($line); if (!empty($line)): ?>
+                <li><?php echo esc_html($line); ?></li>
+                <?php endif; ?>
                 <?php endforeach; ?>
             </ul>
         </div>
@@ -262,9 +282,9 @@ $aditional_info = get_field('informacion_adicional', $package_id);
             <h2><?php echo esc_html(pll__('ADDITIONAL INFORMATION')); ?></h2>
             <ul class="pv-info-list">
                 <?php foreach (explode("\n", $aditional_info) as $line): ?>
-                    <?php $line = trim($line); if (!empty($line)): ?>
-                    <li><?php echo esc_html($line); ?></li>
-                    <?php endif; ?>
+                <?php $line = trim($line); if (!empty($line)): ?>
+                <li><?php echo esc_html($line); ?></li>
+                <?php endif; ?>
                 <?php endforeach; ?>
             </ul>
         </div>
@@ -279,17 +299,20 @@ $aditional_info = get_field('informacion_adicional', $package_id);
     <div class="booking-modal-content">
         <span class="booking-modal-close">&times;</span>
         <h2 class="booking-modal-title"><?php echo esc_html(pll__('Book Your Package')); ?></h2>
-        <p class="booking-modal-subtitle"><?php echo esc_html($title); ?> - $<?php echo number_format($package_price_num, 0); ?></p>
+        <p class="booking-modal-subtitle"><?php echo esc_html($title); ?> -
+            $<?php echo number_format($package_price_num, 0); ?></p>
 
         <form id="booking-form" method="POST" action="<?php echo admin_url('admin-post.php'); ?>">
             <input type="hidden" name="action" value="boskoa_contact_form">
             <input type="hidden" name="contact_nonce" value="<?php echo wp_create_nonce('boskoa_contact_form'); ?>">
             <input type="hidden" name="activity_id" value="<?php echo esc_attr($package_id); ?>">
-            <input type="hidden" name="contact_matters" value="Booking Package: <?php echo esc_attr($title); ?> - $<?php echo esc_attr($price); ?>">
+            <input type="hidden" name="contact_matters"
+                value="Booking Package: <?php echo esc_attr($title); ?> - $<?php echo esc_attr($price); ?>">
 
             <div class="booking-form-group">
                 <label for="contact_name"><?php echo esc_html(pll__('Name')); ?> *</label>
-                <input type="text" id="contact_name" name="contact_name" required placeholder="<?php echo esc_attr(pll__('Your full name')); ?>">
+                <input type="text" id="contact_name" name="contact_name" required
+                    placeholder="<?php echo esc_attr(pll__('Your full name')); ?>">
             </div>
             <div class="booking-form-group">
                 <label for="contact_email"><?php echo esc_html(pll__('Email')); ?> *</label>
@@ -297,14 +320,16 @@ $aditional_info = get_field('informacion_adicional', $package_id);
             </div>
             <div class="booking-form-group">
                 <label for="contact_phone"><?php echo esc_html(pll__('Phone')); ?> (optional)</label>
-                <input type="tel" id="contact_phone" name="contact_phone" placeholder="<?php echo esc_attr(pll__('Your phone number')); ?>">
+                <input type="tel" id="contact_phone" name="contact_phone"
+                    placeholder="<?php echo esc_attr(pll__('Your phone number')); ?>">
             </div>
             <div class="booking-form-group">
                 <label for="contact_message"><?php echo esc_html(pll__('Message')); ?> *</label>
                 <textarea id="contact_message" name="contact_message" rows="4" required
                     placeholder="<?php echo esc_attr(pll__('I would like to book this package...')); ?>"><?php echo esc_html(pll__('I would like to book the package "')); ?><?php echo esc_attr($title); ?><?php echo esc_html(pll__('" for $')); ?><?php echo number_format($package_price_num, 0); ?>. <?php echo esc_html(pll__('Please contact me with more information.')); ?></textarea>
             </div>
-            <button type="submit" class="booking-submit-btn"><?php echo esc_html(pll__('Send Booking Request')); ?></button>
+            <button type="submit"
+                class="booking-submit-btn"><?php echo esc_html(pll__('Send Booking Request')); ?></button>
         </form>
     </div>
 </div>
