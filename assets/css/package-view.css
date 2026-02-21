@@ -160,6 +160,7 @@
     font-weight: 600;
     color: #19532d;
     white-space: nowrap;
+    min-width: 30%;
 }
 
 .pv-savings {
@@ -367,7 +368,7 @@
     padding: 18px 24px;
     flex-shrink: 0;
     border-left: 1px solid #f0f0f0;
-    min-width: 90px;
+    min-width: 13%;
 }
 
 .pv-act-price {
