@@ -8,7 +8,7 @@
 get_header(); 
 
 // Hero banner
-get_template_part('parts/hero-package');
+get_template_part('parts/hero-activities');
 
 
 // ===============================

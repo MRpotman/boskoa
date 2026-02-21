@@ -1,24 +1,160 @@
-.product-view-main-div {
+.product-hero-inner {
     display: flex;
-    align-items: stretch;
-    max-width: 1100px;
+    gap: 60px;
+    max-width: 1200px;
     margin: 0 auto;
-    gap: 15px;
+    align-items: flex-start;
+    padding-top: 40px;
 }
 
-.product-view-left-column {
+/* Imagen izquierda */
+.product-hero-left {
     flex: 1;
 }
-.product-view-rigth-img{
-        max-width: 400px;
-    max-height: 450px;
-}
-.product-view-rigth-img img {
+.product-hero-image-wrap{
+    position: relative;
     width: 100%;
-    height: 100%;
-    border-radius: 12px;
+    border-radius: 18px;
+    overflow: hidden;
+    max-height: 500px;
+}
+
+.product-hero-image-wrap img {
+    width: 100%;
+    height: 500px;
     object-fit: cover;
     display: block;
+}
+.pv-family-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(130, 187, 206, 0.92);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+/* Derecha */
+.product-hero-right {
+    width: 380px;
+    flex-shrink: 0;
+}
+
+.product-hero-card {
+    position: sticky;
+    top: 30px;
+    background: #fff;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 8px 35px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+}
+
+.product-hero-title {
+    font-size: 28px;
+    margin-top: 8px;
+    font-weight: 800;
+    color: #19532d;
+    margin-bottom: 8px;
+}
+
+.product-hero-location {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 16px;
+}
+
+.product-hero-divider {
+    height: 1px;
+    background: #eee;
+    margin: 18px 0;
+}
+
+.product-hero-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.product-hero-price-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: #19532d;
+}
+.product-hero-buttons{
+       display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+.product-hero-book {
+    background: #19532d;
+    color: #fff;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-align: center;
+    width: 100%;
+}
+
+.product-hero-book:hover {
+    background: #2bb673;
+    transform: translateY(-1px);
+}
+
+
+.product-hero-secondary {
+    display: block;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 14px;
+    border: 2px solid #19532d;
+    color: #19532d;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+.pv-label {
+    font-size: 13px;
+    color: #19532d;
+    font-weight: 500;
+    margin: 0 0 6px 0;
+}
+
+.product-hero-secondary:hover {
+    background: #19532d;
+    color: #fff;
+}
+
+/* Descripción abajo */
+.product-hero-description {
+    max-width: 1200px;
+    margin: 50px auto 0 auto;
+}
+
+.product-hero-description h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: #19532d;
+}
+
+.product-hero-description p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #444;
 }
 
 .product-view-main-section{
@@ -26,32 +162,6 @@
         margin: 0 20px;
 }
 
-.product-view-divisor{
-    background: #2A4633;
-    margin-top: 25px;
-    height: 8px;
-    border-radius: 10px;
-    width: 100%;
-}
-
-.product-view-book-now{
-       color: rgb(255, 255, 255);
-    background: #19532d;
-    border: none;
-    padding: 8px 13px;
-    border-radius: 17px;
-    font-size: 16px;
-    height: fit-content;
-    cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s;
-}
-
-.product-view-book-now:hover,
-.product-view-book-now:focus {
-    background: #2bb673;
-    box-shadow: 0 0 0 3px rgba(43, 182, 115, 0.15);
-    outline: none;
-}
 
 .product-view-itinerary {
     list-style: none;
@@ -114,7 +224,10 @@
     padding-left: 35px;
     margin-bottom: 12px;
 }
-
+.product-view-main-div{
+     max-width: 1200px;
+    margin: 0 auto;
+}
 .product-view-included-list li::before {
     content: "✓";
     position: absolute;
@@ -492,11 +605,13 @@
     }
 }
 
-
-/* RESPONSIVE */
 @media screen and (max-width: 900px) {
+    .product-view-main-section{
+        padding: 0;
+    }
         .product-view-main-div {
         flex-direction: column;
+        margin-bottom: 30px;
     }
 
     .product-view-rigth-img img {
@@ -522,5 +637,102 @@
     .timeline-number {
         left: -40px !important;
         right: auto !important;
+    }
+}
+@media (max-width: 1024px) {
+
+    .product-hero-right {
+        width: 320px;
+    }
+
+    .product-hero-title {
+        font-size: 24px;
+    }
+
+    .product-hero-price-value {
+        font-size: 24px;
+    }
+}
+
+
+/* ===============================
+   TABLET
+================================= */
+@media (max-width: 900px) {
+
+    .product-hero-inner {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .product-hero-right {
+        width: 100%;
+    }
+
+    .product-hero-card {
+        position: static; /* quitar sticky */
+    }
+
+    .product-hero-image-wrap img {
+        height: 360px;
+    }
+
+    .product-hero-description {
+        margin-top: 30px;
+        padding: 0 10px;
+    }
+}
+
+
+/* ===============================
+   MOBILE
+================================= */
+@media (max-width: 600px) {
+
+    .product-hero {
+        padding: 30px 16px;
+    }
+
+    .product-hero-inner {
+        gap: 20px;
+    }
+
+    .product-hero-image-wrap img {
+        height: 240px;
+    }
+
+    .product-hero-card {
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .product-hero-title {
+        font-size: 22px;
+    }
+
+    .product-hero-price-value {
+        font-size: 22px;
+    }
+
+    .product-hero-buttons {
+        gap: 10px;
+    }
+
+    .product-hero-book {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .product-hero-secondary {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .product-hero-description h2 {
+        font-size: 16px;
+    }
+
+    .product-hero-description p {
+        font-size: 14px;
     }
 }
