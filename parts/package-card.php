@@ -10,6 +10,9 @@ $show_button   = $args['show_button']   ?? true;
 $show_location = $args['show_location'] ?? true;
 $show_family   = $args['show_family']   ?? true;
 
+// Generate link to package-view
+$package_link = !empty($package['link']) ? $package['link'] : site_url('/package-view/?package_id=' . $package['id']);
+
 ?>
 <div class="package-card" data-package-id="<?php echo esc_attr($package['id']); ?>">
     <div class="package-image">
@@ -38,7 +41,7 @@ $show_family   = $args['show_family']   ?? true;
                                 d="M8 0C5.243 0 3 2.243 3 5c0 4.5 5 11 5 11s5-6.5 5-11c0-2.757-2.243-5-5-5zm0 7c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z"
                                 fill="currentColor" />
                         </svg>
-                           <?php echo esc_html($package['location']); ?>
+                           <?php echo esc_html($package['punto_de_encuentro']); ?>
                         </span>
                         <?php endif; ?>
 
@@ -62,7 +65,7 @@ $show_family   = $args['show_family']   ?? true;
                     <?php endif; ?>
 
                     <?php if ($show_button): ?>
-                    <a href="<?php echo esc_url($package['link']); ?>" class="package-btn">
+                    <a href="<?php echo esc_url($package_link); ?>" class="package-btn">
                         <?php echo esc_html(pll__('Book Now')); ?>
                     </a>
                     <?php endif; ?>

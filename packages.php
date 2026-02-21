@@ -44,9 +44,8 @@ $packages_query = new WP_Query([
     'posts_per_page' => $items_per_page,
     'paged'          => $current_page,
     'post_status'    => 'publish',
-    'orderby'        => 'meta_value_num',
-    'meta_key'       => '_package_order',
-    'order'          => 'ASC',
+    'orderby'        => 'date',
+    'order'          => 'DESC',
 ]);
 
 $post = get_page_by_path('packages-title', OBJECT, 'texto');
@@ -115,31 +114,52 @@ if ($post) {
                 if ($packages_query->have_posts()) :
                     while ($packages_query->have_posts()) : $packages_query->the_post();
                         
-                        // Preparar datos del paquete
+                        // Preparar datos del paquete usando ACF
+                        $package_image = get_field('imagen');
+                        if (is_array($package_image)) {
+                            $package_image = $package_image['url'];
+                        } elseif (is_numeric($package_image)) {
+                            $package_image = wp_get_attachment_image_url($package_image, 'large');
+                        }
+
                         $package = [
-                            'id'       => get_the_ID(),
-                            'title'    => get_the_title(),
-                            'image'    => get_the_post_thumbnail_url(get_the_ID(), 'large'),
-                            'price'    => get_post_meta(get_the_ID(), '_package_price', true),
-                            'location' => get_post_meta(get_the_ID(), '_package_locations', true),
-                            'family'   => get_post_meta(get_the_ID(), '_package_family_friendly', true) === 'yes',
-                            'link'     => get_permalink(),
-                            'excerpt'  => get_the_excerpt(),
+                            'id' => get_the_ID(),
+                            'title' => get_field('titulo') ?: get_the_title(),
+                            'price' => get_field('precio'),
+                            'family' => get_field('familiar'),
+                            'encuentro_link' => get_field('encuentro_link'),
+                            'descripcion' => get_field('descripcion'),
+                            'punto_de_encuentro' => get_field('punto_de_encuentro'),
+                            'image' => $package_image ?: get_the_post_thumbnail_url(get_the_ID(), 'large'),
+                            'activities' => get_field('actividades_incluidas'), // relación
+                            'link' => site_url('/package-view/?package_id=' . get_the_ID()),
+                            'location' => get_field('punto_de_encuentro'), // Para mostrar ubicación en la card
                         ];
-                        
-                        // Valores por defecto si están vacíos
+
+                        // Valores por defecto
                         if (empty($package['price'])) {
                             $package['price'] = '$500';
-                        }
-                        if (empty($package['location'])) {
-                            $package['location'] = '0 Location';
                         }
                         if (empty($package['image'])) {
                             $package['image'] = get_template_directory_uri() . '/assets/img/placeholder-package.jpg';
                         }
-                        
+                        if (empty($package['title'])) {
+                            $package['title'] = get_the_title();
+                        }
+                        if (empty($package['descripcion'])) {
+                            $package['descripcion'] = '';
+                        }
+                        if (empty($package['family'])) {
+                            $package['family'] = '';
+                        }
+                        if (empty($package['encuentro_link'])) {
+                            $package['encuentro_link'] = '';
+                        }
+                        if (empty($package['punto_de_encuentro'])) {
+                            $package['punto_de_encuentro'] = '';
+                        }
+
                         // Incluir template de tarjeta
-                        set_query_var('package', $package);
                         get_template_part(
                             'parts/package-card',
                             null,

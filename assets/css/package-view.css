@@ -1,0 +1,494 @@
+/* ================================================ */
+/* PACKAGE VIEW - Rediseño completo                 */
+/* ================================================ */
+
+/* ========================= */
+/* HERO: imagen + info        */
+/* ========================= */
+
+.pv-hero {
+    padding: 50px 30px;
+}
+
+.pv-hero-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Columna izquierda: imagen + descripción */
+.pv-hero-left {
+    flex: 1;
+    min-width: 0;
+}
+
+.pv-hero-image-wrap {
+    position: relative;
+    width: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    max-height: 500px;
+}
+
+.pv-hero-image-wrap img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    display: block;
+}
+
+.pv-family-badge {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(130, 187, 206, 0.92);
+    backdrop-filter: blur(4px);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.pv-description {
+    margin-top: 28px;
+    padding: 0 4px;
+}
+
+.pv-description h2 {
+    color: #19532d;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pv-description p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #444;
+}
+
+/* Columna derecha: info + sumatoria + botones */
+.pv-hero-right {
+    width: 380px;
+    flex-shrink: 0;
+}
+
+.pv-hero-sticky {
+    position: sticky;
+    top: 30px;
+    background: #fff;
+    border: 1px solid #e8e8e8;
+    border-radius: 18px;
+    padding: 28px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.07);
+}
+
+.pv-label {
+    font-size: 13px;
+    color: #19532d;
+    font-weight: 500;
+    margin: 0 0 6px 0;
+}
+
+.pv-title {
+    font-size: 26px;
+    color: #19532d;
+    font-weight: 800;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+}
+
+.pv-location {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: #888;
+    margin: 0 0 4px 0;
+}
+
+.pv-divider {
+    height: 1px;
+    background: #eee;
+    margin: 18px 0;
+}
+
+/* Sumatoria de actividades */
+.pv-summary-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #19532d;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 12px 0;
+}
+
+.pv-summary-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pv-summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.pv-summary-name {
+    flex: 1;
+    padding-right: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pv-summary-price {
+    font-weight: 600;
+    color: #19532d;
+    white-space: nowrap;
+}
+
+.pv-savings {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #888;
+    margin-top: 4px;
+}
+
+.pv-savings-original {
+    text-decoration: line-through;
+    color: #aaa;
+}
+
+.pv-savings-highlight {
+    color: #2bb673;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.pv-savings-amount {
+    color: #2bb673;
+    font-weight: 700;
+}
+
+/* Precio total */
+.pv-price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pv-price-label {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+.pv-price-total {
+    font-size: 28px;
+    font-weight: 800;
+    color: #19532d;
+}
+
+/* Botones */
+.pv-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pv-btn-book {
+    background: #19532d;
+    color: #fff;
+    border: none;
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    text-align: center;
+    width: 100%;
+}
+
+.pv-btn-book:hover {
+    background: #2bb673;
+    transform: translateY(-1px);
+}
+
+.pv-btn-secondary {
+    display: block;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: 14px;
+    border: 2px solid #19532d;
+    color: #19532d;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.pv-btn-secondary:hover {
+    background: #19532d;
+    color: #fff;
+}
+
+/* ========================= */
+/* ACTIVIDADES               */
+/* ========================= */
+
+.pv-activities-section {
+    background: #f5f5f5;
+    padding: 60px 30px;
+}
+
+.pv-activities-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pv-activities-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: #19532d;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.pv-activities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* Card horizontal: imagen | info | precio */
+.pv-act-card {
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.pv-act-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+}
+
+.pv-act-link {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    text-decoration: none;
+    color: inherit;
+    min-height: 110px;
+}
+
+/* Imagen izquierda */
+.pv-act-image {
+    width: 160px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.pv-act-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.pv-act-card:hover .pv-act-image img {
+    transform: scale(1.06);
+}
+
+/* Info centro */
+.pv-act-info {
+    flex: 1;
+    padding: 18px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+    min-width: 0;
+}
+
+.pv-act-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #19532d;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.pv-act-desc {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.pv-act-location {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: #999;
+}
+
+/* Precio derecha */
+.pv-act-price-col {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 18px 24px;
+    flex-shrink: 0;
+    border-left: 1px solid #f0f0f0;
+    min-width: 90px;
+}
+
+.pv-act-price {
+    font-size: 18px;
+    font-weight: 800;
+    color: #19532d;
+    white-space: nowrap;
+}
+
+/* ========================= */
+/* INFO ADICIONAL            */
+/* ========================= */
+
+.pv-info-section {
+    padding: 60px 30px;
+}
+
+.pv-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.pv-info-card {
+    background: radial-gradient(circle at top left, rgba(56, 179, 193, 0.12), transparent 65%);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+}
+
+.pv-info-card h2 {
+    color: #19532d;
+    font-size: 18px;
+    font-weight: 800;
+    margin: 0 0 16px 0;
+    letter-spacing: 0.04em;
+}
+
+.pv-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pv-info-list li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+}
+
+.pv-info-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #2bb673;
+    font-weight: 700;
+    font-size: 15px;
+}
+
+/* ========================= */
+/* RESPONSIVE                */
+/* ========================= */
+
+@media (max-width: 1024px) {
+    .pv-hero-right {
+        width: 320px;
+    }
+}
+
+@media (max-width: 900px) {
+    .pv-hero-inner {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .pv-hero-right {
+        width: 100%;
+    }
+
+    .pv-hero-sticky {
+        position: static;
+    }
+
+    .pv-hero-image-wrap img {
+        height: 360px;
+    }
+}
+
+@media (max-width: 600px) {
+    .pv-act-link {
+        flex-direction: column;
+    }
+
+    .pv-act-image {
+        width: 100%;
+        height: 180px;
+    }
+
+    .pv-act-price-col {
+        border-left: none;
+        border-top: 1px solid #f0f0f0;
+        justify-content: flex-start;
+        padding: 12px 18px;
+    }
+
+    .pv-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pv-hero {
+        padding: 30px 16px;
+    }
+
+    .pv-activities-section,
+    .pv-info-section {
+        padding: 40px 16px;
+    }
+}

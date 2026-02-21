@@ -97,6 +97,11 @@ function boskoa_enqueue_assets() {
         'boskoa-404-page',
         get_template_directory_uri() . '/assets/css/404.css'
     );
+
+    wp_enqueue_style(
+        'boskoa-package-view',
+        get_template_directory_uri() . '/assets/css/package-view.css'
+    );
     
     wp_enqueue_style(
         'boskoa-fontawesome',
