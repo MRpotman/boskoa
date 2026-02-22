@@ -6,12 +6,7 @@
   height: 50vh;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  margin-bottom: 0;
+  background-repeat: no-repeat;
 }
 
 .hero-packages-overlay {
@@ -47,7 +42,7 @@
   margin: 0 0 2rem 0;
   line-height: 1.6;
   opacity: 0.95;
-  font-style: italic;
+  font-family: 'Architects Daughter';
 }
 
 /* Wave SVG */
