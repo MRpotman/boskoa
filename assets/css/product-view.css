@@ -439,7 +439,7 @@
 .booking-modal {
     display: none;
     position: fixed;
-    z-index: 9999;
+    z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
@@ -600,7 +600,7 @@
     border-radius: 8px;
 }
 .iti {
-    width: 100%;
+    width: auto;
 }
 
 .iti__flag-container {

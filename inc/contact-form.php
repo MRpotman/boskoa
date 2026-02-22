@@ -17,27 +17,27 @@ function boskoa_handle_contact_form() {
         exit;
     }
 
-    // Verificar que sea una petición POST
+
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         wp_die('Método no permitido');
     }
 
-    // Sanitizar y validar datos
+
 $name    = sanitize_text_field($_POST['contact_name']);
 $email   = sanitize_email($_POST['contact_email']);
 $matters = sanitize_text_field($_POST['contact_matters']);
 $message = sanitize_textarea_field($_POST['contact_message']);
 $phone   = isset($_POST['contact_phone_full']) ? sanitize_text_field($_POST['contact_phone_full']) : '';
+
+
 if (empty($phone)) {
     $phone = isset($_POST['contact_phone']) ? sanitize_text_field($_POST['contact_phone']) : '';
 }
 $activity_id = isset($_POST['activity_id']) ? intval($_POST['activity_id']) : 0;
 $persons     = isset($_POST['persons']) ? intval($_POST['persons']) : 1;
-error_log('ACTIVITY ID: ' . $activity_id);
 if ($persons < 1) {
     $persons = 1;
 }
-error_log('BASE PRICE RAW: ' . print_r(get_field('precio', $activity_id), true));
 $real_base_price = get_field('precio', $activity_id);
 
 if (!$real_base_price) {
