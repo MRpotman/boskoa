@@ -125,7 +125,13 @@ function boskoa_enqueue_assets() {
         null,
         true
     );
-
+    wp_enqueue_script(
+        'boskoa-person-per-price',
+        get_template_directory_uri() . '/assets/js/person-per-price.js',
+        [],
+        null,
+        true
+    );
     wp_enqueue_script(
         'hero-carousel',
         get_template_directory_uri() . '/assets/js/hero-carousel.js',

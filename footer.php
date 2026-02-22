@@ -75,7 +75,7 @@
 
             <!-- Columna 3: Información de contacto -->
             <div class="footer-column footer-contact-info">
-                <h3><?php echo esc_html(pll__('Contactanos')); ?></h3>
+                <h3><?php echo esc_html(pll__('Contact Us')); ?></h3>
 
                 <div class="contact-item">
                     <i class="fas fa-phone icon"></i>
@@ -84,7 +84,7 @@
 
                 <div class="contact-item">
                     <i class="fas fa-envelope icon"></i>
-                    <a href="mailto:ejemplocorreo@gmail.com">ejemplocorreo@gmail.com</a>
+                    <a href="mailto:info@boskoatravels.com">info@boskoatravels.com</a>
                 </div>
 
                 <div class="contact-item">

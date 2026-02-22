@@ -17,6 +17,7 @@ if (!$activity_id) {
 // Obtener datos
 $title = get_field('titulo', $activity_id) ?: get_the_title($activity_id);
 $description = get_field('descripcion', $activity_id);
+$locations = get_field('ubicacion', $activity_id);
 $price = get_field('precio', $activity_id);
 $image = get_field('imagen', $activity_id);
 
@@ -34,52 +35,77 @@ if (empty($image)) {
 ?>
 
 <section class="product-view-main-section light-section">
+<section class="product-hero">
 
-    <div class="product-view-main-div">
+    <div class="product-hero-inner">
+        <div class="product-hero-left">
+            <div class="product-hero-image-wrap">
+                <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>">
+                                <div class="pv-family-badge">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M5.5 4.5c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zm9 0c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zM6 14v-3c0-.828-.672-1.5-1.5-1.5S3 10.172 3 11v3h3zm7 0v-3c0-.828-.672-1.5-1.5-1.5S10 10.172 10 11v3h3zm-5.5-6c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM10 14v-3c0-.828-.672-1.5-1.5-1.5S7 10.172 7 11v3h3z" fill="currentColor"/>
+                    </svg>
+                    <?php echo esc_html(pll__('Family Friendly')); ?>
+                </div>
+            </div>
+                <?php if ($description): ?>
+    <div class="product-hero-description">
+        <h2><?php echo esc_html(pll__('Descripción')); ?></h2>
+        <p><?php echo esc_html($description); ?></p>
+    </div>
+    <?php endif; ?>
+        </div>
 
-        <!-- ========================= -->
-        <!-- COLUMNA IZQUIERDA -->
-        <!-- ========================= -->
-        <div class="product-view-left-text">
-
-            <div class="product-view-upper-site">
-
-                <h2 class="product-view-first-text">
-                    <?php echo esc_html(pll__('Disfruta de tus vacaciones con nuestro tour:')); ?>
-                </h2>
-
-                <h1 class="product-view-product-name">
-                    <?php echo esc_html($title); ?> - $<?php echo esc_html($price); ?>
+        <div class="product-hero-right">
+            <div class="product-hero-card">
+                <p class="pv-label">Enjoy your vacation with our activities:</p>
+                <h1 class="product-hero-title">
+                    <?php echo esc_html($title); ?>
                 </h1>
+                <?php if ($locations): ?>
+                <p class="product-hero-location">
+                    <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                     <path d="M8 0C5.243 0 3 2.243 3 5c0 4.5 5 11 5 11s5-6.5 5-11c0-2.757-2.243-5-5-5zm0 7c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z" fill="currentColor"/>
+                    </svg>
+                    <?php echo esc_html($locations); ?>
+                </p>
+                <?php endif; ?>
 
-                <div class="product-view-buttons">
-                    <button class="product-view-book-now" id="open-booking-modal">
+                <div class="product-hero-divider"></div>
+                <div class="product-hero-quantity">
+                    <label for="person-count"><?php echo esc_html(pll__('Persons')); ?></label>
+                    <input 
+                        type="number" 
+                        id="person-count" 
+                        min="1" 
+                        value="1">
+                </div>
+                <div class="product-hero-price">
+                    <span class="product-hero-price-label">
+                        <?php echo esc_html(pll__('Price:')); ?>
+                    </span>
+                    <span class="product-hero-price-value" id="dynamic-price" data-base-price ="<?php echo esc_attr($price); ?>">
+                         $<?php echo esc_html($price); ?>
+                    </span>
+                </div>
+
+                <div class="product-hero-buttons">
+                    <button class="product-hero-book" id="open-booking-modal">
                         <?php echo esc_html(pll__('Book Now')); ?>
                     </button>
 
-                    <a href="<?php echo esc_url(site_url('/activities')); ?>">
+                    <a href="<?php echo esc_url(site_url('/activities')); ?>" class="product-hero-secondary">
                         <?php echo esc_html(pll__('View other activities')); ?>
                     </a>
                 </div>
 
             </div>
 
-            <div class="product-view-divisor"></div>
-
-            <div class="product-view-down-side">
-                <h2><?php echo esc_html(pll__('DESCRIPCIÓN')); ?></h2>
-                <p >
-                    <?php echo esc_html($description); ?>
-                </p>
-            </div>
-
-        </div>
-        <div class="product-view-rigth-img">
-            <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>">
         </div>
 
     </div>
 
+</section>
 <section class="product-view-main-section">
     <div class="product-view-main-div product-view-info-grid">
 
@@ -114,7 +140,7 @@ if (empty($image)) {
         <!-- INFORMACIÓN ADICIONAL -->
         <?php if ($aditional_info): ?>
             <div class="info-card">
-                <h2><?php echo esc_html(pll__('INFORMACIÓN ADICIONAL')); ?></h2>
+                <h2><?php echo esc_html(pll__('ADDITIONAL INFORMATION')); ?></h2>
                 <ul class="product-view-aditional-list">
                     <?php
                     $lines = explode("\n", $aditional_info);
@@ -134,7 +160,7 @@ if (empty($image)) {
         <!-- IDIOMAS -->
         <?php if ($hosts): ?>
             <div class="info-card">
-                <h2><?php echo esc_html(pll__('Idiomas del anfitrión')); ?></h2>
+                <h2><?php echo esc_html(pll__('Host languages')); ?></h2>
                 <div class="language-badges">
                     <?php
                     foreach ($hosts as $language):
@@ -150,7 +176,7 @@ if (empty($image)) {
         <!-- PUNTO DE ENCUENTRO -->
         <?php if ($meeting_point || $meeting_link): ?>
             <div class="info-card">
-                <h2><?php echo esc_html(pll__('PUNTO DE ENCUENTRO')); ?></h2>
+                <h2><?php echo esc_html(pll__('MEETING POINT')); ?></h2>
 
                 <?php if ($meeting_point): ?>
                     <p><?php echo esc_html($meeting_point); ?></p>
@@ -162,7 +188,7 @@ if (empty($image)) {
                        target="_blank"
                        rel="noopener noreferrer"
                        class="product-view-map-link">
-                        <?php echo esc_html(pll__('Abrir en Google Maps')); ?>
+                        <?php echo esc_html(pll__('Open in Google Maps')); ?>
                     </a>
                 </span>
 
@@ -188,7 +214,7 @@ if (empty($image)) {
     ?>
 
             <h2 class="itinerary-title">
-                <?php echo esc_html(pll__('ITINERARIO')); ?>
+                <?php echo esc_html(pll__('ITINERARY')); ?>
             </h2>
 
             <div class="timeline">
@@ -219,12 +245,12 @@ if (empty($image)) {
     ?>
 </section>
 </section>
-<!-- Booking Modal -->
+
 <div id="booking-modal" class="booking-modal">
     <div class="booking-modal-content">
         <span class="booking-modal-close">&times;</span>
         <h2 class="booking-modal-title">Book Your Tour</h2>
-        <p class="booking-modal-subtitle"><?php echo esc_html($title); ?> - $<?php echo esc_html($price); ?></p>
+        <p class="booking-modal-subtitle" ><?php echo esc_html($title); ?> - $<?php echo esc_html($price); ?></p>
         
         <form id="booking-form" method="POST" action="<?php echo admin_url('admin-post.php'); ?>">
             <input type="hidden" name="action" value="boskoa_contact_form">

@@ -60,7 +60,7 @@ $package_link = !empty($package['link']) ? $package['link'] : site_url('/package
                 <div class="package-actions">
                     <?php if ($show_price): ?>
                         <span class="package-price">
-                            <?php echo esc_html($package['price']); ?>
+                            $ <?php echo esc_html($package['price']); ?>
                         </span>
                     <?php endif; ?>
 

@@ -8,7 +8,7 @@
 get_header(); 
 
 // Hero banner
-get_template_part('parts/hero-package');
+get_template_part('parts/hero-activities');
 
 
 // ===============================
@@ -150,7 +150,7 @@ if ($post) {
                 </svg>
 
                 <p class="tours-loading-text">
-                    <?php echo esc_html(pll__('Cargando actividades...')); ?>
+                    <?php echo esc_html(pll__('Loading activities...')); ?>
                 </p>
 
             </div>
@@ -229,9 +229,9 @@ if ($post) {
 
                 <div class="no-packages-content">
 
-                    <h3><?php echo esc_html(pll__('No hay actividades disponibles')); ?></h3>
+                    <h3><?php echo esc_html(pll__('No activities available.')); ?></h3>
 
-                    <p><?php echo esc_html(pll__('Estamos trabajando en nuevas actividades. Por favor vuelve pronto.')); ?></p>
+                    <p><?php echo esc_html(pll__('We are working on new activities. Please come back soon.')); ?></p>
 
                 </div>
 

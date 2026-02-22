@@ -85,7 +85,7 @@ $show_family   = $args['show_family']   ?? true;
                     <?php if ($show_price): ?>
 
                         <span class="package-price">
-                            <?php echo esc_html($package['price']); ?>
+                           $ <?php echo esc_html($package['price']); ?>
                         </span>
 
                     <?php endif; ?>
