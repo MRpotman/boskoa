@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+
   const slides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.dot');
+
+
+  if (!slides.length || !dots.length) return;
+
   let current = 0;
 
   function goToSlide(index) {
@@ -13,13 +18,20 @@ document.addEventListener('DOMContentLoaded', () => {
     dots[current].classList.add('active');
   }
 
-  setInterval(() => {
-    goToSlide((current + 1) % slides.length);
-  }, 5000);
+  // Auto slide solo si hay más de 1 slide
+  if (slides.length > 1) {
+    setInterval(() => {
+      goToSlide((current + 1) % slides.length);
+    }, 5000);
+  }
 
   dots.forEach(dot => {
     dot.addEventListener('click', () => {
-      goToSlide(parseInt(dot.dataset.index));
+      const index = parseInt(dot.dataset.index);
+      if (!isNaN(index)) {
+        goToSlide(index);
+      }
     });
   });
+
 });

@@ -74,11 +74,7 @@ if (empty($image)) {
                 <div class="product-hero-divider"></div>
                 <div class="product-hero-quantity">
                     <label for="person-count"><?php echo esc_html(pll__('Persons')); ?></label>
-                    <input 
-                        type="number" 
-                        id="person-count" 
-                        min="1" 
-                        value="1">
+                    <input type="number" id="person-count" min="1" value="1">
                 </div>
                 <div class="product-hero-price">
                     <span class="product-hero-price-label">
@@ -250,14 +246,19 @@ if (empty($image)) {
     <div class="booking-modal-content">
         <span class="booking-modal-close">&times;</span>
         <h2 class="booking-modal-title">Book Your Tour</h2>
-        <p class="booking-modal-subtitle" ><?php echo esc_html($title); ?> - $<?php echo esc_html($price); ?></p>
+        <p class="booking-modal-subtitle" >   
+             <?php echo esc_html($title); ?> - 
+              <span id="modal-dynamic-price"> $<?php echo esc_html($price); ?>
+        </span></p>
         
-        <form id="booking-form" method="POST" action="<?php echo admin_url('admin-post.php'); ?>">
+        <form id="booking-form" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
             <input type="hidden" name="action" value="boskoa_contact_form">
             <input type="hidden" name="contact_nonce" value="<?php echo wp_create_nonce('boskoa_contact_form'); ?>">
             <input type="hidden" name="activity_id" value="<?php echo esc_attr($activity_id); ?>">
-            <input type="hidden" name="contact_matters" value="Booking: <?php echo esc_attr($title); ?> - $<?php echo esc_attr($price); ?>">
-            
+            <input type="hidden" name="contact_matters" value="Booking: <?php echo esc_attr($title); ?>">
+            <input type="hidden" name="persons" id="modal-persons" value="1">
+            <input type="hidden" name="total_price" id="modal-total-price" value="<?php echo esc_attr($price); ?>">
+            <input type="hidden" name="recaptcha_token" id="recaptchaToken">
             <div class="booking-form-group">
                 <label for="contact_name">Name *</label>
                 <input type="text" id="contact_name" name="contact_name" required placeholder="Your full name">
@@ -270,7 +271,8 @@ if (empty($image)) {
             
             <div class="booking-form-group">
                 <label for="contact_phone">Phone (optional)</label>
-                <input type="tel" id="contact_phone" name="contact_phone" placeholder="Your phone number">
+                <input type="tel" id="contact_phone" name="contact_phone">
+                <input type="hidden" id="contact_phone_full" name="contact_phone_full">
             </div>
             
             <div class="booking-form-group">

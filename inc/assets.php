@@ -164,13 +164,30 @@ function boskoa_enqueue_assets() {
             null,
             true
         );
-    
-    wp_enqueue_script(
-            'boskoa-404',
-            get_template_directory_uri() . '/assets/js/404.js',
+        
+if (is_page_template('product-view.php')) {
+        
+        wp_enqueue_style(
+            'intl-tel-input',
+            'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css'
+        );
+
+        wp_enqueue_script(
+            'intl-tel-input',
+            'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js',
             [],
+            '17.0.19',
+            true
+        );
+
+        wp_enqueue_script(
+            'boskoa-phone-codes',
+            get_template_directory_uri() . '/assets/js/phone-init.js',
+            ['intl-tel-input'],
             null,
             true
         );
+    }
 }
+
 add_action('wp_enqueue_scripts', 'boskoa_enqueue_assets');
