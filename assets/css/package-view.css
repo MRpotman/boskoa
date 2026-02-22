@@ -21,7 +21,7 @@
 /* Columna izquierda: imagen + descripción */
 .pv-hero-left {
     flex: 1;
-    min-width: 0;
+    min-width: 40%;
 }
 
 .pv-hero-image-wrap {
@@ -78,6 +78,7 @@
 /* Columna derecha: info + sumatoria + botones */
 .pv-hero-right {
     flex-shrink: 0;
+    width: 40%;
 }
 
 .pv-hero-sticky {
@@ -98,7 +99,7 @@
 }
 
 .pv-title {
-    font-size: 26px;
+    font-size: clamp(18px, 2vw, 26px);
     color: #19532d;
     font-weight: 800;
     margin: 0 0 10px 0;
@@ -143,7 +144,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 14px;
+    font-size: clamp(12px, 1.1vw, 14px); 
     color: #333;
 }
 
@@ -156,6 +157,7 @@
 }
 
 .pv-summary-price {
+    font-size: clamp(12px, 1.1vw, 14px);
     font-weight: 600;
     color: #19532d;
     white-space: nowrap;
@@ -200,7 +202,7 @@
 }
 
 .pv-price-total {
-    font-size: 28px;
+    font-size: clamp(18px, 1.2vw, 28px); 
     font-weight: 800;
     color: #19532d;
     padding-left: 20px;
@@ -220,7 +222,7 @@
     border: none;
     padding: 14px 20px;
     border-radius: 14px;
-    font-size: 16px;
+    font-size: clamp(13px, 1.3vw, 16px);
     font-weight: 700;
     cursor: pointer;
     transition: background 0.2s, transform 0.15s;
