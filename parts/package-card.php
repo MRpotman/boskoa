@@ -10,10 +10,10 @@ $show_button   = $args['show_button']   ?? true;
 $show_location = $args['show_location'] ?? true;
 $show_family   = $args['show_family']   ?? true;
 
-// Generate link to package-view
-$package_link = !empty($package['link']) ? $package['link'] : site_url('/package-view/?package_id=' . $package['id']);
 
 ?>
+<a href="<?php echo esc_url($package['link']); ?>" class="package-card-link">
+
 <div class="package-card" data-package-id="<?php echo esc_attr($package['id']); ?>">
     <div class="package-image">
         <?php if (!empty($package['image'])): ?>
@@ -65,9 +65,9 @@ $package_link = !empty($package['link']) ? $package['link'] : site_url('/package
                     <?php endif; ?>
 
                     <?php if ($show_button): ?>
-                    <a href="<?php echo esc_url($package_link); ?>" class="package-btn">
-                        <?php echo esc_html(pll__('Book Now')); ?>
-                    </a>
+                    <span class="package-btn">
+                            Book Now
+                        </span>
                     <?php endif; ?>
 
                 </div>
@@ -75,3 +75,4 @@ $package_link = !empty($package['link']) ? $package['link'] : site_url('/package
         </div>
     </div>
 </div>
+</a>
