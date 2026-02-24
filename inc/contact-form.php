@@ -28,13 +28,15 @@ $email   = sanitize_email($_POST['contact_email']);
 $matters = sanitize_text_field($_POST['contact_matters']);
 $message = sanitize_textarea_field($_POST['contact_message']);
 $phone   = isset($_POST['contact_phone_full']) ? sanitize_text_field($_POST['contact_phone_full']) : '';
-
-
+$activity_id = isset($_POST['activity_id']) ? intval($_POST['activity_id']) : 0;
+$persons     = isset($_POST['persons']) ? intval($_POST['persons']) : 1;
+$title = get_the_title($activity_id);
+$booking = "Booking: " . $title;
 if (empty($phone)) {
     $phone = isset($_POST['contact_phone']) ? sanitize_text_field($_POST['contact_phone']) : '';
 }
-$activity_id = isset($_POST['activity_id']) ? intval($_POST['activity_id']) : 0;
-$persons     = isset($_POST['persons']) ? intval($_POST['persons']) : 1;
+
+
 if ($persons < 1) {
     $persons = 1;
 }
