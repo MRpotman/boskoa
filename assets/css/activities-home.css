@@ -2,7 +2,6 @@
    INFO ACTIVITIES
 ================================ */
 .ourActivities{
-    width: 80%;
     margin-top: 40px;
 }
 .info-activities-home {
@@ -48,10 +47,19 @@ display: flex;
     padding: 20px 0;
     -webkit-overflow-scrolling: touch;
     max-height: 323px;
+  scroll-behavior: smooth;
 }
 
 .ourActivities .carousel-activities::-webkit-scrollbar {
   display: none;
+}
+
+/* Dragging state for carousel */
+.carousel-activities.dragging,
+.carousel-paquetes.dragging {
+  cursor: grabbing;
+  user-select: none;
+  
 }
 
 /* ===============================
