@@ -17,9 +17,9 @@
                                     <div class="logo-divider">
                                         <svg width="90" height="28" viewBox="-10 -10 200 80"
                                             xmlns="http://www.w3.org/2000/svg">
-                                            <path class="spiral-path"
+                                            <path 
                                                 d="M13.109 29.63C9.07 6.576 45.923 6.913 39.498 34.027 33.215 57.413-.858 58.069-6.2 32.85-9.535 7.479 7.051-9.915 46.596-1.501 109.531 13.812 147.35 36.05 175.65 0"
-                                                fill="none" stroke="#846E59" stroke-width="4" />
+                                                fill="none" stroke="#e4b88e" stroke-width="6" />
                                         </svg>
                                     </div>
                                     <span class="subtitle"><?php echo esc_html(pll__('Costa Rica')); ?></span>

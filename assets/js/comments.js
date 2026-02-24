@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevBtn = document.querySelector('.comment-arrow.prev');
   const nextBtn = document.querySelector('.comment-arrow.next');
 
+  if (!carousel || !slidesContainer || !prevBtn || !nextBtn) return;
+
   let slides;
   let visibleSlides;
   let index;
@@ -79,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoSlide();
   }
 
-  // Guardar HTML original
+  
   slidesContainer.dataset.original = slidesContainer.innerHTML;
 
   nextBtn.addEventListener('click', () => {

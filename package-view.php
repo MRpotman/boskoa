@@ -302,12 +302,13 @@ $aditional_info = get_field('informacion_adicional', $package_id);
         <p class="booking-modal-subtitle"><?php echo esc_html($title); ?> -
             $<?php echo number_format($package_price_num, 0); ?></p>
 
-        <form id="booking-form" method="POST" action="<?php echo admin_url('admin-post.php'); ?>">
+        <form id="booking-form" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
             <input type="hidden" name="action" value="boskoa_contact_form">
             <input type="hidden" name="contact_nonce" value="<?php echo wp_create_nonce('boskoa_contact_form'); ?>">
             <input type="hidden" name="activity_id" value="<?php echo esc_attr($package_id); ?>">
             <input type="hidden" name="contact_matters"
                 value="Booking Package: <?php echo esc_attr($title); ?> - $<?php echo esc_attr($price); ?>">
+            
 
             <div class="booking-form-group">
                 <label for="contact_name"><?php echo esc_html(pll__('Name')); ?> *</label>
@@ -320,8 +321,8 @@ $aditional_info = get_field('informacion_adicional', $package_id);
             </div>
             <div class="booking-form-group">
                 <label for="contact_phone"><?php echo esc_html(pll__('Phone')); ?> (optional)</label>
-                <input type="tel" id="contact_phone" name="contact_phone"
-                    placeholder="<?php echo esc_attr(pll__('Your phone number')); ?>">
+                <input type="tel" id="contact_phone" name="contact_phone">
+                <input type="hidden" id="contact_phone_full" name="contact_phone_full">
             </div>
             <div class="booking-form-group">
                 <label for="contact_message"><?php echo esc_html(pll__('Message')); ?> *</label>
