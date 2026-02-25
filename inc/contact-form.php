@@ -25,17 +25,26 @@ function boskoa_handle_contact_form() {
 
 $name    = sanitize_text_field($_POST['contact_name']);
 $email   = sanitize_email($_POST['contact_email']);
-$matters = sanitize_text_field($_POST['contact_matters']);
 $message = sanitize_textarea_field($_POST['contact_message']);
 $phone   = isset($_POST['contact_phone_full']) ? sanitize_text_field($_POST['contact_phone_full']) : '';
 $activity_id = isset($_POST['activity_id']) ? intval($_POST['activity_id']) : 0;
+$post_type = get_post_type($activity_id);
+$is_package = ($post_type === 'tour_package');
 $persons     = isset($_POST['persons']) ? intval($_POST['persons']) : 1;
 $title = get_the_title($activity_id);
 $booking = "Booking: " . $title;
+
 if (empty($phone)) {
     $phone = isset($_POST['contact_phone']) ? sanitize_text_field($_POST['contact_phone']) : '';
 }
 
+$activity_title = get_the_title($activity_id);
+$post_type = get_post_type($activity_id);
+$is_package = ($post_type === 'tour_package');
+$item_label = $is_package ? 'Package' : 'Activity';
+
+
+$persons     = isset($_POST['persons']) ? intval($_POST['persons']) : 1;
 
 if ($persons < 1) {
     $persons = 1;
@@ -59,10 +68,6 @@ $real_total = floatval($real_base_price) * $persons;
         $errors[] = 'Email inválido';
     }
     
-    if (empty($matters)) {
-        $errors[] = 'El asunto es requerido';
-    }
-    
     if (empty($message)) {
         $errors[] = 'El mensaje es requerido';
     }
@@ -77,7 +82,65 @@ $real_total = floatval($real_base_price) * $persons;
     $admin_email = 'uriu1206@gmail.com';
     
 
-    $subject = 'Nuevo mensaje de contacto: ' . $matters;
+$subject = $item_label . ' Booking: ' . $activity_title;
+
+if (!$is_package) {
+    $subject .= ' (' . $persons . ' personas)';
+}
+$package_activities_html = '';
+
+if ($is_package) {
+
+    $included_activities = get_field('actividades_asociadas', $activity_id);
+
+    if (!empty($included_activities) && is_array($included_activities)) {
+
+        $package_activities_html .= '<div class="field">';
+        $package_activities_html .= '<strong>Activities Incluye:</strong><br><ul style="padding-left:15px;">';
+
+        $activities_sum = 0;
+
+        foreach ($included_activities as $activity) {
+
+            if (is_object($activity)) {
+                $act_id = $activity->ID;
+            } elseif (is_array($activity)) {
+                $act_id = $activity['ID'];
+            } else {
+                $act_id = intval($activity);
+            }
+
+            if (!$act_id) continue;
+
+            $act_title = get_the_title($act_id);
+            $act_price = floatval(get_field('precio', $act_id));
+
+            $activities_sum += $act_price;
+
+            $package_activities_html .= '<li>'
+                . esc_html($act_title)
+                . ' - $' . number_format($act_price, 2)
+                . '</li>';
+        }
+
+        $package_activities_html .= '</ul>';
+
+        $package_activities_html .= '<p><strong>suma de actividades:</strong> $'
+            . number_format($activities_sum, 2)
+            . '</p>';
+        
+        $package_activities_html .= '<div class="field">
+                    <strong>' . $item_label . ' Detalles:</strong><br>
+                    Personas: ' . esc_html($persons) . ' - Total: $' . number_format($real_total, 2) . '
+                    <br><span>Base price per person: $' . number_format($real_base_price, 2) . '</span>
+                </div>';
+        $package_activities_html .= '<p><strong>Precio de paquete:</strong> $'
+            . number_format($real_base_price, 2)
+            . '</p>';
+
+        $package_activities_html .= '</div>';
+    }
+}
 
     $body = '
 <html>
@@ -225,18 +288,20 @@ $real_total = floatval($real_base_price) * $persons;
             </div>
             <div class="field">
                 <strong>Asunto:</strong><br>
-                ' . esc_html($matters) . '
+                ' . esc_html($subject) . '
             </div>
 
             <div class="field">
                 <strong>Mensaje:</strong><br>
                 ' . nl2br(esc_html($message)) . '
             </div>
-            <div class="field">
-                <strong>Precio y cantidad de personas:</strong><br>
-                Personas: ' . esc_html($persons) . ' - Precio: $' . esc_html($real_total) . '
-                <span>Precio base por persona: $' . esc_html($real_base_price) . '</span>
-            </div>
+                ' . ($is_package ? $package_activities_html : '
+                <div class="field">
+                    <strong>' . $item_label . ' Detalles:</strong><br>
+                    Personas: ' . esc_html($persons) . ' - Total: $' . number_format($real_total, 2) . '
+                    <br><span>Precio por persona: $' . number_format($real_base_price, 2) . '</span>
+                </div>
+                ') . '
 
             <div class="email">
                 <p>Este mensaje fue enviado desde: <a href="' . home_url() . '">' . get_bloginfo('name') . '</a></p>
@@ -255,10 +320,9 @@ $real_total = floatval($real_base_price) * $persons;
         'Reply-To: ' . $name . ' <' . $email . '>'
     ];
 
-    // Enviar email
+
     $sent = wp_mail($admin_email, $subject, $body, $headers);
 
-    // Email de confirmación al remitente (opcional)
     if ($sent) {
         $confirmation_subject = 'Confirmación: Hemos recibido tu mensaje - Boskoa Travels';
         $confirmation_body = '
@@ -273,8 +337,12 @@ $real_total = floatval($real_base_price) * $persons;
                     <p>Hemos recibido tu mensaje y te responderemos a la brevedad posible.</p>
                     <p><strong>Resumen de tu mensaje:</strong></p>
                     <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid #2D8A3E; margin: 20px 0;">
-                        <p><strong>Asunto:</strong> ' . esc_html($matters) . '</p>
+                        <p><strong>Asunto:</strong> ' . esc_html($subject) . '</p>
                         <p><strong>Mensaje:</strong><br>' . nl2br(esc_html($message)) . '</p>
+                        <p><strong>' . $item_label . ':</strong> ' . esc_html($activity_title) . '</p>
+                        <p><strong>Personas:</strong> ' . esc_html($persons) . '</p>
+                        <p><strong>Precio por persona:</strong> $' . number_format($real_base_price, 2) . '</p>
+                        <p><strong>Total estimado:</strong> $' . number_format($real_total, 2) . '</p>
                     </div>
                     <p>Saludos,<br>El equipo de <strong>Boskoa Travels</strong></p>
                 </div>
