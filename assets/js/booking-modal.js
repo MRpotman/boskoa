@@ -90,22 +90,26 @@ function handleFormSubmit(e) {
 }
 
 function checkContactStatus() {
-    var urlParams = new URLSearchParams(window.location.search);
-    var contactStatus = urlParams.get('contact');
+    var url = new URL(window.location.href);
+    var contactStatus = url.searchParams.get('contact');
     var modal = document.getElementById('booking-modal');
-    
+
     if (contactStatus === 'success') {
-        alert('Thank you! Your booking request has been sent successfully. We will contact you soon.');
-        // Remove the query parameter from URL
-        window.history.replaceState({}, document.title, window.location.pathname);
-        // Open modal to show success state (optional)
+        alert('Thank you! Your booking request has been sent successfully.');
+
+        url.searchParams.delete('contact');
+        window.history.replaceState({}, document.title, url.toString());
+
         if (modal) {
             modal.style.display = 'block';
         }
+
     } else if (contactStatus === 'error') {
         alert('There was an error sending your request. Please try again.');
-        window.history.replaceState({}, document.title, window.location.pathname);
-        // Open modal to show error state (optional)
+
+        url.searchParams.delete('contact');
+        window.history.replaceState({}, document.title, url.toString());
+
         if (modal) {
             modal.style.display = 'block';
         }
