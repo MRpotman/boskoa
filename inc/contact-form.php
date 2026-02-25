@@ -28,23 +28,19 @@ $email   = sanitize_email($_POST['contact_email']);
 $message = sanitize_textarea_field($_POST['contact_message']);
 $phone   = isset($_POST['contact_phone_full']) ? sanitize_text_field($_POST['contact_phone_full']) : '';
 $activity_id = isset($_POST['activity_id']) ? intval($_POST['activity_id']) : 0;
-$post_type = get_post_type($activity_id);
-$is_package = ($post_type === 'tour_package');
 $persons     = isset($_POST['persons']) ? intval($_POST['persons']) : 1;
-$title = get_the_title($activity_id);
-$booking = "Booking: " . $title;
-
-if (empty($phone)) {
-    $phone = isset($_POST['contact_phone']) ? sanitize_text_field($_POST['contact_phone']) : '';
-}
-
 $activity_title = get_the_title($activity_id);
 $post_type = get_post_type($activity_id);
 $is_package = ($post_type === 'tour_package');
 $item_label = $is_package ? 'Package' : 'Activity';
 
+if (empty($phone)) {
+    $phone = isset($_POST['contact_phone']) ? sanitize_text_field($_POST['contact_phone']) : '';
+}
 
-$persons     = isset($_POST['persons']) ? intval($_POST['persons']) : 1;
+
+
+
 
 if ($persons < 1) {
     $persons = 1;
@@ -132,10 +128,10 @@ if ($is_package) {
         $package_activities_html .= '<div class="field">
                     <strong>' . $item_label . ' Detalles:</strong><br>
                     Personas: ' . esc_html($persons) . ' - Total: $' . number_format($real_total, 2) . '
-                    <br><span>Base price per person: $' . number_format($real_base_price, 2) . '</span>
+                    <br><span>Precio del paquere por persona: $' . number_format($real_base_price, 2) . '</span>
                 </div>';
-        $package_activities_html .= '<p><strong>Precio de paquete:</strong> $'
-            . number_format($real_base_price, 2)
+        $package_activities_html .= '<p><strong>Total del paquete:</strong> $'
+            . number_format($real_total, 2)
             . '</p>';
 
         $package_activities_html .= '</div>';

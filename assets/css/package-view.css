@@ -16,6 +16,7 @@
     gap: 50px;
     max-width: 1400px;
     margin: 0 auto;
+    padding-top: 40px;
 }
 
 /* Columna izquierda: imagen + descripción */
@@ -174,6 +175,7 @@
     color: #19532d;
     white-space: nowrap;
     min-width: 30%;
+    text-align: end;
 }
 
 .pv-savings {

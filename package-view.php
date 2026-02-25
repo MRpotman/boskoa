@@ -178,7 +178,8 @@ $savings = $activities_total > 0 ? ($activities_total - $package_price_num) : 0;
                 </div>
                 <div class="pv-price-row">
                     <span class="pv-price-label"><?php echo esc_html(pll__('Package price')); ?></span>
-                    <span class="pv-price-total">$<?php echo number_format($package_price_num, 0); ?></span>
+                    <span class="pv-price-total" id="dynamic-price" data-base-price="<?php echo esc_attr($package_price_num); ?>">
+                        $<?php echo number_format($package_price_num, 0); ?></span>
                 </div>
 
                 <!-- Botones -->
@@ -292,14 +293,15 @@ $aditional_info = get_field('informacion_adicional', $package_id);
     <div class="booking-modal-content">
         <span class="booking-modal-close">&times;</span>
         <h2 class="booking-modal-title"><?php echo esc_html(pll__('Book Your Package')); ?></h2>
-        <p class="booking-modal-subtitle"><?php echo esc_html($title); ?> -
-            $<?php echo number_format($package_price_num, 0); ?></p>
+            <p class="booking-modal-subtitle">
+                <?php echo esc_html($title); ?> - 
+                <span id="modal-dynamic-price">$<?php echo number_format($package_price_num, 0); ?></span>
+            </p>
         <form id="booking-form" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
             <input type="hidden" name="action" value="boskoa_contact_form">
             <input type="hidden" name="contact_nonce" value="<?php echo wp_create_nonce('boskoa_contact_form'); ?>">
             <input type="hidden" name="activity_id" value="<?php echo esc_attr($package_id); ?>">
-            <input type="hidden" name="contact_matters"
-                value="Booking Package: <?php echo esc_attr($title); ?> - $<?php echo esc_attr($price); ?>">
+            <input type="hidden" name="persons" id="modal-persons" value="1">
             <input type="hidden" name="recaptcha_token" id="recaptchaToken">
             
 
