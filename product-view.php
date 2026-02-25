@@ -58,7 +58,7 @@ if (empty($image)) {
 
         <div class="product-hero-right">
             <div class="product-hero-card">
-                <p class="pv-label">Enjoy your vacation with our activities:</p>
+                <p class="pv-label"><?php echo esc_html(pll__('Enjoy your vacation with our activities:')); ?></p>
                 <h1 class="product-hero-title">
                     <?php echo esc_html($title); ?>
                 </h1>

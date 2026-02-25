@@ -49,6 +49,8 @@
   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 .comment-carousel {
+  margin: 0 auto;
+  max-width: 1400px;
   width: 80%;
   overflow: hidden;
   position: relative;

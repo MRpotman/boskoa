@@ -187,7 +187,7 @@ $savings = $activities_total > 0 ? ($activities_total - $package_price_num) : 0;
                     <button class="pv-btn-book" id="open-booking-modal">
                         <?php echo esc_html(pll__('Book Now')); ?>
                     </button>
-                    <a href="<?php echo esc_url(site_url('/packages')); ?>" class="pv-btn-secondary">
+                    <a href="<?php echo esc_url(site_url('/package')); ?>" class="pv-btn-secondary">
                         <?php echo esc_html(pll__('View other packages')); ?>
                     </a>
                 </div>

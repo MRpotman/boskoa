@@ -44,7 +44,8 @@ function boskoa_register_strings() {
         'Please check the information and try again.',
         'Book Know',
         'Contact Us',
-        'Loading activities...'
+        'Loading activities...',
+        'Enjoy your vacation with our activities:'
 
     ];
 
