@@ -30,7 +30,7 @@ if (is_array($image)) {
 
 // Imagen por defecto
 if (empty($image)) {
-    $image = get_template_directory_uri() . '/assets/img/placeholder-package.jpg';
+    $image = get_template_directory_uri() . '/assets/img/placeholder-package.svg';
 }
 ?>
 

@@ -81,8 +81,6 @@ function boskoa_enqueue_assets() {
         wp_enqueue_style('boskoa-packages', $theme_uri . '/assets/css/packages.css', ['boskoa-base']);
         wp_enqueue_style('boskoa-pagination', $theme_uri . '/assets/css/pagination.css', ['boskoa-base']);
         wp_enqueue_style('boskoa-hero-packages', $theme_uri . '/assets/css/hero-package.css', ['boskoa-base']);
-        wp_enqueue_style('boskoa-activities-tour', $theme_uri . '/assets/css/activities-tour.css', ['boskoa-base']);
-
         wp_enqueue_script('boskoa-pagination-js', $theme_uri . '/assets/js/pagination.js', [], null, true);
     }
 

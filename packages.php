@@ -141,7 +141,7 @@ if ($post) {
                             $package['price'] = '$500';
                         }
                         if (empty($package['image'])) {
-                            $package['image'] = get_template_directory_uri() . '/assets/img/placeholder-package.jpg';
+                            $package['image'] = get_template_directory_uri() . '/assets/img/placeholder-package.svg';
                         }
                         if (empty($package['title'])) {
                             $package['title'] = get_the_title();

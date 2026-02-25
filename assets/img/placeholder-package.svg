@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <!-- Sky gradient -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f4c2a;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#1a7a45;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2FB468;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Sun glow -->
+    <radialGradient id="sunGlow" cx="50%" cy="38%" r="25%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.18" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Water gradient -->
+    <linearGradient id="waterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a5c38;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d3320;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Foreground hill gradient -->
+    <linearGradient id="hillFront" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a2e18;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#061a0e;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Mid mountain gradient -->
+    <linearGradient id="midMountain" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#145c32;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0a3320;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Back mountain gradient -->
+    <linearGradient id="backMountain" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1f7a48;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#145c35;stop-opacity:1" />
+    </linearGradient>
+
+    <!-- Noise texture filter -->
+    <filter id="noise" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noiseOut"/>
+      <feColorMatrix type="saturate" values="0" in="noiseOut" result="grayNoise"/>
+      <feBlend in="SourceGraphic" in2="grayNoise" mode="overlay" result="blended"/>
+      <feComposite in="blended" in2="SourceGraphic" operator="in"/>
+    </filter>
+
+    <!-- Mist filter -->
+    <filter id="mist">
+      <feGaussianBlur stdDeviation="6" />
+    </filter>
+  </defs>
+
+  <!-- Sky background -->
+  <rect width="800" height="500" fill="url(#skyGrad)" />
+
+
+
+  <!-- Stars / dots scattered in sky -->
+  <g fill="#ffffff" opacity="0.25">
+    <circle cx="80"  cy="50"  r="1.2"/>
+    <circle cx="150" cy="30"  r="1.0"/>
+    <circle cx="230" cy="70"  r="1.4"/>
+    <circle cx="310" cy="40"  r="1.1"/>
+    <circle cx="490" cy="55"  r="1.3"/>
+    <circle cx="560" cy="25"  r="1.0"/>
+    <circle cx="650" cy="65"  r="1.5"/>
+    <circle cx="720" cy="40"  r="1.2"/>
+    <circle cx="760" cy="80"  r="1.0"/>
+    <circle cx="110" cy="100" r="1.0"/>
+    <circle cx="680" cy="110" r="1.1"/>
+  </g>
+
+  <!-- Birds (simple v-shapes) -->
+  <g stroke="#ffffff" stroke-width="1.5" fill="none" opacity="0.35">
+    <path d="M 160 130 q 6 -5 12 0"/>
+    <path d="M 175 122 q 5 -4 10 0"/>
+    <path d="M 600 145 q 7 -5 14 0"/>
+    <path d="M 618 136 q 5 -4 10 0"/>
+    <path d="M 635 148 q 4 -3 8 0"/>
+  </g>
+
+  <!-- Back mountains (far, lighter) -->
+  <path d="M 0 310 
+           Q 50 230 130 250 
+           Q 200 200 280 240 
+           Q 360 170 440 210 
+           Q 520 165 600 200 
+           Q 660 190 720 220 
+           Q 760 210 800 230 
+           L 800 400 L 0 400 Z"
+        fill="url(#backMountain)" opacity="0.9"/>
+
+  <!-- Mist layer between back and mid mountains -->
+  <path d="M 0 295 Q 200 280 400 290 Q 600 300 800 285 L 800 320 L 0 320 Z"
+        fill="#2FB468" opacity="0.12" filter="url(#mist)"/>
+
+  <!-- Mid mountains (closer, darker) -->
+  <path d="M -20 360
+           Q 60 290 140 320
+           Q 210 265 300 295
+           Q 370 250 460 280
+           Q 530 255 620 285
+           Q 690 265 760 295
+           Q 790 300 820 310
+           L 820 420 L -20 420 Z"
+        fill="url(#midMountain)"/>
+
+  <!-- Water / lake reflection band -->
+  <rect x="0" y="370" width="800" height="60" fill="url(#waterGrad)" opacity="0.7"/>
+
+  <!-- Water shimmer lines -->
+  <g stroke="#2FB468" stroke-width="1" opacity="0.3">
+    <line x1="60"  y1="385" x2="200" y2="385"/>
+    <line x1="240" y1="392" x2="360" y2="392"/>
+    <line x1="420" y1="388" x2="550" y2="388"/>
+    <line x1="590" y1="395" x2="710" y2="395"/>
+    <line x1="100" y1="403" x2="280" y2="403"/>
+    <line x1="480" y1="406" x2="660" y2="406"/>
+  </g>
+
+  <!-- Foreground dark hill / terrain -->
+  <path d="M -20 500
+           Q 0 420 60 410
+           Q 130 395 200 415
+           Q 260 400 340 420
+           Q 420 405 500 415
+           Q 580 400 640 410
+           Q 720 400 800 415
+           L 820 520 L -20 520 Z"
+        fill="url(#hillFront)"/>
+
+  <!-- Pine tree silhouettes left -->
+  <g fill="#061a0e">
+    <!-- Tree 1 -->
+    <polygon points="55,420 68,380 81,420"/>
+    <polygon points="52,415 68,365 84,415"/>
+    <rect x="64" y="420" width="8" height="18"/>
+    <!-- Tree 2 -->
+    <polygon points="90,425 101,388 112,425"/>
+    <polygon points="87,420 101,375 115,420"/>
+    <rect x="97" y="425" width="8" height="15"/>
+    <!-- Tree 3 -->
+    <polygon points="118,428 128,395 138,428"/>
+    <polygon points="115,423 128,382 141,423"/>
+    <rect x="124" y="428" width="7" height="14"/>
+  </g>
+
+  <!-- Pine tree silhouettes right -->
+  <g fill="#061a0e">
+    <!-- Tree 4 -->
+    <polygon points="660,422 673,382 686,422"/>
+    <polygon points="657,416 673,368 689,416"/>
+    <rect x="669" y="422" width="8" height="18"/>
+    <!-- Tree 5 -->
+    <polygon points="692,426 703,390 714,426"/>
+    <polygon points="689,420 703,376 717,420"/>
+    <rect x="699" y="426" width="8" height="16"/>
+    <!-- Tree 6 -->
+    <polygon points="720,428 730,396 740,428"/>
+    <polygon points="717,422 730,382 743,422"/>
+    <rect x="726" y="428" width="7" height="14"/>
+  </g>
+
+  <!-- Noise texture overlay for grain feel -->
+  <rect width="800" height="500" fill="transparent" filter="url(#noise)" opacity="0.04"/>
+
+  <!-- Subtle vignette -->
+  <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+    <stop offset="0%" style="stop-color:#000000;stop-opacity:0"/>
+    <stop offset="100%" style="stop-color:#000000;stop-opacity:0.35"/>
+  </radialGradient>
+  <rect width="800" height="500" fill="url(#vignette)"/>
+
+  <!-- Camera icon + slash (centered at 400, 250) -->
+  <g transform="translate(400, 250)" opacity="0.8">
+    <!-- Camera body -->
+    <rect x="-32" y="-22" width="64" height="46" rx="7" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+    <!-- Lens -->
+    <circle cx="0" cy="4" r="14" fill="none" stroke="#ffffff" stroke-width="2.5"/>
+    <circle cx="0" cy="4" r="6" fill="#ffffff" opacity="0.5"/>
+    <!-- Viewfinder bump -->
+    <rect x="-12" y="-22" width="22" height="8" rx="3" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <!-- Flash dot -->
+    <circle cx="20" cy="-14" r="3.5" fill="#ffffff" opacity="0.7"/>
+    <!-- Diagonal slash -->
+    <line x1="-38" y1="-28" x2="38" y2="28" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.95"/>
+  </g>
+</svg>
