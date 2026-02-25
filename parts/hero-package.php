@@ -13,7 +13,7 @@ if ($post) {
     $hero_subtitulo = get_field('contenido', $post->ID);
 }
 
-$hero_image     = $hero_image ?: get_template_directory_uri() . '/assets/img/placeholder-package.jpg';
+$hero_image     = $hero_image ?: get_template_directory_uri() . '/assets/img/placeholder-package.svg';
 $hero_titulo    = $hero_titulo ?: 'Tours Pack';
 $hero_subtitulo = $hero_subtitulo ?: 'In this section we offer packages that consist of several activities, with a set price';
 ?>
