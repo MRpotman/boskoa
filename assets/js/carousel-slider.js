@@ -1,9 +1,19 @@
 document.querySelectorAll('.carousel-activities, .carousel-paquetes').forEach(carousel => {
 
     const cards = carousel.querySelectorAll('.package-card-carousel');
-    const cardWidth = cards[0].offsetWidth + 16; // ancho + gap
 
-    // 🔁 CLONAR PRIMERAS CARDS
+    if (cards.length <= 1) {
+        const wrapper = carousel.closest('.carousel-wrapper');
+        const btnLeft = wrapper.querySelector('.carousel-arrow.left');
+        const btnRight = wrapper.querySelector('.carousel-arrow.right');
+
+        btnLeft.style.display = "none";
+        btnRight.style.display = "none";
+        return;
+    }
+
+    const cardWidth = cards[0].offsetWidth + 16;
+
     cards.forEach(card => {
         const clone = card.cloneNode(true);
         carousel.appendChild(clone);
@@ -11,7 +21,6 @@ document.querySelectorAll('.carousel-activities, .carousel-paquetes').forEach(ca
 
     let scrollAmount = 0;
 
-    // Flechas
     const wrapper = carousel.closest('.carousel-wrapper');
     const btnLeft = wrapper.querySelector('.carousel-arrow.left');
     const btnRight = wrapper.querySelector('.carousel-arrow.right');
@@ -32,7 +41,6 @@ document.querySelectorAll('.carousel-activities, .carousel-paquetes').forEach(ca
         });
     });
 
-    // ♾ LOOP INFINITO
     carousel.addEventListener('scroll', () => {
         if (carousel.scrollLeft >= (cardWidth * cards.length)) {
             carousel.scrollLeft = 0;
