@@ -255,9 +255,7 @@ if (empty($image)) {
             <input type="hidden" name="action" value="boskoa_contact_form">
             <input type="hidden" name="contact_nonce" value="<?php echo wp_create_nonce('boskoa_contact_form'); ?>">
             <input type="hidden" name="activity_id" value="<?php echo esc_attr($activity_id); ?>">
-            <input type="hidden" name="contact_matters" value="Booking: <?php echo esc_attr($title); ?>">
             <input type="hidden" name="persons" id="modal-persons" value="1">
-            <input type="hidden" name="total_price" id="modal-total-price" value="<?php echo esc_attr($price); ?>">
             <input type="hidden" name="recaptcha_token" id="recaptchaToken">
             <div class="booking-form-group">
                 <label for="contact_name">Name *</label>

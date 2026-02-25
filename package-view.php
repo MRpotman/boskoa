@@ -86,13 +86,9 @@ $package_price_num = floatval($price);
 $savings = $activities_total > 0 ? ($activities_total - $package_price_num) : 0;
 ?>
 
-<!-- ========================= -->
-<!-- SECCIÓN HERO: Imagen + Info -->
-<!-- ========================= -->
 <section class="pv-hero light-section">
     <div class="pv-hero-inner">
-
-        <!-- COLUMNA IZQUIERDA: imagen grande + descripción -->
+ 
         <div class="pv-hero-left">
             <div class="pv-hero-image-wrap">
                 <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>">
@@ -176,7 +172,10 @@ $savings = $activities_total > 0 ? ($activities_total - $package_price_num) : 0;
                 <div class="pv-divider"></div>
                 <?php endif; ?>
 
-                <!-- Precio total del paquete -->
+                <div class="product-hero-quantity">
+                    <label for="person-count"><?php echo esc_html(pll__('Persons')); ?></label>
+                    <input type="number" id="person-count" min="1" value="1">
+                </div>
                 <div class="pv-price-row">
                     <span class="pv-price-label"><?php echo esc_html(pll__('Package price')); ?></span>
                     <span class="pv-price-total">$<?php echo number_format($package_price_num, 0); ?></span>
@@ -198,9 +197,6 @@ $savings = $activities_total > 0 ? ($activities_total - $package_price_num) : 0;
     </div>
 </section>
 
-<!-- ========================= -->
-<!-- SECCIÓN DE ACTIVIDADES DETALLADAS -->
-<!-- ========================= -->
 <?php if (!empty($activities_data)): ?>
 <section class="pv-activities-section">
     <div class="pv-activities-container">
@@ -253,9 +249,6 @@ $savings = $activities_total > 0 ? ($activities_total - $package_price_num) : 0;
 </section>
 <?php endif; ?>
 
-<!-- ========================= -->
-<!-- INFO ADICIONAL DEL PAQUETE -->
-<!-- ========================= -->
 <?php
 $included       = get_field('articulos_incluidos', $package_id);
 $aditional_info = get_field('informacion_adicional', $package_id);
@@ -301,13 +294,13 @@ $aditional_info = get_field('informacion_adicional', $package_id);
         <h2 class="booking-modal-title"><?php echo esc_html(pll__('Book Your Package')); ?></h2>
         <p class="booking-modal-subtitle"><?php echo esc_html($title); ?> -
             $<?php echo number_format($package_price_num, 0); ?></p>
-
         <form id="booking-form" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
             <input type="hidden" name="action" value="boskoa_contact_form">
             <input type="hidden" name="contact_nonce" value="<?php echo wp_create_nonce('boskoa_contact_form'); ?>">
             <input type="hidden" name="activity_id" value="<?php echo esc_attr($package_id); ?>">
             <input type="hidden" name="contact_matters"
                 value="Booking Package: <?php echo esc_attr($title); ?> - $<?php echo esc_attr($price); ?>">
+            <input type="hidden" name="recaptcha_token" id="recaptchaToken">
             
 
             <div class="booking-form-group">
