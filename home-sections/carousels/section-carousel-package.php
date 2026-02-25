@@ -20,6 +20,10 @@
     </div>
 
 
+    <div class="carousel-wrapper">
+
+    <button class="carousel-arrow left">&#10094;</button>
+
     <div class="carousel-paquetes">
         <?php
         $packages = new WP_Query([
@@ -58,5 +62,9 @@
         endif;
         ?>
     </div>
+
+    <button class="carousel-arrow right">&#10095;</button>
+
+</div>
 
 </section>

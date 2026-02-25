@@ -50,7 +50,7 @@ function boskoa_enqueue_assets() {
         wp_enqueue_style('boskoa-home-activities', $theme_uri . '/assets/css/activities-home.css', ['boskoa-base']);
 
         wp_enqueue_script('hero-carousel', $theme_uri . '/assets/js/hero-carousel.js', [], null, true);
-        wp_enqueue_script('boskoa-carousel-drag', $theme_uri . '/assets/js/carousel-drag.js',[],null,true);
+        wp_enqueue_script('boskoa-carousel-drag', $theme_uri . '/assets/js/carousel-slider.js',[],null,true);
     }
 
 
