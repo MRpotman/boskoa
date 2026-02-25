@@ -3,7 +3,7 @@
 .product-hero-inner {
     display: flex;
     gap: 60px;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     align-items: flex-start;
     padding-top: 40px;
@@ -441,7 +441,7 @@
 .booking-modal {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
@@ -589,29 +589,7 @@
 .site-header.light-bg .checkmark span {
   background-color: #111;
 }
-.product-hero-quantity{
-    display: flex;
-    justify-content: space-between;
-}
-#person-count{
-    max-width: 71px;
-    font-size: 16px;
-    font-family: 'Poppins';
-    padding: 5px 7px 4px 10px;
-    border: 2px solid #19532d;
-    border-radius: 8px;
-}
-.iti {
-    width: auto;
-}
 
-.iti__flag-container {
-    z-index: 10; /* Por si el dropdown queda tapado por otros elementos */
-}
-.iti__country-list{
-    z-index: 1001 !important;
-        white-space: normal !important;
-}
 /* Responsive modal */
 @media screen and (max-width: 600px) {
     .booking-modal-content {

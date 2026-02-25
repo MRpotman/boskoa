@@ -252,11 +252,11 @@ if (empty($image)) {
         </span></p>
         
         <form id="booking-form" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-            <input type="hidden" name="action" value="boskoa_contact_form">
-            <input type="hidden" name="contact_nonce" value="<?php echo wp_create_nonce('boskoa_contact_form'); ?>">
-            <input type="hidden" name="activity_id" value="<?php echo esc_attr($activity_id); ?>">
-            <input type="hidden" name="persons" id="modal-persons" value="1">
-            <input type="hidden" name="recaptcha_token" id="recaptchaToken">
+                <input type="hidden" name="action" value="boskoa_contact_form">
+                <input type="hidden" name="contact_nonce" value="<?php echo wp_create_nonce('boskoa_contact_form'); ?>">
+                <input type="hidden" name="activity_id" value="<?php echo esc_attr($activity_id); ?>">
+                <input type="hidden" name="persons" id="modal-persons" value="1">
+                <input type="hidden" name="recaptcha_token" id="recaptchaToken">
             <div class="booking-form-group">
                 <label for="contact_name">Name *</label>
                 <input type="text" id="contact_name" name="contact_name" required placeholder="Your full name">
