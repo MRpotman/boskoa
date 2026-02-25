@@ -32,7 +32,7 @@ if (is_array($image)) {
 $included_activities = get_field('actividades_asociadas', $package_id);
 
 if (empty($image)) {
-    $image = get_template_directory_uri() . '/assets/img/placeholder-package.jpg';
+    $image = get_template_directory_uri() . '/assets/img/placeholder-package.svg';
 }
 if (empty($price)) {
     $price = 0;
@@ -65,7 +65,7 @@ if (!empty($included_activities) && is_array($included_activities)) {
             $act_image = wp_get_attachment_image_url($act_image, 'medium_large');
         }
         if (empty($act_image)) {
-            $act_image = get_template_directory_uri() . '/assets/img/placeholder-package.jpg';
+            $act_image = get_template_directory_uri() . '/assets/img/placeholder-package.svg';
         }
 
         $act_price = floatval(get_field('precio', $act_id));

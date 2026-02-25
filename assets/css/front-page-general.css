@@ -21,12 +21,12 @@
 }
 
 .general-info-costaRica h2{
-  font-size: clamp(3rem, 5vmin, 8rem);
+  font-size: 3rem;
   margin: 0;
 }
 
 .general-info-costaRica p{
-  font-size: clamp(1rem, 2vmin, 8rem);
+  font-size: 25px;
   margin: 0;
 }
 
