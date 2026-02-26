@@ -103,8 +103,7 @@ if (empty($image)) {
 
 </section>
 <section class="product-view-main-section">
-    <div class="product-view-main-div product-view-info-grid">
-
+    <div class="product-view-main-div">
         <?php
         $included        = get_field('articulos_incluidos', $activity_id);
         $aditional_info  = get_field('informacion__adicional', $activity_id);
@@ -113,85 +112,84 @@ if (empty($image)) {
         $meeting_link    = get_field('encuentro_link', $activity_id);
         ?>
 
-        <!-- INCLUIDO -->
-        <?php if ($included): ?>
-            <div class="info-card">
-                <h2>INCLUIDO</h2>
-                <ul class="product-view-included-list">
-                    <?php
-                    $lines = explode("\n", $included);
-                    foreach ($lines as $line):
-                        $line = trim($line);
-                        if (!empty($line)):
-                    ?>
-                        <li><?php echo esc_html($line); ?></li>
-                    <?php
-                        endif;
-                    endforeach;
-                    ?>
-                </ul>
-            </div>
-        <?php endif; ?>
+        <div class="accordion-wrapper">
 
-        <!-- INFORMACIÓN ADICIONAL -->
-        <?php if ($aditional_info): ?>
-            <div class="info-card">
-                <h2><?php echo esc_html(pll__('ADDITIONAL INFORMATION')); ?></h2>
-                <ul class="product-view-aditional-list">
-                    <?php
-                    $lines = explode("\n", $aditional_info);
-                    foreach ($lines as $line):
-                        $line = trim($line);
-                        if (!empty($line)):
-                    ?>
-                        <li><?php echo esc_html($line); ?></li>
-                    <?php
-                        endif;
-                    endforeach;
-                    ?>
-                </ul>
-            </div>
-        <?php endif; ?>
-
-        <!-- IDIOMAS -->
-        <?php if ($hosts): ?>
-            <div class="info-card">
-                <h2><?php echo esc_html(pll__('Host languages')); ?></h2>
-                <div class="language-badges">
-                    <?php
-                    foreach ($hosts as $language):
-                    ?>
-                        <span class="language-badge">
-                            <?php echo esc_html($language['label']); ?>
-                        </span>
-                    <?php endforeach; ?>
+            <?php if ($included): ?>
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span>INCLUIDO</span>
+                    <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-body">
+                    <ul class="product-view-included-list">
+                        <?php foreach (explode("\n", $included) as $line): $line = trim($line); if (!empty($line)): ?>
+                            <li><?php echo esc_html($line); ?></li>
+                        <?php endif; endforeach; ?>
+                    </ul>
                 </div>
             </div>
-        <?php endif; ?>
+            <?php endif; ?>
 
-        <!-- PUNTO DE ENCUENTRO -->
-        <?php if ($meeting_point || $meeting_link): ?>
-            <div class="info-card">
-                <h2><?php echo esc_html(pll__('MEETING POINT')); ?></h2>
-
-                <?php if ($meeting_point): ?>
-                    <p><?php echo esc_html($meeting_point); ?></p>
-                <?php endif; ?>
-
-                <?php if ($meeting_link): ?>
-                <span>
-                    <a href="<?php echo esc_url($meeting_link); ?>"
-                       target="_blank"
-                       rel="noopener noreferrer"
-                       class="product-view-map-link">
-                        <?php echo esc_html(pll__('Open in Google Maps')); ?>
-                    </a>
-                </span>
-
-                <?php endif; ?>
+            <?php if ($aditional_info): ?>
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span><?php echo esc_html(pll__('ADDITIONAL INFORMATION')); ?></span>
+                    <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-body">
+                    <ul class="product-view-aditional-list">
+                        <?php foreach (explode("\n", $aditional_info) as $line): $line = trim($line); if (!empty($line)): ?>
+                            <li><?php echo esc_html($line); ?></li>
+                        <?php endif; endforeach; ?>
+                    </ul>
+                </div>
             </div>
-        <?php endif; ?>
+            <?php endif; ?>
 
+            <?php if ($hosts): ?>
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span><?php echo esc_html(pll__('Host languages')); ?></span>
+                    <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-body">
+                    <div class="language-badges">
+                        <?php foreach ($hosts as $language): ?>
+                            <span class="language-badge"><?php echo esc_html($language['label']); ?></span>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+            <?php endif; ?>
+
+            <?php if ($meeting_point || $meeting_link): ?>
+            <div class="accordion-item">
+                <button class="accordion-header" aria-expanded="false">
+                    <span><?php echo esc_html(pll__('MEETING POINT')); ?></span>
+                    <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="accordion-body">
+                    <?php if ($meeting_point): ?>
+                        <p><?php echo esc_html($meeting_point); ?></p>
+                    <?php endif; ?>
+                    <?php if ($meeting_link): ?>
+                        <a href="<?php echo esc_url($meeting_link); ?>" target="_blank" rel="noopener noreferrer" class="product-view-map-link">
+                            <?php echo esc_html(pll__('Open in Google Maps')); ?>
+                        </a>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php endif; ?>
+
+        </div>
     </div>
 </section>
 

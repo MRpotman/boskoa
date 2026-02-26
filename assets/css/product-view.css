@@ -232,7 +232,7 @@
     margin-bottom: 12px;
 }
 .product-view-main-div{
-     max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
 }
 .product-view-included-list li::before {
@@ -402,20 +402,70 @@
     left: -17px;
 }
 
-.product-view-info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 40px;
+/* ACCORDION */
+.accordion-wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-/* TARJETAS */
-.info-card {
-        background-image: radial-gradient(circle at top left, rgb(56 179 193 / 18%), transparent 70%);
-    background-repeat: no-repeat;
-    padding: 30px;
-    border-radius: 16px;
-    border: 1px solid #eee;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+.accordion-item {
+    border: 1px solid #e0e0e0;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    transition: box-shadow 0.3s ease;
+}
+
+.accordion-item:has(.accordion-header[aria-expanded="true"]) {
+    box-shadow: 0 8px 25px rgba(25, 83, 45, 0.12);
+    border-color: #2bb673;
+}
+
+.accordion-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 700;
+    color: #19532d;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: left;
+    transition: background 0.2s ease;
+}
+
+.accordion-header:hover {
+    background: rgba(43, 182, 115, 0.05);
+}
+
+.accordion-icon {
+    flex-shrink: 0;
+    color: #2bb673;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.accordion-header[aria-expanded="true"] .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+    padding: 0 24px;
+}
+
+.accordion-body.open {
+    max-height: 600px;
+    padding: 0 24px 20px;
 }
 
 /* Idiomas como badges */
@@ -433,14 +483,6 @@
     border-radius: 20px;
     font-size: 16px;
 }
-.product-view-info-grid h2{
-    margin: 2px 0;
-}
-.product-view-info-grid p{
-    font-size: 16px;
-    margin: 5px 0;
-}
-
 
 /* Booking Modal Styles */
 .booking-modal {

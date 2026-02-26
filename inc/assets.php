@@ -98,6 +98,7 @@ function boskoa_enqueue_assets() {
 
         wp_enqueue_script('boskoa-booking-modal', $theme_uri . '/assets/js/booking-modal.js', [], null, true);
         wp_enqueue_script('boskoa-person-per-price', $theme_uri . '/assets/js/person-per-price.js', [], null, true);
+        wp_enqueue_script('boskoa-product-view-accordion', $theme_uri . '/assets/js/product-view-accordion.js', [], null, true);
 
         // Intl Tel Input
         wp_enqueue_style(
