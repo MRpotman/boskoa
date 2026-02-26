@@ -88,7 +88,12 @@
 
 
 
+
 /* Contact Form Column */
+.footer-contact-form {
+    max-width: min-content;
+}
+
 .footer-contact-form h3 {
     font-size: 18px;
     font-weight: 400;
@@ -348,88 +353,47 @@
 @media (max-width: 1200px) {
     .footer-container {
         padding: 0 30px;
+        margin: 30px;
     }
+
     .footer-main {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: 30px;
     }
-}
 
-
-@media (max-width: 1024px) {
-    .footer-main {
-        flex-direction: column;
-        gap: 40px;
-    }
-    
-
-    .footer-logo .logo {
-        font-size: 1.8rem;
-    }
-
-    .footer-logo .logo-image {
-        height: 60px;
-    }
-
-    .footer-logo .logo-divider svg {
-        width: 95px;
-        height: 28px;
-    }
-
-    .footer-logo .subtitle {
-        font-size: 14px;
+    .footer-logo {
+        width: 100%;
+        justify-content: center;
     }
 }
 
 @media (max-width: 768px) {
-    .footer-logo {
-        justify-content: center;
-        margin-bottom: 30px;
-    }
-
-    .footer-logo .logo {
-        font-size: 1.6rem;
-        text-align: center;
-    }
-
-    .footer-logo .logo-image {
-        height: 55px;
-    }
-
-    .footer-logo .logo-divider svg {
-        width: 85px;
-        height: 25px;
-    }
-
-    .footer-logo .subtitle {
-        font-size: 13px;
-    }
-
-    .payment-methods > div {
-        width: 50px;
-        height: 35px;
-    }
-
-    .payment-methods .payment-logo {
-        height: 30px;
-        max-width: 50px;
-    }
-    
     .footer-container {
         padding: 0 20px;
     }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-bottom {
+
+    .footer-main {
         flex-direction: column;
-        text-align: center;
+        align-items: center;
     }
-    
-    .payment-methods {
-        justify-content: center;
+
+    .footer-logo {
+        padding-right: 0;
+        margin-bottom: 30px;
+    }
+
+    .footer-contact-form, .footer-contact-info {
+        width: 100%;
+        max-width: none;
     }
 }
 
+@media (max-width: 576px) {
+   .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+    
+}
