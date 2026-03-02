@@ -131,7 +131,7 @@ function boskoa_enqueue_assets() {
     ==========================================
     */
 
-    if ( is_page('about-us') ) {
+    if ( is_page_template('about.php')) {
 
         wp_enqueue_style('boskoa-hero-about', $theme_uri . '/assets/css/hero-about.css', ['boskoa-base']);
         wp_enqueue_style('boskoa-about-sections', $theme_uri . '/assets/css/about-sections.css', ['boskoa-base']);
