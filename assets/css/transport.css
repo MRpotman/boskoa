@@ -1,0 +1,243 @@
+/* ==========================================
+   TRANSPORT — estilos específicos
+   Se añaden SOBRE los estilos de activities
+   (tours-pack, package-card, etc. ya existen)
+   ========================================== */
+
+
+/* ── Grid override para transport (2 columnas en desktop) ── */
+.transport-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+}
+
+@media (max-width: 900px) {
+    .transport-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .transport-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+/* ── Ruta origen → destino en la card ── */
+.transport-route {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: clamp(11px, 1.2vw, 14px);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
+    flex-wrap: wrap;
+}
+
+.transport-route svg {
+    flex-shrink: 0;
+    fill: currentColor;
+}
+
+
+/* ── Badge tipo de ruta ── */
+.transport-type-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: clamp(10px, 1vw, 12px);
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+
+/* ── Transport actions (sin precio) ── */
+.transport-actions {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transport-contact-label {
+    font-size: clamp(10px, 1.1vw, 13px);
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+}
+
+
+/* ── Route badge en product view ── */
+.transport-route-badge {
+    background: rgba(47, 180, 104, 0.88) !important;
+}
+
+
+/* ── Nota de precio en product-hero-card ── */
+.transport-price-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #6b7280;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+}
+
+.transport-price-note svg {
+    flex-shrink: 0;
+    color: #9ca3af;
+}
+
+
+/* ── Trip selector (en product-hero-card) ── */
+.transport-trip-selector {
+    margin-bottom: 4px;
+}
+
+.transport-trip-options {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.transport-trip-option {
+    flex: 1;
+    cursor: pointer;
+}
+
+.transport-trip-option input {
+    display: none;
+}
+
+.transport-trip-option span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 2px solid #e5e7eb;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.transport-trip-option input:checked + span,
+.transport-trip-option:has(input:checked) span {
+    border-color: #19532d;
+    background: #f0faf4;
+    color: #19532d;
+}
+
+.transport-trip-option input:disabled + span {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+
+/* ── Booking modal – transport ── */
+.transport-modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+
+/* ── Trip selector dentro del modal ── */
+.transport-modal-trip-selector {
+    display: flex;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.transport-modal-trip-option {
+    flex: 1;
+    cursor: pointer;
+}
+
+.transport-modal-trip-option input {
+    display: none;
+}
+
+.transport-modal-trip-option span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 2px solid #e5e7eb;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.transport-modal-trip-option.active span,
+.transport-modal-trip-option input:checked + span {
+    border-color: #19532d;
+    background: #f0faf4;
+    color: #19532d;
+}
+
+.transport-modal-trip-option input:disabled + span {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+/* ── Form row (dos campos lado a lado) ── */
+.booking-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+@media (max-width: 500px) {
+    .booking-form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ── Sección de vuelo (llegada / regreso) ── */
+.transport-form-section {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 18px 20px 8px;
+    margin-bottom: 18px;
+}
+
+.transport-form-section-title {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #19532d;
+    margin: 0 0 14px 0;
+}
+
+.transport-form-section .booking-form-group {
+    margin-bottom: 14px;
+}
+
+/* date / time inputs */
+.transport-form-section input[type="date"],
+.transport-form-section input[type="time"] {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}

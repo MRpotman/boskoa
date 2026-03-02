@@ -50,7 +50,7 @@ function boskoa_enqueue_assets() {
         wp_enqueue_style('boskoa-home-activities', $theme_uri . '/assets/css/activities-home.css', ['boskoa-base']);
 
         wp_enqueue_script('hero-carousel', $theme_uri . '/assets/js/hero-carousel.js', [], null, true);
-        wp_enqueue_script('boskoa-carousel-drag', $theme_uri . '/assets/js/carousel-slider.js',[],null,true);
+        wp_enqueue_script('boskoa-carousel-drag', $theme_uri . '/assets/js/carousel-slider.js', [], null, true);
     }
 
 
@@ -81,7 +81,62 @@ function boskoa_enqueue_assets() {
         wp_enqueue_style('boskoa-packages', $theme_uri . '/assets/css/packages.css', ['boskoa-base']);
         wp_enqueue_style('boskoa-pagination', $theme_uri . '/assets/css/pagination.css', ['boskoa-base']);
         wp_enqueue_style('boskoa-hero-packages', $theme_uri . '/assets/css/hero-package.css', ['boskoa-base']);
+
         wp_enqueue_script('boskoa-pagination-js', $theme_uri . '/assets/js/pagination.js', [], null, true);
+    }
+
+
+    /*
+    ==========================================
+    TRANSPORT TEMPLATE (lista de rutas)
+    ==========================================
+    */
+
+    if ( is_page_template('transport-template.php') ) {
+
+        wp_enqueue_style('boskoa-packages', $theme_uri . '/assets/css/packages.css', ['boskoa-base']);
+        wp_enqueue_style('boskoa-pagination', $theme_uri . '/assets/css/pagination.css', ['boskoa-base']);
+        wp_enqueue_style('boskoa-hero-packages', $theme_uri . '/assets/css/hero-package.css', ['boskoa-base']);
+        wp_enqueue_style('boskoa-transport', $theme_uri . '/assets/css/transport.css', ['boskoa-packages']);
+
+        wp_enqueue_script('boskoa-pagination-js', $theme_uri . '/assets/js/pagination.js', [], null, true);
+    }
+
+
+    /*
+    ==========================================
+    TRANSPORT VIEW (detalle de ruta)
+    ==========================================
+    */
+
+    if ( is_page_template('transport-view.php') ) {
+
+        wp_enqueue_style('boskoa-product-view', $theme_uri . '/assets/css/product-view.css', ['boskoa-base']);
+        wp_enqueue_style('boskoa-transport', $theme_uri . '/assets/css/transport.css', ['boskoa-product-view']);
+
+        wp_enqueue_script('boskoa-transport-view', $theme_uri . '/assets/js/transport-view.js', [], null, true);
+
+        // Intl Tel Input
+        wp_enqueue_style(
+            'intl-tel-input',
+            'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css'
+        );
+
+        wp_enqueue_script(
+            'intl-tel-input',
+            'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js',
+            [],
+            '17.0.19',
+            true
+        );
+
+        wp_enqueue_script(
+            'boskoa-phone-init',
+            $theme_uri . '/assets/js/phone-init.js',
+            ['intl-tel-input'],
+            null,
+            true
+        );
     }
 
 
@@ -121,7 +176,6 @@ function boskoa_enqueue_assets() {
             null,
             true
         );
-
     }
 
 

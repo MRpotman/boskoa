@@ -12,6 +12,7 @@ $includes = [
     'inc/cpt/cpt-textos.php',
     'inc/cpt/cpt-activities.php',
     'inc/cpt/cpt-payment-methods.php',
+    'inc/cpt/cpt-transport.php',
     'inc/payment-method-columns.php',
     'inc/payment-method-order.php',
     'inc/recaptcha.php',

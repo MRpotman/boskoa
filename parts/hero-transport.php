@@ -1,0 +1,40 @@
+<?php
+/**
+ * Part: hero-transport
+ */
+
+$hero_image     = '';
+$hero_titulo    = '';
+$hero_subtitulo = '';
+
+$post = get_page_by_path('hero-transport', OBJECT, 'texto');
+
+if ($post) {
+    $hero_image     = get_field('imagen', $post->ID);
+    $hero_titulo    = get_field('titulo', $post->ID);
+    $hero_subtitulo = get_field('contenido', $post->ID);
+}
+
+$hero_image     = $hero_image ?: get_template_directory_uri() . '/assets/img/placeholder-package.svg';
+$hero_titulo    = $hero_titulo ?: 'Transport Services';
+$hero_subtitulo = $hero_subtitulo ?: 'Reliable and comfortable transport for your journey';
+?>
+
+<div class="hero-packages" style="background-image: url('<?php echo esc_url($hero_image); ?>');">
+
+    <div class="hero-packages-overlay">
+        <div class="hero-packages-content">
+            <h1 class="hero-packages-titulo">
+                <?php echo esc_html($hero_titulo); ?>
+            </h1>
+            <p class="hero-packages-subtitulo">
+                <?php echo esc_html($hero_subtitulo); ?>
+            </p>
+        </div>
+    </div>
+
+    <svg class="hero-packages-wave" viewBox="0 0 1440 100" preserveAspectRatio="none">
+        <path fill="#FFFFFF" d="M0,50 Q360,0 720,50 T1440,50 L1440,100 L0,100 Z"></path>
+    </svg>
+
+</div>
