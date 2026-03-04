@@ -88,4 +88,46 @@
         });
     });
 
+    document.addEventListener('DOMContentLoaded', function() {
+        var form = document.getElementById('transport-booking-form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                var submitBtn = form.querySelector('.booking-submit-btn');
+                var originalText = submitBtn ? submitBtn.textContent : 'Send Booking Request';
+
+                if (typeof executeRecaptcha === 'function') {
+                    executeRecaptcha()
+                        .then(function(token) {
+                            document.getElementById('transportRecaptchaToken').value = token;
+                            if (submitBtn) {
+                                submitBtn.textContent = 'Sending...';
+                                submitBtn.disabled = true;
+                            }
+                            form.submit();
+                        })
+                        .catch(function(error) {
+                            alert('Verification error. Please reload the page and try again.');
+                            if (submitBtn) {
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = originalText;
+                            }
+                        });
+                } else {
+                    // Fallback si no existe la función global
+                    if (typeof grecaptcha !== 'undefined' && typeof window.boskoaRecaptchaSiteKey !== 'undefined') {
+                        grecaptcha.ready(function() {
+                            grecaptcha.execute(window.boskoaRecaptchaSiteKey, {action: 'contact_form'}).then(function(token) {
+                                document.getElementById('transportRecaptchaToken').value = token;
+                                form.submit();
+                            });
+                        });
+                    } else {
+                        alert('reCAPTCHA not loaded.');
+                    }
+                }
+            });
+        }
+    });
+
 })();

@@ -369,3 +369,109 @@ if ($is_package) {
 }
 add_action('admin_post_nopriv_boskoa_contact_form', 'boskoa_handle_contact_form');
 add_action('admin_post_boskoa_contact_form', 'boskoa_handle_contact_form');
+
+// ===============================
+// TRANSPORT FORM HANDLER
+// ===============================
+function boskoa_handle_transport_form() {
+    $error_debug = '';
+    // Verificar nonce de seguridad
+    if (!isset($_POST['contact_nonce']) || !wp_verify_nonce($_POST['contact_nonce'], 'boskoa_transport_form')) {
+        $error_debug = 'Error de seguridad: nonce inválido.';
+        wp_die($error_debug);
+    }
+
+    // Verificar reCAPTCHA
+    if (!isset($_POST['recaptcha_token']) || empty($_POST['recaptcha_token'])) {
+        $error_debug = 'Error: recaptcha_token vacío.';
+        wp_die($error_debug);
+    }
+    if (!function_exists('boskoa_verify_recaptcha') || !boskoa_verify_recaptcha($_POST['recaptcha_token'])) {
+        $error_debug = 'Error: reCAPTCHA inválido.';
+        wp_die($error_debug);
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        $error_debug = 'Error: método no permitido.';
+        wp_die($error_debug);
+    }
+
+    // Recoger datos del formulario
+    $name         = sanitize_text_field($_POST['contact_name'] ?? '');
+    $email        = sanitize_email($_POST['contact_email'] ?? '');
+    $phone        = sanitize_text_field($_POST['contact_phone_full'] ?? ($_POST['contact_phone'] ?? ''));
+    $transport_id = intval($_POST['transport_id'] ?? 0);
+    $trip_type    = sanitize_text_field($_POST['trip_type'] ?? '');
+    $arrival_date = sanitize_text_field($_POST['t_arrival_date'] ?? '');
+    $arrival_time = sanitize_text_field($_POST['t_arrival_time'] ?? '');
+    $return_date  = sanitize_text_field($_POST['t_return_date'] ?? '');
+    $return_time  = sanitize_text_field($_POST['t_return_time'] ?? '');
+    $meeting_pt   = sanitize_text_field($_POST['meeting_point'] ?? '');
+    $message      = sanitize_textarea_field($_POST['contact_message'] ?? '');
+
+    // Validaciones
+    $errors = [];
+    if (empty($name)) $errors[] = 'El nombre es requerido';
+    if (empty($email) || !is_email($email)) $errors[] = 'Email inválido';
+    if (empty($arrival_date)) $errors[] = 'Fecha de llegada requerida';
+    if (empty($arrival_time)) $errors[] = 'Hora de llegada requerida';
+    if ($trip_type === 'round_trip' && (empty($return_date) || empty($return_time))) $errors[] = 'Fecha y hora de regreso requeridas para viaje redondo';
+
+    if (!empty($errors)) {
+        $error_debug = 'Error de validación: ' . implode(', ', $errors);
+        wp_die($error_debug);
+    }
+
+    // Obtener datos del transporte
+    $transport_title = $transport_id ? get_the_title($transport_id) : '';
+    $origin      = $transport_id ? get_field('origen', $transport_id) : '';
+    $destination = $transport_id ? get_field('destino', $transport_id) : '';
+    $route_type  = $transport_id ? get_field('tipo_ruta', $transport_id) : '';
+
+    $route_labels = [
+        'one_way'    => 'One Way',
+        'round_trip' => 'Round Trip',
+        'both'       => 'One Way / Round Trip',
+    ];
+    $route_label = $route_labels[$route_type] ?? '';
+
+    // Construir el correo
+    $subject = 'Transport Booking: ' . $transport_title;
+    $body = "<html><body>";
+    $body .= "<h2>Reserva de Transporte</h2>";
+    $body .= "<p><strong>Nombre:</strong> $name<br>";
+    $body .= "<strong>Email:</strong> $email<br>";
+    $body .= "<strong>Teléfono:</strong> $phone<br>";
+    $body .= "<strong>Transporte:</strong> $transport_title<br>";
+    $body .= "<strong>Origen:</strong> $origin<br>";
+    $body .= "<strong>Destino:</strong> $destination<br>";
+    $body .= "<strong>Tipo de ruta:</strong> $route_label<br>";
+    $body .= "<strong>Tipo de viaje:</strong> $trip_type<br>";
+    $body .= "<strong>Fecha llegada:</strong> $arrival_date $arrival_time<br>";
+    if ($trip_type === 'round_trip') {
+        $body .= "<strong>Fecha regreso:</strong> $return_date $return_time<br>";
+    }
+    if (!empty($meeting_pt)) {
+        $body .= "<strong>Punto de encuentro:</strong> $meeting_pt<br>";
+    }
+    if (!empty($message)) {
+        $body .= "<strong>Mensaje adicional:</strong> $message<br>";
+    }
+    $body .= "</p></body></html>";
+
+    $admin_email = 'uriu1206@gmail.com';
+    $headers = ['Content-Type: text/html; charset=UTF-8'];
+
+    $sent = wp_mail($admin_email, $subject, $body, $headers);
+
+    if (!$sent) {
+        $error_debug = 'Error: el correo no se pudo enviar.';
+        wp_die($error_debug);
+    }
+
+    // Redirigir con mensaje de éxito
+    wp_redirect(add_query_arg('contact', 'success', wp_get_referer()));
+    exit;
+}
+add_action('admin_post_nopriv_boskoa_transport_form', 'boskoa_handle_transport_form');
+add_action('admin_post_boskoa_transport_form', 'boskoa_handle_transport_form');

@@ -276,8 +276,9 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
             </div>
 
             <div class="booking-form-group">
-                <label for="t_phone"><?php echo esc_html(pll__('Phone (optional)')); ?></label>
-                <input type="tel" id="t_phone" name="contact_phone">
+                <label for="contact_phone"><?php echo esc_html(pll__('Phone (optional)')); ?></label>
+                <input type="tel" id="contact_phone" name="contact_phone">
+                <input type="hidden" id="contact_phone_full" name="contact_phone_full">
             </div>
 
             <div class="booking-form-row">
@@ -313,11 +314,11 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
                 <div class="booking-form-row">
                     <div class="booking-form-group">
                         <label for="t_arrival_date"><?php echo esc_html(pll__('Arrival Date')); ?> *</label>
-                        <input type="date" id="t_arrival_date" name="arrival_date" required>
+                        <input type="date" id="t_arrival_date" name="t_arrival_date" required>
                     </div>
                     <div class="booking-form-group">
                         <label for="t_arrival_time"><?php echo esc_html(pll__('Arrival Time')); ?> *</label>
-                        <input type="time" id="t_arrival_time" name="arrival_time" required>
+                        <input type="time" id="t_arrival_time" name="t_arrival_time" required>
                     </div>
                 </div>
             </div>
@@ -345,11 +346,11 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
                 <div class="booking-form-row">
                     <div class="booking-form-group">
                         <label for="t_return_date"><?php echo esc_html(pll__('Departure Date')); ?></label>
-                        <input type="date" id="t_return_date" name="return_date">
+                        <input type="date" id="t_return_date" name="t_return_date">
                     </div>
                     <div class="booking-form-group">
                         <label for="t_return_time"><?php echo esc_html(pll__('Departure Time')); ?></label>
-                        <input type="time" id="t_return_time" name="return_time">
+                        <input type="time" id="t_return_time" name="t_return_time">
                     </div>
                 </div>
             </div>
