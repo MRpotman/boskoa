@@ -42,21 +42,39 @@ function boskoa_register_strings() {
         'Thank you for contacting us. We will get back to you soon.',
         'Error sending.',
         'Please check the information and try again.',
-        'Book Know',
+        'Book now package-card',
         'Contact Us',
         'Loading activities...',
-        'Enjoy your vacation with our activities:'
-
+        'Enjoy your vacation with our activities:',
+        'BookNow-sidebar',
+        'Clear cart',
+        'Your cart is empty.',
+        'Order Summary',
+        'Total',
+        'Sending...',
+        '✓ Added!',
+        'Add to cart',
+        'Thank you! Your booking request has been sent successfully.',
+        'There was an error sending your request. Please try again.',
+        'I would like to book the following activities:',
+        'Please contact me with more information.',
+        'Boskoa Travel',
+        'Change language',
+        'Tu carrito',
+        'Tu carrito está vacío.',
+        'Complete Your Booking',
+        'Your full name',
+        'Phone (optional)',
+        'I would like to book these activities...',
+        'Send Booking Request',
     ];
 
     foreach ($strings as $string) {
-
         pll_register_string(
             sanitize_title($string),
             $string,
             'Boskoa Theme'
         );
-
     }
 
 }

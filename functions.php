@@ -17,6 +17,7 @@ $includes = [
     'inc/payment-method-order.php',
     'inc/recaptcha.php',
     'inc/contact-form.php',
+    'inc/cart-checkout-handler.php',
     'inc/cpt/cpt-reviews.php',
     'inc/cpt/cpt-tour-package.php',
     'inc/sortable-tour-package-columns.php',

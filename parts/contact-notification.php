@@ -1,7 +1,13 @@
-<?php if (isset($_GET['contact'])): ?>
-    <div class="contact-notification <?php echo $_GET['contact'] === 'success' ? 'success' : 'error'; ?>" id="contactNotification">
+<?php
+$notify_param = null;
+if (isset($_GET['contact'])) $notify_param = $_GET['contact'];
+elseif (isset($_GET['cart_contact'])) $notify_param = $_GET['cart_contact'];
+?>
+
+<?php if ($notify_param): ?>
+    <div class="contact-notification <?php echo $notify_param === 'success' ? 'success' : 'error'; ?>" id="contactNotification">
         <div class="notification-content">
-            <?php if ($_GET['contact'] === 'success'): ?>
+            <?php if ($notify_param === 'success'): ?>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -28,13 +34,12 @@
     <script>
         function closeNotification() {
             document.getElementById('contactNotification').style.display = 'none';
-            // Limpiar URL
             const url = new URL(window.location);
             url.searchParams.delete('contact');
+            url.searchParams.delete('cart_contact');
             window.history.replaceState({}, '', url);
         }
         
-        // Auto-cerrar después de 5 segundos
         setTimeout(() => {
             const notification = document.getElementById('contactNotification');
             if (notification) {

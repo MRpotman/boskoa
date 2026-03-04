@@ -23,7 +23,7 @@ if (!$package || empty($package['link'])) {
                 <div style="height: 35%;">
 
                     <span class="book-know">
-                        <?php echo esc_html(pll__('Book Know')); ?>
+                        <?php echo esc_html(pll__('Book now package-card')); ?>
                     </span>
 
                     <h3 class="package-title-carousel">

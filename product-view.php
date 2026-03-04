@@ -41,19 +41,19 @@ if (empty($image)) {
         <div class="product-hero-left">
             <div class="product-hero-image-wrap">
                 <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($title); ?>">
-                                <div class="pv-family-badge">
+                <div class="pv-family-badge">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M5.5 4.5c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zm9 0c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zM6 14v-3c0-.828-.672-1.5-1.5-1.5S3 10.172 3 11v3h3zm7 0v-3c0-.828-.672-1.5-1.5-1.5S10 10.172 10 11v3h3zm-5.5-6c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM10 14v-3c0-.828-.672-1.5-1.5-1.5S7 10.172 7 11v3h3z" fill="currentColor"/>
                     </svg>
                     <?php echo esc_html(pll__('Family Friendly')); ?>
                 </div>
             </div>
-                <?php if ($description): ?>
-    <div class="product-hero-description">
-        <h2><?php echo esc_html(pll__('Descripción')); ?></h2>
-        <p><?php echo esc_html($description); ?></p>
-    </div>
-    <?php endif; ?>
+            <?php if ($description): ?>
+            <div class="product-hero-description">
+                <h2><?php echo esc_html(pll__('Descripción')); ?></h2>
+                <p><?php echo esc_html($description); ?></p>
+            </div>
+            <?php endif; ?>
         </div>
 
         <div class="product-hero-right">
@@ -65,7 +65,7 @@ if (empty($image)) {
                 <?php if ($locations): ?>
                 <p class="product-hero-location">
                     <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                     <path d="M8 0C5.243 0 3 2.243 3 5c0 4.5 5 11 5 11s5-6.5 5-11c0-2.757-2.243-5-5-5zm0 7c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z" fill="currentColor"/>
+                        <path d="M8 0C5.243 0 3 2.243 3 5c0 4.5 5 11 5 11s5-6.5 5-11c0-2.757-2.243-5-5-5zm0 7c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2z" fill="currentColor"/>
                     </svg>
                     <?php echo esc_html($locations); ?>
                 </p>
@@ -80,8 +80,8 @@ if (empty($image)) {
                     <span class="product-hero-price-label">
                         <?php echo esc_html(pll__('Price:')); ?>
                     </span>
-                    <span class="product-hero-price-value" id="dynamic-price" data-base-price ="<?php echo esc_attr($price); ?>">
-                         $<?php echo esc_html($price); ?>
+                    <span class="product-hero-price-value" id="dynamic-price" data-base-price="<?php echo esc_attr($price); ?>">
+                        $<?php echo esc_html($price); ?>
                     </span>
                 </div>
 
@@ -90,13 +90,16 @@ if (empty($image)) {
                         <?php echo esc_html(pll__('Book Now')); ?>
                     </button>
 
-                    <a href="<?php echo esc_url(site_url('/activities')); ?>" class="product-hero-secondary">
-                        <?php echo esc_html(pll__('View other activities')); ?>
-                    </a>
+                    <button class="product-hero-secondary add-to-cart-btn"
+                        data-id="<?php echo esc_attr($activity_id); ?>"
+                        data-title="<?php echo esc_attr($title); ?>"
+                        data-price="<?php echo esc_attr($price); ?>"
+                        data-image="<?php echo esc_attr($image); ?>">
+                        <?php echo esc_html(pll__('Add to cart')); ?>
+                    </button>
                 </div>
 
             </div>
-
         </div>
 
     </div>
@@ -117,7 +120,7 @@ if (empty($image)) {
             <?php if ($included): ?>
             <div class="accordion-item">
                 <button class="accordion-header" aria-expanded="false">
-                    <span>INCLUIDO</span>
+                    <span><?php echo esc_html(pll__('INCLUIDO')); ?></span>
                     <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
                         <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
@@ -243,40 +246,41 @@ if (empty($image)) {
 <div id="booking-modal" class="booking-modal">
     <div class="booking-modal-content">
         <span class="booking-modal-close">&times;</span>
-        <h2 class="booking-modal-title">Book Your Tour</h2>
-        <p class="booking-modal-subtitle" >   
-             <?php echo esc_html($title); ?> - 
-              <span id="modal-dynamic-price"> $<?php echo esc_html($price); ?>
-        </span></p>
-        
+        <h2 class="booking-modal-title"><?php echo esc_html(pll__('Book Your Tour')); ?></h2>
+        <p class="booking-modal-subtitle">
+            <?php echo esc_html($title); ?> -
+            <span id="modal-dynamic-price">$<?php echo esc_html($price); ?></span>
+        </p>
+
         <form id="booking-form" method="POST" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
-                <input type="hidden" name="action" value="boskoa_contact_form">
-                <input type="hidden" name="contact_nonce" value="<?php echo wp_create_nonce('boskoa_contact_form'); ?>">
-                <input type="hidden" name="activity_id" value="<?php echo esc_attr($activity_id); ?>">
-                <input type="hidden" name="persons" id="modal-persons" value="1">
-                <input type="hidden" name="recaptcha_token" id="recaptchaToken">
+            <input type="hidden" name="action" value="boskoa_contact_form">
+            <input type="hidden" name="contact_nonce" value="<?php echo wp_create_nonce('boskoa_contact_form'); ?>">
+            <input type="hidden" name="activity_id" value="<?php echo esc_attr($activity_id); ?>">
+            <input type="hidden" name="persons" id="modal-persons" value="1">
+            <input type="hidden" name="recaptcha_token" id="recaptchaToken">
+
             <div class="booking-form-group">
-                <label for="contact_name">Name *</label>
-                <input type="text" id="contact_name" name="contact_name" required placeholder="Your full name">
+                <label for="contact_name"><?php echo esc_html(pll__('Name')); ?> *</label>
+                <input type="text" id="contact_name" name="contact_name" required placeholder="<?php echo esc_attr(pll__('Your full name')); ?>">
             </div>
-            
+
             <div class="booking-form-group">
-                <label for="contact_email">Email *</label>
+                <label for="contact_email"><?php echo esc_html(pll__('Email')); ?> *</label>
                 <input type="email" id="contact_email" name="contact_email" required placeholder="your@email.com">
             </div>
-            
+
             <div class="booking-form-group">
-                <label for="contact_phone">Phone (optional)</label>
+                <label for="contact_phone"><?php echo esc_html(pll__('Phone (optional)')); ?></label>
                 <input type="tel" id="contact_phone" name="contact_phone">
                 <input type="hidden" id="contact_phone_full" name="contact_phone_full">
             </div>
-            
+
             <div class="booking-form-group">
-                <label for="contact_message">Message *</label>
-                <textarea id="contact_message" name="contact_message" rows="4" required placeholder="I would like to book this tour...">I would like to book the tour "<?php echo esc_attr($title); ?>" for $<?php echo esc_attr($price); ?>. Please contact me with more information.</textarea>
+                <label for="contact_message"><?php echo esc_html(pll__('Message')); ?> *</label>
+                <textarea id="contact_message" name="contact_message" rows="4" required placeholder="<?php echo esc_attr(pll__('I would like to book these activities...')); ?>"><?php echo esc_html(pll__('I would like to book the following activities:')); ?> "<?php echo esc_attr($title); ?>" $<?php echo esc_attr($price); ?>. <?php echo esc_html(pll__('Please contact me with more information.')); ?></textarea>
             </div>
-            
-            <button type="submit" class="booking-submit-btn">Send Booking Request</button>
+
+            <button type="submit" class="booking-submit-btn"><?php echo esc_html(pll__('Send Booking Request')); ?></button>
         </form>
     </div>
 </div>

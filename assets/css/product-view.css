@@ -627,10 +627,13 @@
     box-shadow: none;
 }
 
+
+
 .site-header.light-bg .logo,
 .site-header.light-bg .subtitle,
 .site-header.light-bg .menu li a,
 .site-header.light-bg .lang-text,
+.site-header.light-bg .cart-toggle,
 .site-header.light-bg .checkmark span {
   color: #111;
 }

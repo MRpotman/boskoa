@@ -10,53 +10,60 @@ document.addEventListener('DOMContentLoaded', function() {
 function initBookingModal() {
     var modal = document.getElementById('booking-modal');
     var btn = document.getElementById('open-booking-modal');
-    var span = document.getElementsByClassName('booking-modal-close')[0];
+    var span = modal ? modal.querySelector('.booking-modal-close') : null; 
+
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    function openModal() {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
 
     if (btn && modal) {
-        // Click abre modal
-        btn.onclick = function() {
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        };
-        // Teclado: Enter o barra espaciadora
+        btn.onclick = openModal;
         btn.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
+                openModal();
             }
         });
-        // Asegura accesibilidad
         btn.setAttribute('tabindex', '0');
         btn.setAttribute('role', 'button');
         btn.setAttribute('aria-haspopup', 'dialog');
         btn.setAttribute('aria-controls', 'booking-modal');
     }
-    
+
     if (span && modal) {
-        span.onclick = function() {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        };
+        span.onclick = closeModal; 
     }
-    
+
     if (modal) {
         window.onclick = function(event) {
             if (event.target == modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
+                closeModal();
             }
         };
     }
-    
-    // Handle form submission with reCAPTCHA
+
     var form = document.getElementById('booking-form');
     if (form) {
         form.addEventListener('submit', handleFormSubmit);
     }
-    
-    // Check for contact success/error messages in URL
+
     checkContactStatus();
+}
+
+function checkContactStatus() {
+    var url = new URL(window.location.href);
+    var contactStatus = url.searchParams.get('contact');
+
+    if (contactStatus === 'success' || contactStatus === 'error') {
+        url.searchParams.delete('contact');
+        window.history.replaceState({}, document.title, url.toString());
+    }
 }
 
 function handleFormSubmit(e) {
@@ -66,7 +73,7 @@ function handleFormSubmit(e) {
     var submitBtn = form.querySelector('.booking-submit-btn');
     var originalText = submitBtn ? submitBtn.textContent : 'Send Booking Request';
     
-    // Generate reCAPTCHA token first
+    
     executeRecaptcha()
         .then(function(token) {
             document.getElementById('recaptchaToken').value = token;
@@ -76,7 +83,6 @@ function handleFormSubmit(e) {
                 submitBtn.disabled = true;
             }
             
-            // Now submit the form
             form.submit();
         })
         .catch(function(error) {
@@ -144,6 +150,5 @@ function executeRecaptcha() {
     });
 }
 
-// Export functions for global use
 window.initBookingModal = initBookingModal;
 window.executeRecaptcha = executeRecaptcha;
