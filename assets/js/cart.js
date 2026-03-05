@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     </li>
                 `}).join('')}
             </ul>
-
+            <div class="mini-cart-bottom">
             <div class="mini-cart-total">
                 <span>${cartStrings.total}:</span>
                 <strong id="cart-total">$${totalPrice.toFixed(2)}</strong>
@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             <button class="mini-cart-checkout">${cartStrings.bookNow}</button>
             <button class="mini-cart-clear">${cartStrings.clearCart}</button>
+            </div>
         `;
 
         // ── Cambio manual en input ──
