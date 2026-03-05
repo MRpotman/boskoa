@@ -138,6 +138,32 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
     <!-- ── ACORDEONES ───────────────────────────────────────────────────── -->
     <section class="product-view-main-section">
         <div class="product-view-main-div">
+            <?php if ($meeting_pt || $meeting_lnk): ?>
+            <div class="meeting-point-card">
+                <div class="meeting-point-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                </div>
+                <div class="meeting-point-info">
+                    <?php if ($meeting_pt): ?>
+                    <span class="meeting-point-label"><?php echo esc_html(pll__('Meeting Point')); ?></span>
+                    <span class="meeting-point-name"><?php echo esc_html($meeting_pt); ?></span>
+                    <?php endif; ?>
+                </div>
+                <?php if ($meeting_lnk): ?>
+                <a href="<?php echo esc_url($meeting_lnk); ?>" target="_blank" rel="noopener noreferrer"
+                    class="meeting-point-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                    </svg>
+                    <?php echo esc_html(pll__('Open Maps')); ?>
+                </a>
+                <?php endif; ?>
+            </div>
+            <?php endif; ?>
             <div class="accordion-wrapper">
 
                 <?php if ($included): ?>
@@ -177,30 +203,6 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
                     </div>
                 </div>
                 <?php endif; ?>
-
-                <?php if ($meeting_pt || $meeting_lnk): ?>
-                <div class="accordion-item">
-                    <button class="accordion-header" aria-expanded="false">
-                        <span><?php echo esc_html(pll__('MEETING POINT')); ?></span>
-                        <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                    <div class="accordion-body">
-                        <?php if ($meeting_pt): ?>
-                        <p><?php echo esc_html($meeting_pt); ?></p>
-                        <?php endif; ?>
-                        <?php if ($meeting_lnk): ?>
-                        <a href="<?php echo esc_url($meeting_lnk); ?>" target="_blank" rel="noopener noreferrer"
-                            class="product-view-map-link">
-                            <?php echo esc_html(pll__('Open in Google Maps')); ?>
-                        </a>
-                        <?php endif; ?>
-                    </div>
-                </div>
-                <?php endif; ?>
-
             </div>
         </div>
     </section>
@@ -266,13 +268,14 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
             <!-- ── Datos personales ─────────────────────────── -->
             <div class="booking-form-group">
                 <label for="t_name"><?php echo esc_html(pll__('Full Name')); ?> *</label>
-                <input type="text" id="t_name" name="contact_name" required maxlength="100"
+                <input type="text" id="t_name" name="contact_name" required maxlength="10"
                     placeholder="<?php echo esc_attr(pll__('Your full name')); ?>">
             </div>
 
             <div class="booking-form-group">
                 <label for="t_email"><?php echo esc_html(pll__('Email')); ?> *</label>
-                <input type="email" id="t_email" name="contact_email" required maxlength="150" placeholder="your@email.com">
+                <input type="email" id="t_email" name="contact_email" required maxlength="150"
+                    placeholder="your@email.com">
             </div>
 
             <div class="booking-form-group">
@@ -304,17 +307,20 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
                 <div class="booking-form-row">
                     <div class="booking-form-group">
                         <label for="t_flight_number"><?php echo esc_html(pll__('Flight Number')); ?></label>
-                        <input type="text" id="t_flight_number" name="flight_number" placeholder="e.g. AA 1234" maxlength="50">
+                        <input type="text" id="t_flight_number" name="flight_number" placeholder="e.g. AA 1234"
+                            maxlength="50">
                     </div>
                     <div class="booking-form-group">
                         <label for="t_airline"><?php echo esc_html(pll__('Airline')); ?></label>
-                        <input type="text" id="t_airline" name="airline" placeholder="e.g. American Airlines" maxlength="100">
+                        <input type="text" id="t_airline" name="airline" placeholder="e.g. American Airlines"
+                            maxlength="100">
                     </div>
                 </div>
                 <div class="booking-form-row">
                     <div class="booking-form-group">
                         <label for="t_arrival_date"><?php echo esc_html(pll__('Arrival Date')); ?> *</label>
-                        <input type="date" id="t_arrival_date" name="t_arrival_date" required max="<?php echo date('Y-m-d', strtotime('+1 year')); ?>">
+                        <input type="date" id="t_arrival_date" name="t_arrival_date" required
+                            max="<?php echo date('Y-m-d', strtotime('+1 year')); ?>">
                     </div>
                     <div class="booking-form-group">
                         <label for="t_arrival_time"><?php echo esc_html(pll__('Arrival Time')); ?> *</label>
@@ -335,7 +341,8 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
                 <div class="booking-form-row">
                     <div class="booking-form-group">
                         <label for="t_return_flight"><?php echo esc_html(pll__('Return Flight Number')); ?></label>
-                        <input type="text" id="t_return_flight" name="return_flight_number" placeholder="e.g. AA 5678" maxlength="50">
+                        <input type="text" id="t_return_flight" name="return_flight_number" placeholder="e.g. AA 5678"
+                            maxlength="50">
                     </div>
                     <div class="booking-form-group">
                         <label for="t_return_airline"><?php echo esc_html(pll__('Airline')); ?></label>
@@ -346,7 +353,8 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
                 <div class="booking-form-row">
                     <div class="booking-form-group">
                         <label for="t_return_date"><?php echo esc_html(pll__('Departure Date')); ?></label>
-                        <input type="date" id="t_return_date" name="t_return_date" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime('+1 year')); ?>">
+                        <input type="date" id="t_return_date" name="t_return_date" min="<?php echo date('Y-m-d'); ?>"
+                            max="<?php echo date('Y-m-d', strtotime('+1 year')); ?>">
                     </div>
                     <div class="booking-form-group">
                         <label for="t_return_time"><?php echo esc_html(pll__('Departure Time')); ?></label>

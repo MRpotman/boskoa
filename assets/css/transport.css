@@ -241,3 +241,60 @@
     appearance: none;
     -webkit-appearance: none;
 }
+
+.meeting-point-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #f0faf4;
+    border: 1px solid #bbf0d0;
+    border-radius: 14px;
+    padding: 14px 18px;
+    flex-wrap: wrap;
+    margin-bottom: 16PX;
+}
+.meeting-point-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #19532d;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.meeting-point-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.meeting-point-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #19532d;
+}
+.meeting-point-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a2e1e;
+}
+.meeting-point-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    background: #19532d;
+    color: white;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+}
+.meeting-point-btn:hover { background: #0f3a1e; }
