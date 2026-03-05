@@ -266,18 +266,18 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
             <!-- ── Datos personales ─────────────────────────── -->
             <div class="booking-form-group">
                 <label for="t_name"><?php echo esc_html(pll__('Full Name')); ?> *</label>
-                <input type="text" id="t_name" name="contact_name" required
+                <input type="text" id="t_name" name="contact_name" required maxlength="100"
                     placeholder="<?php echo esc_attr(pll__('Your full name')); ?>">
             </div>
 
             <div class="booking-form-group">
                 <label for="t_email"><?php echo esc_html(pll__('Email')); ?> *</label>
-                <input type="email" id="t_email" name="contact_email" required placeholder="your@email.com">
+                <input type="email" id="t_email" name="contact_email" required maxlength="150" placeholder="your@email.com">
             </div>
 
             <div class="booking-form-group">
                 <label for="contact_phone"><?php echo esc_html(pll__('Phone (optional)')); ?></label>
-                <input type="tel" id="contact_phone" name="contact_phone">
+                <input type="tel" id="contact_phone" name="contact_phone" maxlength="20">
                 <input type="hidden" id="contact_phone_full" name="contact_phone_full">
             </div>
 
@@ -304,21 +304,21 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
                 <div class="booking-form-row">
                     <div class="booking-form-group">
                         <label for="t_flight_number"><?php echo esc_html(pll__('Flight Number')); ?></label>
-                        <input type="text" id="t_flight_number" name="flight_number" placeholder="e.g. AA 1234">
+                        <input type="text" id="t_flight_number" name="flight_number" placeholder="e.g. AA 1234" maxlength="50">
                     </div>
                     <div class="booking-form-group">
                         <label for="t_airline"><?php echo esc_html(pll__('Airline')); ?></label>
-                        <input type="text" id="t_airline" name="airline" placeholder="e.g. American Airlines">
+                        <input type="text" id="t_airline" name="airline" placeholder="e.g. American Airlines" maxlength="100">
                     </div>
                 </div>
                 <div class="booking-form-row">
                     <div class="booking-form-group">
                         <label for="t_arrival_date"><?php echo esc_html(pll__('Arrival Date')); ?> *</label>
-                        <input type="date" id="t_arrival_date" name="t_arrival_date" required>
+                        <input type="date" id="t_arrival_date" name="t_arrival_date" required max="<?php echo date('Y-m-d', strtotime('+1 year')); ?>">
                     </div>
                     <div class="booking-form-group">
                         <label for="t_arrival_time"><?php echo esc_html(pll__('Arrival Time')); ?> *</label>
-                        <input type="time" id="t_arrival_time" name="t_arrival_time" required>
+                        <input type="time" id="t_arrival_time" name="t_arrival_time" required min="00:00" max="23:59">
                     </div>
                 </div>
             </div>
@@ -335,22 +335,22 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
                 <div class="booking-form-row">
                     <div class="booking-form-group">
                         <label for="t_return_flight"><?php echo esc_html(pll__('Return Flight Number')); ?></label>
-                        <input type="text" id="t_return_flight" name="return_flight_number" placeholder="e.g. AA 5678">
+                        <input type="text" id="t_return_flight" name="return_flight_number" placeholder="e.g. AA 5678" maxlength="50">
                     </div>
                     <div class="booking-form-group">
                         <label for="t_return_airline"><?php echo esc_html(pll__('Airline')); ?></label>
                         <input type="text" id="t_return_airline" name="return_airline"
-                            placeholder="e.g. American Airlines">
+                            placeholder="e.g. American Airlines" maxlength="100">
                     </div>
                 </div>
                 <div class="booking-form-row">
                     <div class="booking-form-group">
                         <label for="t_return_date"><?php echo esc_html(pll__('Departure Date')); ?></label>
-                        <input type="date" id="t_return_date" name="t_return_date">
+                        <input type="date" id="t_return_date" name="t_return_date" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime('+1 year')); ?>">
                     </div>
                     <div class="booking-form-group">
                         <label for="t_return_time"><?php echo esc_html(pll__('Departure Time')); ?></label>
-                        <input type="time" id="t_return_time" name="t_return_time">
+                        <input type="time" id="t_return_time" name="t_return_time" min="00:00" max="23:59">
                     </div>
                 </div>
             </div>
@@ -358,7 +358,7 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
             <!-- ── Notas adicionales ────────────────────────── -->
             <div class="booking-form-group">
                 <label for="t_message"><?php echo esc_html(pll__('Additional Notes')); ?></label>
-                <textarea id="t_message" name="contact_message" rows="3"
+                <textarea id="t_message" name="contact_message" rows="3" maxlength="500"
                     placeholder="<?php echo esc_attr(pll__('Special requests, wheelchair access, child seats...')); ?>"></textarea>
             </div>
 

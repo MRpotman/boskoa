@@ -47,7 +47,6 @@
         }
 
         .email-logo .logo {
-            font-family: 'Architects Daughter', cursive;
             font-weight: 400;
             font-style: normal;
             font-size: 2.2rem;
@@ -118,7 +117,7 @@
             <div class="email-column email-logo">
                 <div class="site-branding">
                         <div class="logo-content">
-                            <img src="http://boskoa.local/wp-content/themes/boskoa/assets/img/boskoa-logo.png"
+                            <img src="assets/img/boskoa-logo.png"
                                 alt="Boskoa Travel Logo" class="logo-image">
                         </div>
                 </div>
@@ -138,16 +137,26 @@
                 <strong>Email:</strong><br>
                 <a href="mailto:' . esc_attr($email) . '">' . esc_html($email) . '</a>
             </div>
-
+            <div class="field">
+                <strong>Teléfono:</strong><br>
+                ' . esc_html($phone) . '
+            </div>
             <div class="field">
                 <strong>Asunto:</strong><br>
-                ' . esc_html($matters) . '
+                ' . esc_html($subject) . '
             </div>
 
             <div class="field">
                 <strong>Mensaje:</strong><br>
                 ' . nl2br(esc_html($message)) . '
             </div>
+                ' . ($is_package ? $package_activities_html : '
+                <div class="field">
+                    <strong>' . $item_label . ' Detalles:</strong><br>
+                    Personas: ' . esc_html($persons) . ' - Total: $' . number_format($real_total, 2) . '
+                    <br><span>Precio por persona: $' . number_format($real_base_price, 2) . '</span>
+                </div>
+                ') . '
 
             <div class="email">
                 <p>Este mensaje fue enviado desde: <a href="' . home_url() . '">' . get_bloginfo('name') . '</a></p>
