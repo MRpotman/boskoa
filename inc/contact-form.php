@@ -211,3 +211,7 @@ function boskoa_handle_contact_form() {
 
 add_action('admin_post_nopriv_boskoa_contact_form', 'boskoa_handle_contact_form');
 add_action('admin_post_boskoa_contact_form', 'boskoa_handle_contact_form');
+
+// ===============================
+// TRANSPORT FORM HANDLER
+// ===============================
