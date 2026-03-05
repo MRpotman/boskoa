@@ -15,3 +15,8 @@ function boskoa_register_cpt_slides() {
     ]);
 }
 add_action('init', 'boskoa_register_cpt_slides');
+
+add_filter('pll_get_post_types', function($post_types) {
+    $post_types['slide'] = 'slide';
+    return $post_types;
+});

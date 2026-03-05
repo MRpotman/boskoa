@@ -8,9 +8,12 @@ get_header();
 
 // Obtener ID desde URL
 $package_id = isset($_GET['package_id']) ? intval($_GET['package_id']) : 0;
+if (function_exists('pll_get_post')) {
+    $package_id = pll_get_post($package_id);
+}
 
 if (!$package_id) {
-    echo "<h2>Paquete no encontrado</h2>";
+    echo "<h2>Paquete no encontrada</h2>";
     get_footer();
     return;
 }

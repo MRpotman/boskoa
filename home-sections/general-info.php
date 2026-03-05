@@ -3,6 +3,15 @@
 <?php
 $post = get_page_by_path('texto-costa-rica', OBJECT, 'texto');
 
+if ($post) {
+    if (function_exists('pll_get_post')) {
+        $translated_id = pll_get_post($post->ID);
+        if ($translated_id) {
+            $post = get_post($translated_id);
+        }
+    }
+}
+
 if ($post) :
 
     $img = get_field('imagen', $post->ID);
@@ -43,7 +52,7 @@ if ($post) :
             <!-- BOTÓN TEXTO QUEMADO -->
             <a href="#contact" class="button">
                 <span class="button-content">
-                    <?php echo esc_html(pll__('Contact us >>')); ?>
+                    <?php echo esc_html(pll__('Contact Us')); ?> >>
                 </span>
             </a>
 

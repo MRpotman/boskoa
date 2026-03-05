@@ -64,7 +64,6 @@ function boskoa_handle_cart_checkout() {
         if ($item_quantity < 1) $item_quantity = 1;
 
         $real_price = floatval(get_field('precio', $item_id));
-
         $real_title = get_the_title($item_id);
 
         if (!$real_title || $real_price <= 0) continue;
@@ -86,28 +85,18 @@ function boskoa_handle_cart_checkout() {
         exit;
     }
 
-    $texts = [
-        'en' => [
-            'subject'  => 'Booking confirmation - Boskoa Travels',
-            'greeting' => 'Hello',
-            'received' => 'We have received your booking request and will get back to you shortly.',
-            'summary'  => 'Your order summary:',
-            'total'    => 'Estimated total',
-            'regards'  => 'Best regards,',
-            'team'     => 'The Boskoa Travels team',
-        ],
-        'es' => [
-            'subject'  => 'Confirmación de reserva - Boskoa Travels',
-            'greeting' => 'Hola',
-            'received' => 'Hemos recibido tu solicitud de reserva y te responderemos a la brevedad.',
-            'summary'  => 'Resumen de tu pedido:',
-            'total'    => 'Total estimado',
-            'regards'  => 'Saludos,',
-            'team'     => 'El equipo de Boskoa Travels',
-        ],
-    ];
+    // Cambiar idioma de Polylang al idioma del cliente para las traducciones
+    if (function_exists('pll_switch_language')) {
+        pll_switch_language($lang);
+    }
 
-    $t = $texts[$lang] ?? $texts['en'];
+    $subject_email = pll__('Booking confirmation - Boskoa Travels');
+    $greeting      = pll__('Hello');
+    $received      = pll__('We have received your booking request and will get back to you shortly.');
+    $summary       = pll__('Your order summary:');
+    $total_label   = pll__('Estimated total');
+    $regards       = pll__('Best regards,');
+    $team          = pll__('The Boskoa Travels team');
 
     $admin_email = 'uriu1206@gmail.com';
     $subject     = 'Cart Booking Request - ' . $name . ' (' . count($verified_items) . ' items)';
@@ -202,17 +191,17 @@ function boskoa_handle_cart_checkout() {
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
     <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
         <div style="background: #2D8A3E; color: white; padding: 20px; text-align: center; border-radius: 8px 8px 0 0;">
-            <h2>' . esc_html($t['subject']) . '</h2>
+            <h2>' . esc_html($subject_email) . '</h2>
         </div>
         <div style="background: #ffffff; padding: 30px; border: 1px solid #ddd; border-top: none; border-radius: 0 0 8px 8px;">
-            <p>' . esc_html($t['greeting']) . ' <strong>' . esc_html($name) . '</strong>,</p>
-            <p>' . esc_html($t['received']) . '</p>
-            <p><strong>' . esc_html($t['summary']) . '</strong></p>
+            <p>' . esc_html($greeting) . ' <strong>' . esc_html($name) . '</strong>,</p>
+            <p>' . esc_html($received) . '</p>
+            <p><strong>' . esc_html($summary) . '</strong></p>
             <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid #2D8A3E; margin: 20px 0;">
                 ' . $items_list . '
-                <p><strong>' . esc_html($t['total']) . ': $' . number_format($grand_total, 2) . '</strong></p>
+                <p><strong>' . esc_html($total_label) . ': $' . number_format($grand_total, 2) . '</strong></p>
             </div>
-            <p>' . esc_html($t['regards']) . '<br><strong>' . esc_html($t['team']) . '</strong></p>
+            <p>' . esc_html($regards) . '<br><strong>' . esc_html($team) . '</strong></p>
         </div>
         <div style="text-align: center; margin-top: 20px; color: #666; font-size: 12px;">
             <p>Boskoa Travels - Costa Rica<br>
@@ -222,7 +211,7 @@ function boskoa_handle_cart_checkout() {
 </body>
 </html>';
 
-        wp_mail($email, $t['subject'], $confirmation_body, [
+        wp_mail($email, $subject_email, $confirmation_body, [
             'Content-Type: text/html; charset=UTF-8',
             'From: ' . get_bloginfo('name') . ' <' . $admin_email . '>'
         ]);

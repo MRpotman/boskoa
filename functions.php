@@ -39,3 +39,15 @@ foreach ($includes as $file) {
 }
 
 
+add_filter('pll_translation_url', function($url) {
+
+    if (isset($_GET['package_id'])) {
+        $url = add_query_arg('package_id', intval($_GET['package_id']), $url);
+    }
+
+    if (isset($_GET['activity_id'])) {
+        $url = add_query_arg('activity_id', intval($_GET['activity_id']), $url);
+    }
+
+    return $url;
+});

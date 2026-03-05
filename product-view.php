@@ -8,6 +8,10 @@ get_header();
 // Obtener ID desde URL
 $activity_id = isset($_GET['activity_id']) ? intval($_GET['activity_id']) : 0;
 
+if (function_exists('pll_get_post')) {
+    $activity_id = pll_get_post($activity_id);
+}
+
 if (!$activity_id) {
     echo "<h2>Actividad no encontrada</h2>";
     get_footer();
@@ -50,7 +54,7 @@ if (empty($image)) {
             </div>
             <?php if ($description): ?>
             <div class="product-hero-description">
-                <h2><?php echo esc_html(pll__('Descripción')); ?></h2>
+                <h2><?php echo esc_html(pll__('Description')); ?></h2>
                 <p><?php echo esc_html($description); ?></p>
             </div>
             <?php endif; ?>

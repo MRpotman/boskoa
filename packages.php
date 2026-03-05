@@ -49,17 +49,34 @@ $packages_query = new WP_Query([
 ]);
 
 $post = get_page_by_path('packages-title', OBJECT, 'texto');
-
+if ($post && function_exists('pll_get_post')) {
+    $translated_id = pll_get_post($post->ID);
+    if ($translated_id) $post = get_post($translated_id);
+}
 if ($post) {
     $package_title = get_field('titulo', $post->ID);
 }
 
 $post = get_page_by_path('package-main-text', OBJECT, 'texto');
-
+if ($post && function_exists('pll_get_post')) {
+    $translated_id = pll_get_post($post->ID);
+    if ($translated_id) $post = get_post($translated_id);
+}
 if ($post) {
-    $package_title2 = get_field('titulo', $post->ID);
+    $package_title2      = get_field('titulo', $post->ID);
     $package_description = get_field('contenido', $post->ID);
 }
+
+// Resolver package-view URL con Polylang FUERA del loop
+$package_view_page = get_page_by_path('package-view');
+$package_view_id   = $package_view_page ? $package_view_page->ID : 0;
+
+if (function_exists('pll_get_post') && $package_view_id) {
+    $translated = pll_get_post($package_view_id);
+    $package_view_id = $translated ?: $package_view_id;
+}
+
+$package_view_url = $package_view_id ? get_permalink($package_view_id) : site_url('/package-view/');
 
 ?>
 <section class="tours-pack" id="packages">
@@ -123,17 +140,17 @@ if ($post) {
                         }
 
                         $package = [
-                            'id' => get_the_ID(),
-                            'title' => get_field('titulo') ?: get_the_title(),
-                            'price' => get_field('precio'),
-                            'family' => get_field('familiar'),
-                            'encuentro_link' => get_field('encuentro_link'),
-                            'descripcion' => get_field('descripcion'),
+                            'id'                 => get_the_ID(),
+                            'title'              => get_field('titulo') ?: get_the_title(),
+                            'price'              => get_field('precio'),
+                            'family'             => get_field('familiar'),
+                            'encuentro_link'     => get_field('encuentro_link'),
+                            'descripcion'        => get_field('descripcion'),
                             'punto_de_encuentro' => get_field('punto_de_encuentro'),
-                            'image' => $package_image ?: get_the_post_thumbnail_url(get_the_ID(), 'large'),
-                            'activities' => get_field('actividades_incluidas'), // relación
-                            'link' => site_url('/package-view/?package_id=' . get_the_ID()),
-                            'location' => get_field('punto_de_encuentro'), // Para mostrar ubicación en la card
+                            'image'              => $package_image ?: get_the_post_thumbnail_url(get_the_ID(), 'large'),
+                            'activities'         => get_field('actividades_incluidas'),
+                            'link'               => $package_view_url . '?package_id=' . get_the_ID(),
+                            'location'           => get_field('punto_de_encuentro'),
                         ];
 
                         // Valores por defecto

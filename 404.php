@@ -13,11 +13,11 @@
         <h1 class="error404-title">404</h1>
 
         <p class="error404-text">
-            Oops... esta página se perdió en el sistema
+            <?php pll_e('Oops... this page got lost in the system.'); ?>
         </p>
 
         <a href="<?php echo home_url(); ?>" class="error404-btn">
-            Volver al inicio
+            <?php pll_e('Back to home'); ?>
         </a>
 
     </div>

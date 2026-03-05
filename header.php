@@ -139,7 +139,7 @@
 
 <div class="cart-sidebar" id="cart-sidebar">
   <div class="cart-sidebar__header">
-    <h5 class="cart-sidebar__title"><?php pll_e('Tu carrito'); ?></h5>
+    <h5 class="cart-sidebar__title"><?php pll_e('Your cart'); ?></h5>
     <button class="cart-sidebar__close" id="cart-close-btn">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -152,7 +152,7 @@
     <?php if (function_exists('WC')) : ?>
       <?php woocommerce_mini_cart(); ?>
     <?php else : ?>
-      <p><?php pll_e('Tu carrito está vacío.'); ?></p>
+      <p><?php pll_e('Your cart is empty'); ?></p>
     <?php endif; ?>
   </div>
 </div>

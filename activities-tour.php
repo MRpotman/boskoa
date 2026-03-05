@@ -63,17 +63,38 @@ $packages_query = new WP_Query([
 // ===============================
 
 $post = get_page_by_path('packages-title', OBJECT, 'texto');
-
+if ($post && function_exists('pll_get_post')) {
+    $translated_id = pll_get_post($post->ID);
+    if ($translated_id) $post = get_post($translated_id);
+}
 if ($post) {
     $package_title = get_field('titulo', $post->ID);
 }
 
 $post = get_page_by_path('package-main-text', OBJECT, 'texto');
-
+if ($post && function_exists('pll_get_post')) {
+    $translated_id = pll_get_post($post->ID);
+    if ($translated_id) $post = get_post($translated_id);
+}
 if ($post) {
-    $package_title2 = get_field('titulo', $post->ID);
+    $package_title2      = get_field('titulo', $post->ID);
     $package_description = get_field('contenido', $post->ID);
 }
+
+
+// ===============================
+// RESOLVER product-view URL CON POLYLANG FUERA DEL LOOP
+// ===============================
+
+$product_view_page = get_page_by_path('product-view');
+$product_view_id   = $product_view_page ? $product_view_page->ID : 0;
+
+if (function_exists('pll_get_post') && $product_view_id) {
+    $translated = pll_get_post($product_view_id);
+    $product_view_id = $translated ?: $product_view_id;
+}
+
+$product_view_url = $product_view_id ? get_permalink($product_view_id) : site_url('/product-view/');
 
 ?>
 
@@ -182,17 +203,17 @@ if ($post) {
 
                 $package = [
 
-                    'id' => get_the_ID(),
-                    'title' => get_field('titulo') ?: get_the_title(),
+                    'id'          => get_the_ID(),
+                    'title'       => get_field('titulo') ?: get_the_title(),
                     'description' => get_field('descripcion'),
-                    'price' => get_field('precio'),
-                    'image' => $image,
-                    'location' => get_field('ubicacion'),
-                    'host' => get_field('anfitrion'),
-                    'itinerary' => get_field('itinerario'),
-                    'included' => get_field('articulos_incluidos'),
-                    'family' => get_field('familiar'),
-                    'link' => site_url('/product-view/?activity_id=' . get_the_ID()),
+                    'price'       => get_field('precio'),
+                    'image'       => $image,
+                    'location'    => get_field('ubicacion'),
+                    'host'        => get_field('anfitrion'),
+                    'itinerary'   => get_field('itinerario'),
+                    'included'    => get_field('articulos_incluidos'),
+                    'family'      => get_field('familiar'),
+                    'link'        => $product_view_url . '?activity_id=' . get_the_ID(),
 
                 ];
 

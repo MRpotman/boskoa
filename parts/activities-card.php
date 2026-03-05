@@ -71,7 +71,7 @@ $show_family   = $args['show_family']   ?? true;
                                 fill="currentColor"/>
                             </svg>
 
-                            Family
+                            <?php pll__('Family'); ?>
 
                         </span>
 
@@ -94,7 +94,7 @@ $show_family   = $args['show_family']   ?? true;
                     <?php if ($show_button): ?>
 
                         <span class="package-btn">
-                            Book Now
+                             <?php pll__('Book Now'); ?>
                         </span>
 
                     <?php endif; ?>

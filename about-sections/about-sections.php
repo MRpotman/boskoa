@@ -23,6 +23,14 @@ foreach ($sections as $section) {
         continue;
     }
 
+    
+    if (function_exists('pll_get_post')) {
+        $translated_id = pll_get_post($post->ID);
+        if ($translated_id) {
+            $post = get_post($translated_id);
+        }
+    }
+
     $section_title   = get_field('titulo', $post->ID) ?: get_the_title($post->ID);
     $section_content = get_field('contenido', $post->ID) ?: get_the_excerpt($post->ID);
     $section_image   = get_field('imagen', $post->ID);

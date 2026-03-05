@@ -3,11 +3,14 @@ $hero_image = '';
 $hero_titulo = '';
 $hero_subtitulo = '';
 
-// Obtener el post directamente por slug (más eficiente que WP_Query)
 $post = get_page_by_path('hero-packages', OBJECT, 'texto');
 
-if ($post) {
+if ($post && function_exists('pll_get_post')) {
+    $translated_id = pll_get_post($post->ID);
+    if ($translated_id) $post = get_post($translated_id);
+}
 
+if ($post) {
     $hero_image     = get_field('imagen', $post->ID);
     $hero_titulo    = get_field('titulo', $post->ID);
     $hero_subtitulo = get_field('contenido', $post->ID);

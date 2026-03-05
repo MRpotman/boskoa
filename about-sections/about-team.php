@@ -63,7 +63,7 @@ if (!$team_query->have_posts()) {
 }
 
 if (!$team_query->have_posts()) {
-    return; // No mostrar nada si no hay miembros
+    return; 
 }
 ?>
 
