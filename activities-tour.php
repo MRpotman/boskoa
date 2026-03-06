@@ -217,11 +217,6 @@ $product_view_url = $product_view_id ? get_permalink($product_view_id) : site_ur
 
                 ];
 
-
-                if (empty($package['price'])) {
-                    $package['price'] = '$500';
-                }
-
                 if (empty($package['location'])) {
                     $package['location'] = '#';
                 }

@@ -176,25 +176,29 @@ if (empty($image)) {
             <?php endif; ?>
 
             <?php if ($meeting_point || $meeting_link): ?>
-            <div class="accordion-item">
-                <button class="accordion-header" aria-expanded="false">
-                    <span><?php echo esc_html(pll__('MEETING POINT')); ?></span>
-                    <svg class="accordion-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-                <div class="accordion-body">
-                    <?php if ($meeting_point): ?>
-                        <p><?php echo esc_html($meeting_point); ?></p>
-                    <?php endif; ?>
+                <div class="meeting-point-card">
+                    <div class="meeting-point-icon">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+                            <circle cx="12" cy="10" r="3" />
+                        </svg>
+                    </div>
+                    <div class="meeting-point-info">
+                        <?php if ($meeting_point): ?>
+                        <span class="meeting-point-label"><?php echo esc_html(pll__('Meeting Point')); ?></span>
+                        <span class="meeting-point-name"><?php echo esc_html($meeting_point); ?></span>
+                        <?php endif; ?>
+                    </div>
                     <?php if ($meeting_link): ?>
-                        <a href="<?php echo esc_url($meeting_link); ?>" target="_blank" rel="noopener noreferrer" class="product-view-map-link">
-                            <?php echo esc_html(pll__('Open in Google Maps')); ?>
-                        </a>
+                    <a href="<?php echo esc_url($meeting_link); ?>" target="_blank" rel="noopener noreferrer" class="meeting-point-btn">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
+                        </svg>
+                        <?php echo esc_html(pll__('Open Maps')); ?>
+                    </a>
                     <?php endif; ?>
                 </div>
-            </div>
-            <?php endif; ?>
+                <?php endif; ?>
 
         </div>
     </div>

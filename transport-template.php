@@ -162,7 +162,7 @@ if ($post) {
                     'image'       => $image,
                     'origin'      => get_field('origen'),
                     'destination' => get_field('destino'),
-                    'route_type'  => get_field('tipo_ruta'),   // one_way / round_trip / both
+                    'route_type'  => get_field('tipo_ruta'),   
                     'link'        => site_url('/transport-view/?transport_id=' . get_the_ID()),
                 ];
 
