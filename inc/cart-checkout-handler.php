@@ -85,20 +85,25 @@ function boskoa_handle_cart_checkout() {
         exit;
     }
 
-    // Cambiar idioma de Polylang al idioma del cliente para las traducciones
-    if (function_exists('pll_switch_language')) {
-        pll_switch_language($lang);
+    if ($lang === 'es') {
+        $subject_email = 'Confirmación de reserva - Boskoa Travels';
+        $greeting      = 'Hola';
+        $received      = 'Hemos recibido tu solicitud de reserva y pronto nos pondremos en contacto.';
+        $summary       = 'Resumen de tu pedido:';
+        $total_label   = 'Total estimado';
+        $regards       = 'Saludos cordiales,';
+        $team          = 'El equipo de Boskoa Travels';
+    } else {
+        $subject_email = 'Booking confirmation - Boskoa Travels';
+        $greeting      = 'Hello';
+        $received      = 'We have received your booking request and will get back to you shortly.';
+        $summary       = 'Your order summary:';
+        $total_label   = 'Estimated total';
+        $regards       = 'Best regards,';
+        $team          = 'The Boskoa Travels team';
     }
 
-    $subject_email = pll__('Booking confirmation - Boskoa Travels');
-    $greeting      = pll__('Hello');
-    $received      = pll__('We have received your booking request and will get back to you shortly.');
-    $summary       = pll__('Your order summary:');
-    $total_label   = pll__('Estimated total');
-    $regards       = pll__('Best regards,');
-    $team          = pll__('The Boskoa Travels team');
-
-    $admin_email = 'uriu1206@gmail.com';
+    $admin_email = 'camiloredondo5@gmail.com';
     $subject     = 'Cart Booking Request - ' . $name . ' (' . count($verified_items) . ' items)';
 
     $items_html = '';

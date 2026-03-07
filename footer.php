@@ -68,7 +68,8 @@
                     </div>
 
                     <input type="hidden" name="recaptcha_token" id="recaptchaToken">
-                    <input type="hidden" name="action" value="boskoa_contact_form">
+                    <input type="hidden" name="action" value="boskoa_general_contact">
+                    <input type="hidden" name="current_lang" value="<?php echo esc_attr(pll_current_language()); ?>">
                     <?php wp_nonce_field('boskoa_contact_form', 'contact_nonce'); ?>
                 </form>
             </div>
@@ -103,7 +104,6 @@
                     <a href="https://wa.me/message/ZGT5HWHZ3JY2D1" target="_blank" aria-label="WhatsApp">
                         <i class="fab fa-whatsapp" style="font-size: 26px;"></i>
                     </a>
-                    
                 </div>
             </div>
 
@@ -124,7 +124,6 @@
             </p>
             <div class="payment-methods">
                 <?php
-                    // Query para obtener los métodos de pago
                     $payment_methods = new WP_Query([
                         'post_type'      => 'payment_method',
                         'posts_per_page' => -1,
@@ -149,7 +148,6 @@
                         endwhile;
                         wp_reset_postdata();
                     else :
-                        // Métodos de pago por defecto si no hay ninguno creado
                         ?>
                 <?php
                     endif;

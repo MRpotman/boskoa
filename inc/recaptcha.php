@@ -1,9 +1,8 @@
 <?php
-define('BOSKOA_RECAPTCHA_SITE_KEY', '6LfgF2MsAAAAAI9p2MMRZB6attYxL4Mmbim1cl_5');
-define('BOSKOA_RECAPTCHA_SECRET_KEY', '6LfgF2MsAAAAAJ6r5hLBZ7cyK_ueqogL29Y8sjXr');
+define('BOSKOA_RECAPTCHA_SITE_KEY', '6LdS9IIsAAAAAJwa2UjP7qhIyB_r_0BvqK3Bedg2');
+define('BOSKOA_RECAPTCHA_SECRET_KEY', '6LdS9IIsAAAAADZ2VwdDWLC5CpbRykkYadD2aQ1I');
 
 function boskoa_verify_recaptcha($token) {
-
     $response = wp_remote_post(
         'https://www.google.com/recaptcha/api/siteverify',
         [
@@ -14,7 +13,10 @@ function boskoa_verify_recaptcha($token) {
         ]
     );
 
-    if (is_wp_error($response)) return false;
+    if (is_wp_error($response)) {
+        error_log('reCAPTCHA wp_error: ' . $response->get_error_message());
+        return false;
+    }
 
     $result = json_decode(wp_remote_retrieve_body($response));
 

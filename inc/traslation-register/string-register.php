@@ -91,8 +91,9 @@ function boskoa_register_strings() {
         'Package',
         'Activity',
         'Hello',
-        'Clear cart'
-
+        'Clear cart',
+        'We have received your message and will get back to you shortly.'
+        
     ];
 
     foreach ($strings as $string) {
