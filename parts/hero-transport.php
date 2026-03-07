@@ -9,6 +9,14 @@ $hero_subtitulo = '';
 
 $post = get_page_by_path('hero-transport', OBJECT, 'texto');
 
+if ($post && function_exists('pll_get_post')) {
+    $translated_id = pll_get_post($post->ID);
+
+    if ($translated_id) {
+        $post = get_post($translated_id);
+    }
+}
+
 if ($post) {
     $hero_image     = get_field('imagen', $post->ID);
     $hero_titulo    = get_field('titulo', $post->ID);

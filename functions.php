@@ -48,6 +48,9 @@ add_filter('pll_translation_url', function($url) {
     if (isset($_GET['activity_id'])) {
         $url = add_query_arg('activity_id', intval($_GET['activity_id']), $url);
     }
-
+    
+    if (isset($_GET['transport_id'])) {
+        $url = add_query_arg('transport_id', intval($_GET['transport_id']), $url);
+    }
     return $url;
 });

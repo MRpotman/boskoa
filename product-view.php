@@ -8,6 +8,15 @@ get_header();
 // Obtener ID desde URL
 $activity_id = isset($_GET['activity_id']) ? intval($_GET['activity_id']) : 0;
 
+if (function_exists('pll_get_post') && $activity_id) {
+    $current_lang = pll_current_language();
+    $translated_id = pll_get_post($activity_id, $current_lang);
+
+    if ($translated_id) {
+        $activity_id = $translated_id;
+    }
+}
+
 if (function_exists('pll_get_post')) {
     $activity_id = pll_get_post($activity_id);
 }

@@ -62,15 +62,38 @@ $packages_query = new WP_Query([
 // ===============================
 
 $post = get_page_by_path('transport-subtitle', OBJECT, 'texto');
+if ($post && function_exists('pll_get_post')) {
+    $translated = pll_get_post($post->ID);
+    if ($translated) $post = get_post($translated);
+}
 if ($post) {
     $transport_subtitle = get_field('titulo', $post->ID);
 }
 
 $post = get_page_by_path('transport-main-text', OBJECT, 'texto');
+if ($post && function_exists('pll_get_post')) {
+    $translated = pll_get_post($post->ID);
+    if ($translated) $post = get_post($translated);
+}
 if ($post) {
     $transport_title       = get_field('titulo', $post->ID);
     $transport_description = get_field('contenido', $post->ID);
 }
+
+
+// ===============================
+// RESOLVER transport-view URL CON POLYLANG
+// ===============================
+
+$transport_view_page = get_page_by_path('transport-view');
+$transport_view_id   = $transport_view_page ? $transport_view_page->ID : 0;
+
+if (function_exists('pll_get_post') && $transport_view_id) {
+    $translated = pll_get_post($transport_view_id);
+    $transport_view_id = $translated ?: $transport_view_id;
+}
+
+$transport_view_url = $transport_view_id ? get_permalink($transport_view_id) : site_url('/transport-view/');
 
 ?>
 
@@ -96,53 +119,15 @@ if ($post) {
     </div>
 
 
-    <!-- LOADING + GRID CONTAINER -->
+    <!-- GRID CONTAINER -->
     <div class="tours-grid-container">
-
-        <!-- LOADING SPINNER -->
-        <div class="tours-loading-overlay" aria-hidden="true">
-            <div class="tours-loading-spinner">
-                <svg fill="#2FB468" viewBox="0 0 24 24" width="60" height="60">
-                    <circle cx="4" cy="12" r="0">
-                        <animate begin="0;spinner_z0Or.end" attributeName="r" dur="0.5s" values="0;3" fill="freeze"/>
-                        <animate begin="spinner_OLMs.end" attributeName="cx" dur="0.5s" values="4;12" fill="freeze"/>
-                        <animate begin="spinner_UHR2.end" attributeName="cx" dur="0.5s" values="12;20" fill="freeze"/>
-                        <animate id="spinner_lo66" begin="spinner_Aguh.end" attributeName="r" dur="0.5s" values="3;0" fill="freeze"/>
-                        <animate id="spinner_z0Or" begin="spinner_lo66.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
-                    </circle>
-                    <circle cx="4" cy="12" r="3">
-                        <animate begin="0;spinner_z0Or.end" attributeName="cx" dur="0.5s" values="4;12" fill="freeze"/>
-                        <animate begin="spinner_OLMs.end" attributeName="cx" dur="0.5s" values="12;20" fill="freeze"/>
-                        <animate id="spinner_JsnR" begin="spinner_UHR2.end" attributeName="r" dur="0.5s" values="3;0" fill="freeze"/>
-                        <animate id="spinner_Aguh" begin="spinner_JsnR.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
-                        <animate begin="spinner_Aguh.end" attributeName="r" dur="0.5s" values="0;3" fill="freeze"/>
-                    </circle>
-                    <circle cx="12" cy="12" r="3">
-                        <animate begin="0;spinner_z0Or.end" attributeName="cx" dur="0.5s" values="12;20" fill="freeze"/>
-                        <animate id="spinner_hSjk" begin="spinner_OLMs.end" attributeName="r" dur="0.5s" values="3;0" fill="freeze"/>
-                        <animate id="spinner_UHR2" begin="spinner_hSjk.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
-                        <animate begin="spinner_UHR2.end" attributeName="r" dur="0.5s" values="0;3" fill="freeze"/>
-                        <animate begin="spinner_Aguh.end" attributeName="cx" dur="0.5s" values="4;12" fill="freeze"/>
-                    </circle>
-                    <circle cx="20" cy="12" r="3">
-                        <animate id="spinner_4v5M" begin="0;spinner_z0Or.end" attributeName="r" dur="0.5s" values="3;0" fill="freeze"/>
-                        <animate id="spinner_OLMs" begin="spinner_4v5M.end" attributeName="cx" dur="0.001s" values="20;4" fill="freeze"/>
-                        <animate begin="spinner_OLMs.end" attributeName="r" dur="0.5s" values="0;3" fill="freeze"/>
-                        <animate begin="spinner_UHR2.end" attributeName="cx" dur="0.5s" values="4;12" fill="freeze"/>
-                        <animate begin="spinner_Aguh.end" attributeName="cx" dur="0.5s" values="12;20" fill="freeze"/>
-                    </circle>
-                </svg>
-                <p class="tours-loading-text">
-                    <?php echo esc_html(pll__('Loading transport options...')); ?>
-                </p>
-            </div>
-        </div>
 
         <!-- GRID -->
         <div class="tours-grid transport-grid">
 
         <?php
         if ($packages_query->have_posts()) :
+
             while ($packages_query->have_posts()) :
 
                 $packages_query->the_post();
@@ -155,20 +140,33 @@ if ($post) {
                     $image = wp_get_attachment_image_url($image, 'large');
                 }
 
+                if (empty($image)) {
+                    $image = get_template_directory_uri() . '/assets/img/placeholder-package.svg';
+                }
+
+                // ===============================
+                // ID DEL TRANSPORTE CON POLYLANG
+                // ===============================
+
+                $transport_id = get_the_ID();
+
+                if (function_exists('pll_get_post')) {
+                    $translated_transport = pll_get_post($transport_id);
+                    if ($translated_transport) {
+                        $transport_id = $translated_transport;
+                    }
+                }
+
                 $transport = [
-                    'id'          => get_the_ID(),
+                    'id'          => $transport_id,
                     'title'       => get_field('titulo') ?: get_the_title(),
                     'description' => get_field('descripcion'),
                     'image'       => $image,
                     'origin'      => get_field('origen'),
                     'destination' => get_field('destino'),
-                    'route_type'  => get_field('tipo_ruta'),   
-                    'link'        => site_url('/transport-view/?transport_id=' . get_the_ID()),
+                    'route_type'  => get_field('tipo_ruta'),
+                    'link'        => $transport_view_url . '?transport_id=' . $transport_id,
                 ];
-
-                if (empty($transport['image'])) {
-                    $transport['image'] = get_template_directory_uri() . '/assets/img/placeholder-package.svg';
-                }
 
                 get_template_part(
                     'parts/transport-card',
@@ -192,9 +190,9 @@ if ($post) {
 
         <?php endif; ?>
 
-        </div> <!-- END GRID -->
+        </div>
 
-    </div> <!-- END GRID CONTAINER -->
+    </div>
 
 
     <!-- PAGINACIÓN -->

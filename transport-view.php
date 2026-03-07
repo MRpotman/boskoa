@@ -10,6 +10,15 @@ get_header();
 
 $transport_id = isset($_GET['transport_id']) ? intval($_GET['transport_id']) : 0;
 
+if (function_exists('pll_get_post') && $transport_id) {
+    $current_lang = pll_current_language();
+    $translated_id = pll_get_post($transport_id, $current_lang);
+
+    if ($translated_id) {
+        $transport_id = $translated_id;
+    }
+}
+
 if (!$transport_id) {
     echo '<h2 style="text-align:center;padding:80px 20px;">' . esc_html(pll__('Transport option not found.')) . '</h2>';
     get_footer();
