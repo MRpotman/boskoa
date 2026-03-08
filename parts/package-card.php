@@ -52,7 +52,7 @@ $show_family   = $args['show_family']   ?? true;
                                 d="M5.5 4.5c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zm9 0c0 1.105-.895 2-2 2s-2-.895-2-2 .895-2 2-2 2 .895 2 2zM6 14v-3c0-.828-.672-1.5-1.5-1.5S3 10.172 3 11v3h3zm7 0v-3c0-.828-.672-1.5-1.5-1.5S10 10.172 10 11v3h3zm-5.5-6c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM10 14v-3c0-.828-.672-1.5-1.5-1.5S7 10.172 7 11v3h3z"
                                 fill="currentColor" />
                         </svg>
-                            <?php pll__('Family'); ?>
+                            <?php echo pll__('Family'); ?>
                         </span>
                         <?php endif; ?>
                 </div>
@@ -66,7 +66,7 @@ $show_family   = $args['show_family']   ?? true;
 
                     <?php if ($show_button): ?>
                     <span class="package-btn">
-                             <?php pll__('Book Now'); ?>
+                             <?php echo pll__('Book Now'); ?>
                         </span>
                     <?php endif; ?>
 
