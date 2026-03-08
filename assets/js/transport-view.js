@@ -7,8 +7,8 @@
 (function () {
 
     /* ── Modal open / close ─────────────────────────────────── */
-    const modal   = document.getElementById('transport-modal');
-    const openBtn = document.getElementById('open-transport-modal');
+    const modal    = document.getElementById('transport-modal');
+    const openBtn  = document.getElementById('open-transport-modal');
     const closeBtn = document.getElementById('close-transport-modal');
 
     function closeModal() {
@@ -24,14 +24,8 @@
     });
 
     closeBtn?.addEventListener('click', closeModal);
-
-    modal?.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-    });
+    modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
 
     /* ── Round-trip toggle ──────────────────────────────────── */
@@ -40,17 +34,14 @@
     const modalOptions  = document.querySelectorAll('.transport-modal-trip-option');
 
     function syncTripType(value) {
-        // active class
         modalOptions.forEach((opt) => opt.classList.remove('active'));
         const activeOpt = document.querySelector(`.transport-modal-trip-option input[value="${value}"]`);
         activeOpt?.closest('.transport-modal-trip-option')?.classList.add('active');
 
-        // show/hide return section
         if (returnSection) {
             returnSection.style.display = (value === 'round_trip') ? 'block' : 'none';
         }
 
-        // toggle required fields in return section
         const returnDate = document.getElementById('t_return_date');
         const returnTime = document.getElementById('t_return_time');
         if (returnDate) returnDate.required = (value === 'round_trip');
@@ -61,9 +52,7 @@
         radio.addEventListener('change', () => syncTripType(radio.value));
     });
 
-    // Sync hero trip selector → modal radios (solo cuando tipo_ruta === 'both')
     const heroRadios = document.querySelectorAll('.transport-trip-options input[type="radio"]');
-
     heroRadios.forEach((r) => {
         r.addEventListener('change', () => {
             const modalRadio = document.querySelector(`#transport-modal input[name="trip_type"][value="${r.value}"]`);
@@ -74,7 +63,6 @@
         });
     });
 
-    // Estado inicial según radio prechecked
     const checkedRadio = document.querySelector('#transport-modal input[name="trip_type"]:checked');
     if (checkedRadio) syncTripType(checkedRadio.value);
 
@@ -88,16 +76,35 @@
         });
     });
 
-    document.addEventListener('DOMContentLoaded', function() {
-        var form = document.getElementById('transport-booking-form');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                var submitBtn = form.querySelector('.booking-submit-btn');
-                var originalText = submitBtn ? submitBtn.textContent : 'Send Booking Request';
+    const form = document.getElementById('transport-booking-form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
 
-                if (typeof executeRecaptcha === 'function') {
-                    executeRecaptcha()
+            const submitBtn  = form.querySelector('.booking-submit-btn');
+            const originalText = submitBtn ? submitBtn.textContent : 'Send Booking Request';
+
+            if (typeof executeRecaptcha === 'function') {
+                executeRecaptcha()
+                    .then(function(token) {
+                        document.getElementById('transportRecaptchaToken').value = token;
+                        if (submitBtn) {
+                            submitBtn.textContent = 'Sending...';
+                            submitBtn.disabled = true;
+                        }
+                        form.submit();
+                    })
+                    .catch(function(error) {
+                        console.error('reCAPTCHA error:', error);
+                        alert('Verification error. Please reload the page and try again.');
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = originalText;
+                        }
+                    });
+            } else if (typeof grecaptcha !== 'undefined' && typeof window.boskoaRecaptchaSiteKey !== 'undefined') {
+                grecaptcha.ready(function() {
+                    grecaptcha.execute(window.boskoaRecaptchaSiteKey, { action: 'contact_form' })
                         .then(function(token) {
                             document.getElementById('transportRecaptchaToken').value = token;
                             if (submitBtn) {
@@ -105,29 +112,12 @@
                                 submitBtn.disabled = true;
                             }
                             form.submit();
-                        })
-                        .catch(function(error) {
-                            alert('Verification error. Please reload the page and try again.');
-                            if (submitBtn) {
-                                submitBtn.disabled = false;
-                                submitBtn.textContent = originalText;
-                            }
                         });
-                } else {
-                    // Fallback si no existe la función global
-                    if (typeof grecaptcha !== 'undefined' && typeof window.boskoaRecaptchaSiteKey !== 'undefined') {
-                        grecaptcha.ready(function() {
-                            grecaptcha.execute(window.boskoaRecaptchaSiteKey, {action: 'contact_form'}).then(function(token) {
-                                document.getElementById('transportRecaptchaToken').value = token;
-                                form.submit();
-                            });
-                        });
-                    } else {
-                        alert('reCAPTCHA not loaded.');
-                    }
-                }
-            });
-        }
-    });
+                });
+            } else {
+                alert('reCAPTCHA not loaded. Please reload the page.');
+            }
+        });
+    }
 
 })();

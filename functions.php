@@ -28,7 +28,8 @@ $includes = [
     'inc/tour-package-columns.php',
     'inc/tour-package-custom-column.php',
     'inc/acf-about-fields.php',
-    'inc/traslation-register/string-register.php'
+    'inc/traslation-register/string-register.php',
+    'inc/transport-form.php'
 ];
 
 foreach ($includes as $file) {

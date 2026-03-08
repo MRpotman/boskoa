@@ -277,7 +277,7 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
             <!-- ── Datos personales ─────────────────────────── -->
             <div class="booking-form-group">
                 <label for="t_name"><?php echo esc_html(pll__('Full Name')); ?> *</label>
-                <input type="text" id="t_name" name="contact_name" required maxlength="10"
+                <input type="text" id="t_name" name="contact_name" required maxlength="100"
                     placeholder="<?php echo esc_attr(pll__('Your full name')); ?>">
             </div>
 
