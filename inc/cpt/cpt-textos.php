@@ -5,7 +5,7 @@ function boskoa_register_cpt_textos() {
             'name' => 'Textos',
             'singular_name' => 'Texto'
         ],
-        'public' => false,
+        'public' => true,
         'show_ui' => true,
         'publicly_queryable' => false,
         'exclude_from_search' => true,
