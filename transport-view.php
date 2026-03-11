@@ -360,13 +360,13 @@ $route_label = $route_labels[$route_type ?? ''] ?? '';
                 <div class="booking-form-row">
                     <div class="booking-form-group">
                         <label for="t_arrival_date"><?php echo esc_html(pll__('Arrival Date')); ?> *</label>
-                        <input type="date" id="t_arrival_date" name="t_arrival_date" required
+                        <input type="date" id="t_arrival_date" name="t_arrival_date" 
                             min="<?php echo date('Y-m-d'); ?>"
                             max="<?php echo date('Y-m-d', strtotime('+1 year')); ?>">
                     </div>
                     <div class="booking-form-group">
                         <label for="t_arrival_time"><?php echo esc_html(pll__('Arrival Time')); ?> *</label>
-                        <input type="time" id="t_arrival_time" name="t_arrival_time" required
+                        <input type="time" id="t_arrival_time" name="t_arrival_time" 
                             min="00:00" max="23:59">
                     </div>
                 </div>
